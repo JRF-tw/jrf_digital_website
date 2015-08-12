@@ -1,0 +1,32 @@
+// Compass-like flexbox mixins extracted from Material Design Lite
+
+@mixin display-flex {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+@mixin flex-direction($direction) {
+    @if $direction == row {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+}
+
+@mixin flex-grow($flex-grow) {
+    -webkit-box-flex: $flex-grow;
+    -webkit-flex-grow: $flex-grow;
+    -ms-flex-positive: $flex-grow;
+    flex-grow: $flex-grow;
+}
+
+@mixin align-items($align-items) {
+    -webkit-box-align: $align-items;
+    -webkit-align-items: $align-items;
+    -ms-flex-align: $align-items;
+    align-items: $align-items;
+}
