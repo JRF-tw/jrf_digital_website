@@ -6,39 +6,39 @@ header.mdl-layout__header.mdl-color--white.mdl-color-text--grey-600
       input#search-field name="q" placeholder="搜尋" type="text" /
 .mdl-layout__drawer.main-drawer.mdl-color--brown-900.mdl-color-text--brown-50
     header.main-header
-      img.avatar alt="民間司法改革基金會" src="http://www.jrf.org.tw/newjrf/img/info_logo.png" /
+      = image_tag 'info_logo.png', class: "avatar", alt: "民間司法改革基金會"
       h6
         small 民間司法改革基金會
-        = succeed "\u{6578}\u{4f4d}\u{5178}\u{85cf}\u{6aa2}\u{7d22}\u{7cfb}\u{7d71}" do
-          br/
+        br
+        | 數位典藏檢索系統
     nav.mdl-navigation.main-navigation.mdl-color--brown-800
-      a.mdl-navigation__link href="index.html" 
+      = link_to root_path, class: "mdl-navigation__link" do
         i.material-icons> dashboard
         | 首頁
-      a.mdl-navigation__link href="magazine.html" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> book
         | 雜誌
-      a.mdl-navigation__link href="articles.html" 
+      = link_to records_path, class: "mdl-navigation__link" do
         i.material-icons> description
         | 文章
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> photo
         | 文宣品
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> account_balance
         | 公文書
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> announcement
         | 聲明稿
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> assignment
         | 陳情相關資料
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> group
         | 會務
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons> email
         | 信函
       .mdl-layout-spacer
-      a.mdl-navigation__link href="#" 
+      = link_to "#", class: "mdl-navigation__link" do
         i.material-icons help_outline
