@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125045452) do
+ActiveRecord::Schema.define(version: 20150125046323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.integer  "magazine_id"
+    t.integer  "column_id"
+    t.string   "image"
+    t.string   "title"
+    t.string   "author"
+    t.integer  "page"
+    t.text     "content"
+    t.text     "comment"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "carriers", force: :cascade do |t|
     t.string "name"
@@ -28,6 +41,12 @@ ActiveRecord::Schema.define(version: 20150125045452) do
     t.string "name"
   end
 
+  create_table "columns", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "issues", force: :cascade do |t|
     t.string "name"
   end
@@ -38,6 +57,13 @@ ActiveRecord::Schema.define(version: 20150125045452) do
 
   add_index "keywords", ["name"], name: "index_keywords_on_name", unique: true, using: :btree
 
+  create_table "keywords_articles", force: :cascade do |t|
+    t.integer "keyword_id", null: false
+    t.integer "article_id", null: false
+  end
+
+  add_index "keywords_articles", ["keyword_id", "article_id"], name: "keywords_articles_index", unique: true, using: :btree
+
   create_table "keywords_records", force: :cascade do |t|
     t.integer "keyword_id"
     t.integer "record_id"
@@ -47,6 +73,16 @@ ActiveRecord::Schema.define(version: 20150125045452) do
 
   create_table "languages", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "magazines", force: :cascade do |t|
+    t.string   "name"
+    t.string   "volumn"
+    t.integer  "issue"
+    t.string   "pdf"
+    t.date     "published_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "patterns", force: :cascade do |t|
