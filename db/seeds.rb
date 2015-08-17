@@ -10,38 +10,107 @@ Record.delete_all
 
 record_path = Rails.root.join('db', 'data', 'records.json')
 
+
+
+資料類型-資源類型
+資料類型-載體
+資料類型-型式
+資料識別碼
+敏感資料與否
+文件標題
+貢獻者
+案名
+出版者
+產生日期-顯示用
+產生日期-檢索用
+資料格式-單位
+資料格式-大小
+資料格式-面數
+檔案數量
+語言
+主題
+關鍵字
+目次∕附件
+內容描述
+對應資訊
+典藏單位
+附註項
+原件權利-著作權
+原件權利-財產物權
+數位檔權利-所有權人
+數位檔權利-公開與否
+數位檔權利-授權狀況
+數位檔連結-檔案名稱
+數位檔連結-檔案格式
+建目記錄-登錄者
+建目記錄-建檔日期
+建目記錄-描述者
+建目記錄-描述日期
+建目記錄-修改者
+建目記錄-修改日期
+
+
 if File.file?(record_path)
   File.readlines(record_path).each do |line|
     record_data = JSON.parse(line)
     record = Record.new
+    # 資料識別碼
     record.identifier = record_data[3]
+    # 敏感資料與否
     record.sensitive = (record_data[4].empty? ? false : true)
+    # 文件標題
     record.title = record_data[5]
+    # 貢獻者
     record.contributor = record_data[6]
+    # 出版者
     record.publisher = record_data[8]
+    # 產生日期
     record.date = (record_data[10].empty? ? nil : Date.parse(record_data[10]))
+    # 資料格式-單位
     record.unit = record_data[11]
+    # 資料格式-大小
     record.size = record_data[12]
+    # 資料格式-面數
     record.page = record_data[13]
+    # 檔案數量
     record.quantity = record_data[14]
+    # 主題
     record.subject = record_data[16]
+    # 目次∕附件
     record.catalog = record_data[18]
+    # 內容描述
     record.content = record_data[19]
+    # 對應資訊
     record.information = record_data[20]
+    # 附註項
     record.comment = record_data[22]
+    # 原件權利-著作權
     record.copyright = record_data[23]
+    # 原件權利-財產物權
     record.right_in_rem = record_data[24]
+    # 數位檔權利-所有權人
     record.ownership = record_data[25]
+    # 數位檔權利-公開與否
     record.published = (record_data[26].empty? ? false : true)
+    # 數位檔權利-授權狀況
     record.licence = record_data[27]
+    # 數位檔連結-檔案名稱
     record.filename = record_data[28]
+    # 數位檔連結-檔案格式
     record.filetype = record_data[29]
+    # 建目記錄-登錄者
     record.creator = record_data[30]
+    # 建目記錄-建檔日期
     record.created_at = (record_data[31].empty? ? nil : Date.parse(record_data[31]))
+    # 建目記錄-描述者
     record.commentor = record_data[32]
+    # 建目記錄-描述日期
     record.commented_at = (record_data[33].empty? ? nil : Date.parse(record_data[33]))
+    # 建目記錄-修改者
     record.updater = record_data[34]
+    # 建目記錄-修改日期
     record.updated_at = (record_data[35].empty? ? nil : Date.parse(record_data[35]))
+    # 資料類型-資源類型
     unless record_data[0].empty?
       category_id = Category.where(name: record_data[0]).first.try(:id)
       unless category_id
@@ -49,6 +118,7 @@ if File.file?(record_path)
       end
       record.category_id = category_id
     end
+    # 資料類型-載體
     unless record_data[1].empty?
       carrier_id = Carrier.where(name: record_data[1]).first.try(:id)
       unless carrier_id
@@ -56,6 +126,7 @@ if File.file?(record_path)
       end
       record.carrier_id = carrier_id
     end
+    # 資料類型-型式
     unless record_data[2].empty?
       pattern_id = Pattern.where(name: record_data[2]).first.try(:id)
       unless pattern_id
@@ -63,13 +134,15 @@ if File.file?(record_path)
       end
       record.pattern_id = pattern_id
     end
-    unless record_data[7].empty?
+    # 案名
+    unless record_data[7].empty?  
       issue_id = Issue.where(name: record_data[7]).first.try(:id)
       unless issue_id
         issue_id = Issue.create({name: record_data[7]}).id
       end
       record.issue_id = issue_id
     end
+    # 語言
     unless record_data[15].empty?
       language_id = Language.where(name: record_data[15]).first.try(:id)
       unless language_id
@@ -77,6 +150,7 @@ if File.file?(record_path)
       end
       record.language_id = language_id
     end
+    # 典藏單位
     unless record_data[21].empty?
       collector_id = Collector.where(name: record_data[21]).first.try(:id)
       unless collector_id
@@ -84,6 +158,7 @@ if File.file?(record_path)
       end
       record.collector_id = collector_id
     end
+    # 關鍵字
     keywords = record_data[17].split('、')
     keywords.each do |k|
       keyword = Keyword.where(name: k).first
