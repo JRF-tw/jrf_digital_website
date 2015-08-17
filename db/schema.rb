@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150125046323) do
     t.string   "image"
     t.integer  "issue"
     t.string   "pdf"
+    t.string   "google_play"
     t.date     "published_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

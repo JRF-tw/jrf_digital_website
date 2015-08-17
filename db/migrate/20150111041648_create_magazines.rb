@@ -6,6 +6,7 @@ class CreateMagazines < ActiveRecord::Migration
       t.string :image
       t.integer :issue
       t.string :pdf
+      t.string :google_play
       t.date :published_at
 
       t.timestamps null: false
