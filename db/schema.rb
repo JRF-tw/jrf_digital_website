@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150125046323) do
   create_table "magazines", force: :cascade do |t|
     t.string   "name"
     t.string   "volumn"
+    t.string   "image"
     t.integer  "issue"
     t.string   "pdf"
     t.date     "published_at"
@@ -124,6 +125,7 @@ ActiveRecord::Schema.define(version: 20150125046323) do
     t.date    "commented_at"
     t.string  "updater"
     t.date    "updated_at"
+    t.string  "image"
   end
 
   add_index "records", ["identifier"], name: "index_records_on_identifier", unique: true, using: :btree

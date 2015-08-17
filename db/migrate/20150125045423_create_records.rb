@@ -35,6 +35,7 @@ class CreateRecords < ActiveRecord::Migration
       t.date :commented_at
       t.string :updater
       t.date :updated_at
+      t.string :image
     end
     add_index :records, :identifier, unique: true
   end

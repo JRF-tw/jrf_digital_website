@@ -6,6 +6,7 @@ class Record < ActiveRecord::Base
   belongs_to :issue
   belongs_to :language
   belongs_to :pattern
+  mount_uploader :image, ImageUploader
 
   scope :query_keywords, -> (query) {
     select("records.*").
