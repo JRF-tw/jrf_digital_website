@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20150125046323) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "articles_keywords", force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.integer "keyword_id", null: false
+  end
+
+  add_index "articles_keywords", ["article_id", "keyword_id"], name: "articles_keywords_index", unique: true, using: :btree
+
   create_table "carriers", force: :cascade do |t|
     t.string "name"
   end
@@ -56,13 +63,6 @@ ActiveRecord::Schema.define(version: 20150125046323) do
   end
 
   add_index "keywords", ["name"], name: "index_keywords_on_name", unique: true, using: :btree
-
-  create_table "keywords_articles", force: :cascade do |t|
-    t.integer "keyword_id", null: false
-    t.integer "article_id", null: false
-  end
-
-  add_index "keywords_articles", ["keyword_id", "article_id"], name: "keywords_articles_index", unique: true, using: :btree
 
   create_table "keywords_records", force: :cascade do |t|
     t.integer "keyword_id"

@@ -6,7 +6,36 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+require 'open-uri'
+
+def get_img_url_from_html(html)
+  doc = Nokogiri::HTML(html)
+  img_url = nil
+  og_img = doc.css("meta[property='og:image']").first
+  if og_img
+    img_url = og_img.attributes["content"]
+  end
+  if img_url.blank?
+    img = doc.xpath("//img[@src[contains(.,'://') and not(contains(.,'ads.') or contains(.,'ad.') or contains(.,'?'))]][1]")
+    if img.any?
+      img_url = img.first.attr('src')
+    end
+  end
+  img_url = nil if img_url.blank?
+  return img_url
+end
+
 Record.delete_all
+Keyword.delete_all
+Category.delete_all
+Carrier.delete_all
+Collector.delete_all
+Issue.delete_all
+Language.delete_all
+Pattern.delete_all
+
+ActiveRecord::Base.connection.execute("Delete from keywords_records;");
 
 record_path = Rails.root.join('db', 'data', 'records.json')
 
@@ -128,6 +157,50 @@ if File.file?(record_path)
       record.keywords << keyword
     end
     record.save
+  end
+end
+
+Magazine.delete_all
+Column.delete_all
+Article.delete_all
+
+ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
+
+magazine_path = Rails.root.join('db', 'data', 'magazines.json')
+#["標題","作者","卷","期","日期","專欄","全文","註釋"]
+if File.file?(magazine_path)
+  File.readlines(magazine_path).each do |line|
+    article_data = JSON.parse(line)
+    article = Article.new
+    magazine = Magazine.where(issue: article_data[3]).first
+    unless magazine
+      magazine = Magazine.new
+      magazine.volumn = article_data[2]
+      magazine.issue = article_data[3]
+      magazine.id = article_data[3]
+      published_at = Date.parse(article_data[4])
+      magazine.published_at = published_at
+      magazine.name = "司改雜誌第#{article_data[3]}期"
+      magazine.created_at = published_at
+      magazine.save
+    end
+    article.magazine = magazine
+    column = Column.where(name: article_data[5]).first
+    unless column
+      column = Column.new
+      column.name = article_data[5]
+      column.save
+    end
+    article.column = column
+    article.title = article_data[0].gsub(/\n/, '')
+    article.author = article_data[1]
+    article.content = simple_format(article_data[6]).gsub(/\n/, '')
+    img_url = get_img_url_from_html(article.content)
+    if img_url
+      article.remote_image_url = img_url
+    end
+    article.comment = simple_format(article_data[7]).gsub(/\n/, '')
+    article.save
   end
 end
 
