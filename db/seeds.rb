@@ -8,6 +8,8 @@
 
 
 require 'open-uri'
+include ActionView::Helpers
+
 
 def get_img_url_from_html(html)
   doc = Nokogiri::HTML(html)
@@ -36,6 +38,10 @@ Language.delete_all
 Pattern.delete_all
 
 ActiveRecord::Base.connection.execute("Delete from keywords_records;");
+
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
 
 record_path = Rails.root.join('db', 'data', 'records.json')
 
@@ -165,6 +171,10 @@ Column.delete_all
 Article.delete_all
 
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
+
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
 
 magazine_path = Rails.root.join('db', 'data', 'magazines.json')
 #["標題","作者","卷","期","日期","專欄","全文","註釋"]
