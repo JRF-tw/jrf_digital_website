@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
       size: record.size,
       page: record.page,
       quantity: record.quantity,
-      subject: record.subject,
+      subject: record.subjects,
       catalog: record.catalog,
       content: record.content,
       information: record.information,

@@ -17,7 +17,6 @@ class CreateRecords < ActiveRecord::Migration
       t.string :size
       t.string :page
       t.string :quantity
-      t.string :subject
       t.text :catalog
       t.text :content
       t.string :information

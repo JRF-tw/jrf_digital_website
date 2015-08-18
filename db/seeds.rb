@@ -69,7 +69,7 @@ if File.file?(record_path)
     # 檔案數量
     record.quantity = record_data[14]
     # 主題
-    record.subject = record_data[16]
+    # record.subject = record_data[16]
     # 目次∕附件
     record.catalog = record_data[18]
     # 內容描述
@@ -151,6 +151,15 @@ if File.file?(record_path)
         collector_id = Collector.create({name: record_data[21]}).id
       end
       record.collector_id = collector_id
+    end
+    # 主題
+    subjects = record_data[17].split('、')
+    subjects.each do |k|
+      subject = Subject.where(name: k).first
+      unless subject
+        subject = Subject.create({name: k})
+      end
+      record.subjects << subject
     end
     # 關鍵字
     keywords = record_data[17].split('、')

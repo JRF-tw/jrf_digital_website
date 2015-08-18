@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :articles, only: [:show, :index]
   resources :magazines, only: [:show, :index]
   resources :keywords, only: [:show]
+  resources :subjects, only: [:show]
   
 
   # You can have the root of your site routed with "root"

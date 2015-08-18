@@ -1,5 +1,6 @@
 class Record < ActiveRecord::Base
   has_and_belongs_to_many :keywords, -> { uniq }
+  has_and_belongs_to_many :subjects, -> { uniq }
   belongs_to :carrier
   belongs_to :category
   belongs_to :collector
