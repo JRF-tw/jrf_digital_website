@@ -5,17 +5,17 @@ html
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta content="yes" name="mobile-web-app-capable"
-    link href="assets/app-icon.png" rel="icon" sizes="192x192"
+    link href="/app-icon.png" rel="icon" sizes="192x192"
     meta content="yes" name="apple-mobile-web-app-capable"
     meta content="black" name="apple-mobile-web-app-status-bar-style"
-    meta content=("JRF 數位典藏") name="apple-mobile-web-app-title"
-    link href="assets/app-icon.png" rel="apple-touch-icon-precomposed"
-    meta content="assets/app-icon.png" name="msapplication-TileImage"
+    meta content="JRF 數位典藏" name="apple-mobile-web-app-title"
+    link href="/app-icon.png" rel="apple-touch-icon-precomposed"
+    meta content="/app-icon.png" name="msapplication-TileImage"
     meta content="#795548" name="msapplication-TileColor"
-    link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.brown-pink.min.css"
-    link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,thin,light,medium"
-    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
-    link href="/jrf.ico" rel=("shortcut icon")
+    = stylesheet_link_tag "https://storage.googleapis.com/code.getmdl.io/1.0.0/material.brown-pink.min.css", media: "all"
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:regular,bold,thin,light,medium", media: "all"
+    = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", media: "all"
+    link href="/jrf.ico" rel="shortcut icon"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -25,4 +25,4 @@ html
       = render 'layouts/header'
       main.mdl-layout__content.mdl-color--grey-100
         = yield
-    script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js" 
+    = javascript_include_tag "https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"
