@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   resources :records, only: [:show, :index]
+  resources :articles, only: [:show, :index]
+  resources :magazines, only: [:show, :index]
+  resources :keywords, only: [:show]
+  
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

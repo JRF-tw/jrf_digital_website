@@ -10,7 +10,6 @@
 require 'open-uri'
 include ActionView::Helpers
 
-
 def get_img_url_from_html(html)
   doc = Nokogiri::HTML(html)
   img_url = nil
