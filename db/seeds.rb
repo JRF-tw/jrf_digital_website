@@ -153,7 +153,7 @@ if File.file?(record_path)
       record.collector_id = collector_id
     end
     # 主題
-    subjects = record_data[17].split('、')
+    subjects = record_data[16].split('、')
     subjects.each do |k|
       subject = Subject.where(name: k).first
       unless subject
