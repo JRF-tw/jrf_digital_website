@@ -29,6 +29,7 @@ end
 
 Record.delete_all
 Keyword.delete_all
+Subject.delete_all
 Category.delete_all
 Carrier.delete_all
 Collector.delete_all
@@ -37,6 +38,7 @@ Language.delete_all
 Pattern.delete_all
 
 ActiveRecord::Base.connection.execute("Delete from keywords_records;");
+ActiveRecord::Base.connection.execute("Delete from records_subjects;");
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
