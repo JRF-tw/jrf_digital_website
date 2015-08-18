@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'static_pages#home'
+  match '/about',     to: 'static_pages#about',     via: 'get'
   resources :records, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :magazines, only: [:show, :index]
