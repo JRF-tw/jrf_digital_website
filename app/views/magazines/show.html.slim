@@ -13,7 +13,7 @@
             br
             = @magazine.published_at.strftime('%Y-%m-%d')
         .mdl-card__actions
-          = link_to "下載 PDF", "/magazines/#{@magazine.issue}.pdf"
+          = link_to "下載 PDF", "/magazines/#{@magazine.issue}.pdf", download: "#{@magazine.name}.pdf"
     section.jrf-issue-articles.content.mdl-color--white.mdl-shadow--4dp.mdl-color-text--grey-800
       - @magazine.columns.each do |c|
         h5 = c.name
