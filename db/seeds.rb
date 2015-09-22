@@ -198,7 +198,7 @@ if File.file?(magazine_path)
       magazine = Magazine.new
       magazine.issue = article_data["期"]
       magazine.id = article_data["期"]
-      published_at = Date.parse(article_data["日期"])
+      published_at = Date.strptime(article_data["日期"], "%m/%d/%Y") rescue Date.strptime(article_data["日期"], "%Y/%m/%d")
       magazine.published_at = published_at
       magazine.name = "司改雜誌第#{article_data["期"]}期"
       magazine.created_at = published_at
