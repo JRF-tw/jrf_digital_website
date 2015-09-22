@@ -21,12 +21,24 @@ html
     = csrf_meta_tags
 
   body
-    .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
-      - if ['magazines', 'articles'].include? params[:controller]
-        = render 'layouts/search_articles'
-      - else
-        = render 'layouts/search_records'
-      = render 'layouts/header'
-      main.mdl-layout__content.mdl-color--grey-100
-        = yield
+    - if params[:action] == 'show'
+      .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-issue-layout.mdl-color--grey-100
+        - if ['magazines', 'articles'].include? params[:controller]
+          = render 'layouts/search_articles'
+        - else
+          = render 'layouts/search_records'
+        = render 'layouts/header'
+        main.mdl-layout__content
+          = yield
+          = render 'layouts/footer'
+    - else
+      .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
+        - if ['magazines', 'articles'].include? params[:controller]
+          = render 'layouts/search_articles'
+        - else
+          = render 'layouts/search_records'
+        = render 'layouts/header'
+        main.mdl-layout__content.mdl-color--grey-100
+          = yield
+          = render 'layouts/footer'
     = javascript_include_tag "https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"
