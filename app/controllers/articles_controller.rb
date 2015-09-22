@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = @q.result(distinct: true).page(params[:page])
+    @articles = @q.result(distinct: true).magazine_order.page(params[:page])
   end
 
   # GET /articles/1
