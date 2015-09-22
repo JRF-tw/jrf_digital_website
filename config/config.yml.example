@@ -29,6 +29,9 @@ defaults: &defaults
   google_analytics:
     id: ""
 
+  google_gtm:
+    id: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"

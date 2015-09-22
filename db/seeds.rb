@@ -33,7 +33,6 @@ Subject.delete_all
 Category.delete_all
 Carrier.delete_all
 Collector.delete_all
-Column.delete_all
 Issue.delete_all
 Language.delete_all
 Pattern.delete_all
