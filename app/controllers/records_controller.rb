@@ -53,8 +53,7 @@ class RecordsController < ApplicationController
         count = Record.all.count
       end
     else
-      @q = Record.search(params[:q])
-      @records = @q.result(:distinct => true).all
+      @records = @q.result(:distinct => true).page params[:page]
     end
 
     set_meta_tags({

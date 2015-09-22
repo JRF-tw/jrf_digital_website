@@ -1,0 +1,6 @@
+header.mdl-layout__header.mdl-color--white.mdl-color-text--grey-600
+  .mdl-layout__header-row.full-search-header
+    = search_form_for @q, url: articles_path, class: "search-row-wrapper" do |f|
+      label for="search-field" 
+        i.material-icons search
+      = f.search_field :title_or_content_cont, id: "search-field", placeholder: "搜尋", label: false

@@ -9,6 +9,7 @@ class CreateArticles < ActiveRecord::Migration
       t.integer :page
       t.text :content
       t.text :comment
+      t.boolean :is_cover, default: false
 
       t.timestamps null: false
     end

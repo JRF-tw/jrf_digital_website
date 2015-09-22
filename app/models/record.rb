@@ -8,6 +8,7 @@ class Record < ActiveRecord::Base
   belongs_to :language
   belongs_to :pattern
   mount_uploader :image, ImageUploader
+  paginates_per 10
 
   scope :query_keywords, -> (query) {
     select("records.*").

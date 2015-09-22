@@ -9,6 +9,7 @@ class MagazinesController < ApplicationController
 
   # GET /magazines/1
   def show
+    @articles = @magazine.articles
   end
 
   # GET /magazines/new

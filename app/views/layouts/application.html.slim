@@ -22,6 +22,10 @@ html
 
   body
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
+      - if ['magazines', 'articles'].include? params[:controller]
+        = render 'layouts/search_articles'
+      - else
+        = render 'layouts/search_records'
       = render 'layouts/header'
       main.mdl-layout__content.mdl-color--grey-100
         = yield

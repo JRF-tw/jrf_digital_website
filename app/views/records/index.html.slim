@@ -9,73 +9,13 @@
           th 出版者
           th 資料類型
       tbody
-        tr
-          td 聲援個案及議題
-          td 2007/10/31
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=49569"  立法院第6屆第6會期司法、法制委員會第3次全體委員會議議事錄--繼續併案審查委員高思博等93人擬具「法官法草案」案及司法院、行政院、考試院函請審議「法官法草案」案等2案
-          td
-          td 其他
-        tr
-          td 聲援個案及議題
-          td 2007/10/27
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=49350"  【民間推動法官法行動聯盟‧20071027新聞稿】--1027「我要法官法」大遊行，沒有法官法，司法改革攏係假
-          td
-          td 聲明文件
-        tr
-          td 聲援個案及議題
-          td 2007/10/25
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=49581"  立法院第6屆第6會期司法、法制委員會第2次全體委員會議議事錄--繼續併案審查委員高思博等93人擬具「法官法草案」案及司法院、行政院、考試院函請審議「法官法草案」案等2案
-          td
-          td 其他
-        tr
-          td 聲援個案及議題
-          td 2007/10/5
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=49547"  司法改革，從人民利益出發
-          td
-          td 剪報
-        tr
-          td 聲援個案及議題
-          td 2007/10/3
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=49570"  立法院第6屆第6會期司法、法制委員會第1次全體委員會議議事錄--繼續併案審查委員高思博等93人擬具「法官法草案」案及司法院、行政院、考試院函請審議「法官法草案」案等2案
-          td
-          td 其他
-        tr
-          td 聲援個案及議題
-          td 2007/9/26
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=45105"  民間監督大法官人選聯盟立法院觀察團觀察表--立法委員：高思博；接受詢答之大法官（含司法院正副院長）：李震山、許志雄、葉俊榮、劉幸義
-          td 民間司法改革基金會
-          td 會務
-        tr
-          td 聲援個案及議題
-          td 2007/9/26
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=45108"  民間監督大法官人選聯盟立法院觀察團觀察表--立法委員：王昱婷；接受詢答之大法官（含司法院正副院長）：李震山、許志雄、葉俊榮、劉幸義
-          td 民間司法改革基金會
-          td 會務
-        tr
-          td 聲援個案及議題
-          td 2007/9/26
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=45109"  民間監督大法官人選聯盟立法院觀察團觀察表--立法委員：林春德；接受詢答之大法官（含司法院正副院長）：李震山、許志雄、葉俊榮、劉幸義
-          td 民間司法改革基金會
-          td 會務
-        tr
-          td 聲援個案及議題
-          td 2007/9/26
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=45110"  民間監督大法官人選聯盟立法院觀察團觀察表--立法委員：吳志揚；接受詢答之大法官（含司法院正副院長）：李震山、許志雄、葉俊榮、劉幸義
-          td 民間司法改革基金會
-          td 會務
-        tr
-          td 聲援個案及議題
-          td 2007/9/26
-          td.fill-column
-            a href="http://www.jrf.org.tw/jrfdigital/jrf_digital_detail.asp?jrf_rno=45104"  民間監督大法官人選聯盟立法院觀察團觀察表--立法委員：吳育昇；接受詢答之大法官（含司法院正副院長）：李震山、許志雄、葉俊榮、劉幸義
-          td 民間司法改革基金會
-          td 會務
+        - @records.each do |r|
+          tr
+            td = r.category.try(:name)
+            td = r.date.try(:strftime, '%Y-%m-%d')
+            td.fill-column
+              = link_to r.title, record_path(r)
+            td = r.publisher
+            td = r.carrier.try(:name)
+
+  = paginate @records

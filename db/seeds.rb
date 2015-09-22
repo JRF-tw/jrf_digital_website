@@ -33,6 +33,7 @@ Subject.delete_all
 Category.delete_all
 Carrier.delete_all
 Collector.delete_all
+Column.delete_all
 Issue.delete_all
 Language.delete_all
 Pattern.delete_all
@@ -189,37 +190,44 @@ end
 magazine_path = Rails.root.join('db', 'data', 'magazines.json')
 #["標題","作者","卷","期","日期","專欄","全文","註釋"]
 if File.file?(magazine_path)
-  File.readlines(magazine_path).each do |line|
-    article_data = JSON.parse(line)
+  magazines = JSON.parse(File.read(magazine_path))
+  magazines.each do |article_data|
+    # puts article_data.to_json
     article = Article.new
-    magazine = Magazine.where(issue: article_data[3]).first
+    magazine = Magazine.where(issue: article_data["期"]).first
     unless magazine
       magazine = Magazine.new
-      magazine.volumn = article_data[2]
-      magazine.issue = article_data[3]
-      magazine.id = article_data[3]
-      published_at = Date.parse(article_data[4])
+      magazine.issue = article_data["期"]
+      magazine.id = article_data["期"]
+      published_at = Date.parse(article_data["日期"])
       magazine.published_at = published_at
-      magazine.name = "司改雜誌第#{article_data[3]}期"
+      magazine.name = "司改雜誌第#{article_data["期"]}期"
       magazine.created_at = published_at
       magazine.save
     end
     article.magazine = magazine
-    column = Column.where(name: article_data[5]).first
+    if article_data["專欄"].blank?
+      article_data["專欄"] = "其他"
+    end
+    column = Column.where(name: article_data["專欄"]).first
     unless column
       column = Column.new
-      column.name = article_data[5]
+      column.name = article_data["專欄"]
       column.save
     end
+    if article_data["專欄"] == "封面故事"
+      article.is_cover = true
+    end
     article.column = column
-    article.title = article_data[0].gsub(/\n/, '')
-    article.author = article_data[1]
-    article.content = simple_format(article_data[6]).gsub(/\n/, '')
+    article.page = article_data["頁碼"]
+    article.title = article_data["標題"].gsub(/\n/, '')
+    article.author = article_data["作者"]
+    article.content = simple_format(article_data["全文"]).gsub(/\n/, '')
     img_url = get_img_url_from_html(article.content)
     if img_url
       article.remote_image_url = img_url
     end
-    article.comment = simple_format(article_data[7]).gsub(/\n/, '')
+    article.comment = simple_format(article_data["註釋"]).gsub(/\n/, '')
     article.save
   end
 end

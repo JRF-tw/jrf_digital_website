@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 20150818066715) do
     t.integer  "page"
     t.text     "content"
     t.text     "comment"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "is_cover",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "articles_keywords", force: :cascade do |t|
@@ -108,7 +109,6 @@ ActiveRecord::Schema.define(version: 20150818066715) do
     t.string  "size"
     t.string  "page"
     t.string  "quantity"
-    t.string  "subject"
     t.text    "catalog"
     t.text    "content"
     t.string  "information"

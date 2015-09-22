@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
+  before_filter :set_q
 
   private
 
@@ -56,5 +57,13 @@ class ApplicationController < ActionController::Base
 
   def filter_records(records)
     return records.to_a.map { |r| filter_record(r) }
+  end
+
+  def set_q
+    if ['magazines', 'articles'].include? params[:controller]
+      @q = Article.includes(:magazine).search(params[:q])
+    else
+      @q = Record.includes(:category, :carrier).search(params[:q])
+    end
   end
 end
