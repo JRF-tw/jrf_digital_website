@@ -6,6 +6,9 @@
       h3 = @article.title
       h6 = @article.author
       = @article.content.try :html_safe
+      - unless @article.comment.blank?
+        
+        = @article.comment.try :html_safe
   nav.jrf-issue-nav.mdl-cell.mdl-cell--4-col
     h6
       = link_to @article.magazine.name, magazine_path(@article.magazine)
