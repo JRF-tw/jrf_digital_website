@@ -21,6 +21,8 @@ html
     = csrf_meta_tags
 
   body
+    noscript
+      iframe height="0" src="//www.googletagmanager.com/ns.html?id=#{Setting.google_gtm.id}" style="display:none;visibility:hidden" width="0"
     - if params[:action] == 'show'
       .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-issue-layout.mdl-color--grey-100
         - if ['magazines', 'articles'].include? params[:controller]

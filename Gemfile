@@ -35,6 +35,8 @@ gem 'pg'
 gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'unicode-display_width'
+gem 'material_design_lite-rails'
+gem 'jquery-turbolinks'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
