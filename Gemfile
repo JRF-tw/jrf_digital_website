@@ -36,6 +36,9 @@ gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'unicode-display_width'
 gem 'jquery-turbolinks'
+gem 'rabl-rails'
+gem 'responders', '~> 2.0'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

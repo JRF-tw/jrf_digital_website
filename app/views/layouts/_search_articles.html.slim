@@ -8,7 +8,7 @@
           label.mdl-button.mdl-js-button.mdl-button--icon for="search-field-input"
             i.material-icons search
           .mdl-textfield__expandable-holder
-            = f.search_field :title_or_content_cont, id: "search-field-input", class: "mdl-textfield__input", label: false
+            = f.search_field :title_or_content_or_author_cont, id: "search-field-input", class: "mdl-textfield__input", label: false
             label.mdl-textfield__label.mdl-color-text--brown-300 for="search-field-input"  我正在尋找⋯
 - else
   header.mdl-layout__header.mdl-color--white.mdl-color-text--grey-600
@@ -16,4 +16,4 @@
       = search_form_for @q, url: articles_path, class: "search-row-wrapper" do |f|
         label for="search-field"
           i.material-icons search
-        = f.search_field :title_or_content_cont, id: "search-field", placeholder: "搜尋", label: false
+        = f.search_field :title_or_content_or_author_cont, id: "search-field", placeholder: "搜尋", label: false

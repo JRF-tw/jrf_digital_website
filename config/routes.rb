@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :magazines, only: [:show, :index]
   resources :keywords, only: [:show]
   resources :subjects, only: [:show]
+
+  namespace :api do
+    resources :articles, only: [:show, :index]
+    resources :magazines, only: [:show, :index]
+    resources :records, only: [:show, :index]
+  end
   
 
   # You can have the root of your site routed with "root"
