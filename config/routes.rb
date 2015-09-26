@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :magazines, only: [:show, :index]
     resources :records, only: [:show, :index]
   end
+
+  get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
   
 
   # You can have the root of your site routed with "root"

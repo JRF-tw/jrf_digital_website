@@ -23,4 +23,5 @@ config/database.yml
 config/config.yml
 public/uploads/
 public/assets/
+public/apidocs/
 #db/data/*.json

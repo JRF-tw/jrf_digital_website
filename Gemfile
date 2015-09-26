@@ -38,6 +38,7 @@ gem 'unicode-display_width'
 gem 'jquery-turbolinks'
 gem 'rabl-rails'
 gem 'responders', '~> 2.0'
+gem 'swagger-docs', git: 'git://github.com/billy3321/swagger-docs.git'
 
 
 # Use ActiveModel has_secure_password
