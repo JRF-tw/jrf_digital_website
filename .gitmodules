@@ -3,4 +3,4 @@
 	url = https://github.com/rschiang/jrf-digital.git
 [submodule "public/swagger"]
 	path = public/swagger
-	url = git@github.com:wordnik/swagger-ui.git
+	url = https://github.com/wordnik/swagger-ui.git
