@@ -47,18 +47,14 @@ class Api::RecordsController < ApplicationController
   swagger_model :APIRecordIndex do
     description "Article show structure"
     property :count, :integer, :required, "記錄數"
-    property :records, :array, :required, "記錄列表", items: { '$ref' => :Records }
+    property :records, :array, :required, "記錄列表", items: { '$ref' => :Record }
     property :status, :string, :required, "狀態"
   end
 
   swagger_model :APIRecordShow do
     description "Article show structure"
-    property :record, :array, :required, "記錄", items: { '$ref' => :Record }
+    property :record, nil, :required, "記錄", '$ref' => :Record
     property :status, :string, :required, "狀態"
-  end
-
-  swagger_model :Records do
-    property :records, :array, :required, '記錄清單', items: { '$ref' => :Record }
   end
 
   swagger_model :Record do
@@ -90,12 +86,12 @@ class Api::RecordsController < ApplicationController
     property :commented_at, :date, :required, "註解日期"
     property :updater, :string, :required, "更新者"
     property :updated_at, :date, :required, "更新日期"
-    property :category, :array, :required, "分類", items: { '$ref' => :Category }
-    property :carrier, :array, :required, "載體", items: { '$ref' => :Carrier }
-    property :pattern, :array, :required, "", items: { '$ref' => :Pattern }
-    property :issue, :array, :required, "議題", items: { '$ref' => :Issue }
-    property :language, :array, :required, "語言", items: { '$ref' => :Language }
-    property :collector, :array, :required, "收集者", items: { '$ref' => :Collector }
+    property :category, nil, :required, "分類", '$ref' => :Category
+    property :carrier, nil, :required, "載體", '$ref' => :Carrier
+    property :pattern, nil, :required, "記錄型別", '$ref' => :Pattern
+    property :issue, nil, :required, "議題", '$ref' => :Issue
+    property :language, nil, :required, "語言", '$ref' => :Language
+    property :collector, nil, :required, "收集者", '$ref' => :Collector
   end
 
   swagger_model :Category do
@@ -111,9 +107,9 @@ class Api::RecordsController < ApplicationController
   end
 
   swagger_model :Pattern do
-    description ""
-    property :id, :integer, :required, "Id"
-    property :name, :string, :required, "名稱"
+    description "記錄型別"
+    property :id, :integer, :required, "型別 Id"
+    property :name, :string, :required, "型別名稱"
   end
 
   swagger_model :Issue do

@@ -47,18 +47,14 @@ class Api::MagazinesController < ApplicationController
   swagger_model :APIMagazineIndex do
     description "Article show structure"
     property :count, :integer, :required, "雜誌數"
-    property :magazines, :array, :required, "雜誌列表", items: { '$ref' => :Magazines }
+    property :magazines, :array, :required, "雜誌列表", items: { '$ref' => :Magazine }
     property :status, :string, :required, "狀態"
   end
 
   swagger_model :APIMagazineShow do
     description "Article show structure"
-    property :magazine, :array, :required, "雜誌", items: { '$ref' => :MagazineWithArticles }
+    property :magazine, nil, :required, "雜誌", '$ref' => :MagazineWithArticles
     property :status, :string, :required, "狀態"
-  end
-
-  swagger_model :Magazines do
-    property :magazines, :array, :required, '雜誌清單', items: { '$ref' => :Magazine }
   end
 
   swagger_model :Magazine do
@@ -81,11 +77,7 @@ class Api::MagazinesController < ApplicationController
     property :issue, :integer, :required, "雜誌期數"
     property :pdf, :string, :required, "PDF 下載網址"
     property :published_at, :date, :required, "雜誌發行日期"
-    property :articles, :array, :required, "雜誌所屬文章", items: { '$ref' => :ArticlesWithoutMagazine }
-  end
-
-  swagger_model :ArticlesWithoutMagazine do
-    property :articles, :array, :required, '文章清單', items: { '$ref' => :ArticleWithoutMagazine }
+    property :articles, :array, :required, "雜誌所屬文章", items: { '$ref' => :ArticleWithoutMagazine }
   end
 
   swagger_model :ArticleWithoutMagazine do
@@ -96,6 +88,12 @@ class Api::MagazinesController < ApplicationController
     property :content, :string, :required, "內文"
     property :page, :integer, :required, "頁數"
     property :comment, :string, :optional, "註釋"
-    property :column, :array, :required, "專欄", items: { '$ref' => :Column }
+    property :column, nil, :required, "專欄", '$ref' => :Column
+  end
+
+  swagger_model :Column do
+    description "專欄"
+    property :id, :integer, :required, "專欄 Id"
+    property :name, :string, :required, "專欄名稱"
   end
 end

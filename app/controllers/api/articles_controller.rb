@@ -47,18 +47,14 @@ class Api::ArticlesController < ApplicationController
   swagger_model :APIArticleIndex do
     description "Article show structure"
     property :count, :integer, :required, "文章數"
-    property :articles, :array, :required, "文章列表", items: { '$ref' => :Articles }
+    property :articles, :array, :required, "文章列表", items: { '$ref' => :Article }
     property :status, :string, :required, "狀態"
   end
 
   swagger_model :APIArticleShow do
     description "Article show structure"
-    property :article, :array, :required, "文章", items: { '$ref' => :Article }
+    property :article, nil, :required, "文章", '$ref' => :Article
     property :status, :string, :required, "狀態"
-  end
-
-  swagger_model :Articles do
-    property :articles, :array, :required, '文章清單', items: { '$ref' => :Article }
   end
 
   swagger_model :Article do
@@ -69,8 +65,8 @@ class Api::ArticlesController < ApplicationController
     property :content, :string, :required, "內文"
     property :page, :integer, :required, "頁數"
     property :comment, :string, :optional, "註釋"
-    property :magazine, :array, :required, "雜誌", items: { '$ref' => :Magazine }
-    property :column, :array, :required, "專欄", items: { '$ref' => :Column }
+    property :magazine, nil, :required, "雜誌", '$ref' => :Magazine
+    property :column, :nil, :required, "專欄", '$ref' => :Column
   end
 
   swagger_model :Magazine do
