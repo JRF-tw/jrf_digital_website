@@ -2,13 +2,13 @@
   .jrf-issue-ribbon-cover style="background-image: url(/images/backgrounds/102.jpg);"
 .mdl-grid.page-content
   .jrf-issue-content.mdl-cell.mdl-cell--8-col
-    article.jrf-issue-article.content.mdl-color--white.mdl-shadow--4dp
+    article.jrf-issue-article.mdl-color--white.mdl-shadow--4dp.content
       h3 = @article.title
       h6 = @article.author
       = @article.content.try :html_safe
       - unless @article.comment.blank?
-        
-        = @article.comment.try :html_safe
+        .comment
+          = @article.comment.try :html_safe
   nav.jrf-issue-nav.mdl-cell.mdl-cell--4-col
     h6
       = link_to @article.magazine.name, magazine_path(@article.magazine)

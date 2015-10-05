@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  before_action :set_record, except: [:index, :new]
+
   def show
     respond_to do |format|
       format.html

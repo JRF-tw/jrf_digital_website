@@ -1,0 +1,12 @@
+.jrf-issue-ribbon.mdl-color--brown-600
+  .jrf-issue-ribbon-cover style="background-image: url(/images/backgrounds/102.jpg);"
+.mdl-grid.page-content
+  .jrf-issue-content.mdl-cell.mdl-cell--8-col
+    article.jrf-issue-article.content.mdl-color--white.mdl-shadow--4dp
+      h3 = @record.title
+      h6 = @record.identifier
+      = @record.category.try :name
+      = @record.catalog
+      = @record.date.strftime('%Y-%m-%d')
+      = @record.content.try :html_safe
+    
