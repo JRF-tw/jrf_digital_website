@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload[:request_id] = request.uuid
-    payload[:user_id] = current_user.id if current_user
+    # payload[:user_id] = current_user.id if current_user
     if request.env['HTTP_CF_CONNECTING_IP']
       payload[:ip] = request.env['HTTP_CF_CONNECTING_IP']
     elsif request.env["HTTP_X_FORWARDED_FOR"]
