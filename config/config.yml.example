@@ -32,6 +32,9 @@ defaults: &defaults
   google_gtm:
     id: ""
 
+  rollbar:
+    access_token: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"

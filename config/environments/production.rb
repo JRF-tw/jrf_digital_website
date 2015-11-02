@@ -74,6 +74,14 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  config.logger = Logger.new(config.paths["log"].first, 'weekly')
+  config.lograge.enabled = true
+  config.lograge.custom_options = lambda do |event|
+    options = event.payload.slice(:request_id, :user_id, :ip)
+    options[:params] = event.payload[:params].except("controller", "action")
+    options
+  end
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

@@ -21,6 +21,7 @@ dump.rdb
 Gemfile.lock
 config/database.yml
 config/config.yml
+config/skylight.yml
 public/uploads/
 public/assets/
 public/apidocs/

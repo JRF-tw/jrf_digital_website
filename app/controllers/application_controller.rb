@@ -5,6 +5,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
   before_filter :set_q
 
+  def append_info_to_payload(payload)
+    super
+    payload[:request_id] = request.uuid
+    payload[:user_id] = current_user.id if current_user
+    if request.env['HTTP_CF_CONNECTING_IP']
+      payload[:ip] = request.env['HTTP_CF_CONNECTING_IP']
+    elsif request.env["HTTP_X_FORWARDED_FOR"]
+      payload[:ip] = request.env["HTTP_X_FORWARDED_FOR"]
+    else
+      payload[:ip] = request.env['REMOTE_ADDR']
+    end
+  end
+
   private
 
   def filter_record(record)
