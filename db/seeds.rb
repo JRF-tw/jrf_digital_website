@@ -53,7 +53,7 @@ if File.file?(record_path)
     # 資料識別碼
     record.identifier = record_data[3]
     # 敏感資料與否
-    record.sensitive = (record_data[4].empty? ? false : true)
+    record.sensitive = (record_data[4].blank? ? false : true)
     # 文件標題
     record.title = record_data[5]
     # 貢獻者
@@ -61,7 +61,7 @@ if File.file?(record_path)
     # 出版者
     record.publisher = record_data[8]
     # 產生日期
-    record.date = (record_data[10].empty? ? nil : Date.parse(record_data[10]))
+    record.date = (record_data[10].blank? ? nil : Date.parse(record_data[10]))
     # 資料格式-單位
     record.unit = record_data[11]
     # 資料格式-大小
@@ -87,7 +87,7 @@ if File.file?(record_path)
     # 數位檔權利-所有權人
     record.ownership = record_data[25]
     # 數位檔權利-公開與否
-    record.published = (record_data[26].empty? ? false : true)
+    record.published = (record_data[26].blank? ? false : true)
     # 數位檔權利-授權狀況
     record.licence = record_data[27]
     # 數位檔連結-檔案名稱
@@ -97,17 +97,17 @@ if File.file?(record_path)
     # 建目記錄-登錄者
     record.creator = record_data[30]
     # 建目記錄-建檔日期
-    record.created_at = (record_data[31].empty? ? nil : Date.parse(record_data[31]))
+    record.created_at = (record_data[31].blank? ? nil : Date.parse(record_data[31]))
     # 建目記錄-描述者
     record.commentor = record_data[32]
     # 建目記錄-描述日期
-    record.commented_at = (record_data[33].empty? ? nil : Date.parse(record_data[33]))
+    record.commented_at = (record_data[33].blank? ? nil : Date.parse(record_data[33]))
     # 建目記錄-修改者
     record.updater = record_data[34]
     # 建目記錄-修改日期
-    record.updated_at = (record_data[35].empty? ? nil : Date.parse(record_data[35]))
+    record.updated_at = (record_data[35].blank? ? nil : Date.parse(record_data[35]))
     # 資料類型-資源類型
-    unless record_data[0].empty?
+    unless record_data[0].blank?
       category_id = Category.where(name: record_data[0]).first.try(:id)
       unless category_id
         category_id = Category.create({name: record_data[0]}).id
@@ -115,7 +115,7 @@ if File.file?(record_path)
       record.category_id = category_id
     end
     # 資料類型-載體
-    unless record_data[1].empty?
+    unless record_data[1].blank?
       carrier_id = Carrier.where(name: record_data[1]).first.try(:id)
       unless carrier_id
         carrier_id = Carrier.create({name: record_data[1]}).id
@@ -123,7 +123,7 @@ if File.file?(record_path)
       record.carrier_id = carrier_id
     end
     # 資料類型-型式
-    unless record_data[2].empty?
+    unless record_data[2].blank?
       pattern_id = Pattern.where(name: record_data[2]).first.try(:id)
       unless pattern_id
         pattern_id = Pattern.create({name: record_data[2]}).id
@@ -131,7 +131,7 @@ if File.file?(record_path)
       record.pattern_id = pattern_id
     end
     # 案名
-    unless record_data[7].empty?  
+    unless record_data[7].blank?
       issue_id = Issue.where(name: record_data[7]).first.try(:id)
       unless issue_id
         issue_id = Issue.create({name: record_data[7]}).id
@@ -139,7 +139,7 @@ if File.file?(record_path)
       record.issue_id = issue_id
     end
     # 語言
-    unless record_data[15].empty?
+    unless record_data[15].blank?
       language_id = Language.where(name: record_data[15]).first.try(:id)
       unless language_id
         language_id = Language.create({name: record_data[15]}).id
@@ -147,7 +147,7 @@ if File.file?(record_path)
       record.language_id = language_id
     end
     # 典藏單位
-    unless record_data[21].empty?
+    unless record_data[21].blank?
       collector_id = Collector.where(name: record_data[21]).first.try(:id)
       unless collector_id
         collector_id = Collector.create({name: record_data[21]}).id
@@ -161,7 +161,9 @@ if File.file?(record_path)
       unless subject
         subject = Subject.create({name: k})
       end
-      record.subjects << subject
+      if not record.subjects.include? subject
+        record.subjects << subject
+      end
     end
     # 關鍵字
     keywords = record_data[17].split('、')
@@ -170,7 +172,9 @@ if File.file?(record_path)
       unless keyword
         keyword = Keyword.create({name: k})
       end
-      record.keywords << keyword
+      if not record.keywords.include? keyword
+        record.keywords << keyword
+      end
     end
     record.save
   end
