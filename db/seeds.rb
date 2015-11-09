@@ -67,7 +67,7 @@ if File.file?(record_path)
     # 資料格式-大小
     record.size = record_data[12]
     # 資料格式-面數
-    record.page = record_data[13]
+    record.page = record_data[13].gsub(/頁/, '')
     # 檔案數量
     record.quantity = record_data[14]
     # 主題
