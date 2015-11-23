@@ -7,6 +7,6 @@
       h6 = @record.identifier
       = @record.category.try :name
       = @record.catalog
-      = @record.date.strftime('%Y-%m-%d')
+      = @record.date.try(:strftime, '%Y-%m-%d')
       = @record.content.try :html_safe
     
