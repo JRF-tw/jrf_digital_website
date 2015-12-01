@@ -13,6 +13,6 @@
     h6
       = link_to @article.magazine.name, magazine_path(@article.magazine)
     ul
-      - @article.magazine.articles.each do |a|
+      - @article.magazine.articles.page_order.each do |a|
         li
           = link_to a.title, article_path(a)
