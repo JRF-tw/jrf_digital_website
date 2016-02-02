@@ -1,0 +1,12 @@
+header.mdl-layout__header.mdl-layout__header--scroll.mdl-layout__header--transparent.mdl-color-text--grey-800
+  = search_form_for @q, url: articles_path, class="mdl-layout__header-row search-header" do |f|
+    span.mdl-layout-title #{@title || "司法改革雜誌資料庫"}
+    .mdl-layout-spacer
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label
+      label.mdl-button.mdl-js-button.mdl-button--icon[for="search-field-input"]
+        i.material-icons
+          | search
+      .mdl-textfield__expandable-holder
+        = f.search_field :title_or_content_or_author_cont, id: "search-field-input", class: "mdl-textfield__input", label: false
+        label.mdl-textfield__label.mdl-color-text--brown-300[for="search-field-input"]
+          | 我正在尋找⋯

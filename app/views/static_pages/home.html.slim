@@ -1,102 +1,101 @@
-main.mdl-layout__content
-  section.jrf-index-hero
-    h1.slogan
-      | 司法改革二十年
-    h4.sub-slogan
-      | 戴著閃亮鋼盔的司改典藏資料庫
-    form.search-row-wrapper[action="http://digital.jrf.org.tw/records" accept-charset="UTF-8" method="GET"]
-      input#search-field[type="search" name="q[title_or_content_cont]" placeholder="搜尋關鍵字，例如「司法」"]
-      button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--accent[type="submit"]
-        i.material-icons
-          | search
-  section.jrf-index-featured.mdl-color--white
-    .mdl-grid.page-content
-      .jrf-index-item.mdl-cell.mdl-cell--2-col
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons book
-          | 雜誌
-      .jrf-index-item.mdl-cell.mdl-cell--2-col
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons description
-          | 文章
-      .jrf-index-item.mdl-cell.mdl-cell--2-col
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons photo
-          | 文宣品
-      .jrf-index-item.mdl-cell.mdl-cell--2-col.mdl-cell--hide-desktop
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons account_balance
-          | 公文書
-      .jrf-index-item.mdl-cell.mdl-cell--2-col
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons announcement
-          | 聲明稿
-      .jrf-index-item.mdl-cell.mdl-cell--2-col
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons assignment
-          | 陳情相關資料
-      .jrf-index-item.mdl-cell.mdl-cell--2-col.mdl-cell--hide-desktop
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons group
-          | 會務
-      .jrf-index-item.mdl-cell.mdl-cell--2-col
-        = link_to records_path, class: 'icon-link' do
-          i.large.material-icons email
-          | 信函
-  section.jrf-index-featured.mdl-color--grey-100
-    .page-content
-      h5 最常點閱
-      .mdl-grid
-        .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
-          .mdl-card__title
-            h6.mdl-card__title-text
-              = link_to records_path do
-                | 檢改會版司法官法草案，明定「檢察一體」透明化--檢察官定位：公益代表人
-          .mdl-card__supporting-text
-            |  聲援個案及議題1998-06-15檢察官定位的問題爭議不休，檢察官改革協會提出的司法官法草案，將檢察官明文定位為「公益代表人」，是代表國家追溯處罰犯罪而執行公務事務者，為排拒政治勢力不當介入，明文將⋯⋯ 
-          .mdl-card__actions.mdl-card--border
-            span.category.announcement
-              | 聲明稿
-            .mdl-layout-spacer
-            span.identifier
-              | A002-083
-        .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
-          .mdl-card__title
-            h6.mdl-card__title-text
-              = link_to records_path do
-                | 月旦法學雜誌致王副執行長還「檢察體系改革研討會」照片之信函
-          .mdl-card__supporting-text
-            |  聲援個案及議題1998-07-141998年7月14日月旦法學雜誌函民間司法改革基金會，「檢察體系改革研討會」照片已用畢，茲先歸還照片，使用費將以稿費流程支付，與記錄整理費亦與相片使用費同時處理，因此⋯⋯ 
-          .mdl-card__actions.mdl-card--border
-            span.category.email
-              | 信函
-            .mdl-layout-spacer
-            span.identifier
-              | A002-084
-        .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
-          .mdl-card__title
-            h6.mdl-card__title-text
-              = link_to records_path do
-                | 「檢察體系改革」研討會
-          .mdl-card__supporting-text
-            |  聲援個案及議題1998-06-15檢察官定位的問題爭議不休，檢察官改革協會提出的司法官法草案，將檢察官明文定位為「公益代表人」，是代表國家追溯處罰犯罪而執行公務事務者，為排拒政治勢力不當介入，明文將「檢察一體」陽光透明化。除⋯⋯ 
-          .mdl-card__actions.mdl-card--border
-            span.category
-              | 聲援個案及議題
-            .mdl-layout-spacer
-            span.identifier
-              | A002-085
-        .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col.mdl-cell--hide-desktop
-          .mdl-card__title
-            h6.mdl-card__title-text
-              = link_to records_path do
-                | 法官法研討會邀請函
-          .mdl-card__supporting-text
-            |  聲援個案及議題1998-06-15檢察官定位的問題爭議不休，檢察官改革協會提出的司法官法草案，將檢察官明文定位為「公益代表人」，是代表國家追溯處罰犯罪而執行公務事務者，為排拒政治勢力不當介入，明文將「檢察一體」陽光透明化。除⋯⋯ 
-          .mdl-card__actions.mdl-card--border
-            span.category.email
-              | 信函
-            .mdl-layout-spacer
-            span.identifier
-              | A002-086
-  = render 'layouts/footer'
+- @title = "首頁"
+section.jrf-index-hero
+  h1.slogan
+    | 司法改革二十年
+  h4.sub-slogan
+    | 戴著閃亮鋼盔的司改典藏資料庫
+  form.search-row-wrapper[action="http://digital.jrf.org.tw/records" accept-charset="UTF-8" method="GET"]
+    input#search-field[type="search" name="q[title_or_content_cont]" placeholder="搜尋關鍵字，例如「司法」"]
+    button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--accent[type="submit"]
+      i.material-icons
+        | search
+section.jrf-index-featured.mdl-color--white
+  .mdl-grid.page-content
+    .jrf-index-item.mdl-cell.mdl-cell--2-col
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons book
+        | 雜誌
+    .jrf-index-item.mdl-cell.mdl-cell--2-col
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons description
+        | 文章
+    .jrf-index-item.mdl-cell.mdl-cell--2-col
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons photo
+        | 文宣品
+    .jrf-index-item.mdl-cell.mdl-cell--2-col.mdl-cell--hide-desktop
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons account_balance
+        | 公文書
+    .jrf-index-item.mdl-cell.mdl-cell--2-col
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons announcement
+        | 聲明稿
+    .jrf-index-item.mdl-cell.mdl-cell--2-col
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons assignment
+        | 陳情相關資料
+    .jrf-index-item.mdl-cell.mdl-cell--2-col.mdl-cell--hide-desktop
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons group
+        | 會務
+    .jrf-index-item.mdl-cell.mdl-cell--2-col
+      = link_to records_path, class: 'icon-link' do
+        i.large.material-icons email
+        | 信函
+section.jrf-index-featured.mdl-color--grey-100
+  .page-content
+    h5 最常點閱
+    .mdl-grid
+      .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
+        .mdl-card__title
+          h6.mdl-card__title-text
+            = link_to records_path do
+              | 檢改會版司法官法草案，明定「檢察一體」透明化--檢察官定位：公益代表人
+        .mdl-card__supporting-text
+          |  聲援個案及議題1998-06-15檢察官定位的問題爭議不休，檢察官改革協會提出的司法官法草案，將檢察官明文定位為「公益代表人」，是代表國家追溯處罰犯罪而執行公務事務者，為排拒政治勢力不當介入，明文將⋯⋯ 
+        .mdl-card__actions.mdl-card--border
+          span.category.announcement
+            | 聲明稿
+          .mdl-layout-spacer
+          span.identifier
+            | A002-083
+      .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
+        .mdl-card__title
+          h6.mdl-card__title-text
+            = link_to records_path do
+              | 月旦法學雜誌致王副執行長還「檢察體系改革研討會」照片之信函
+        .mdl-card__supporting-text
+          |  聲援個案及議題1998-07-141998年7月14日月旦法學雜誌函民間司法改革基金會，「檢察體系改革研討會」照片已用畢，茲先歸還照片，使用費將以稿費流程支付，與記錄整理費亦與相片使用費同時處理，因此⋯⋯ 
+        .mdl-card__actions.mdl-card--border
+          span.category.email
+            | 信函
+          .mdl-layout-spacer
+          span.identifier
+            | A002-084
+      .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
+        .mdl-card__title
+          h6.mdl-card__title-text
+            = link_to records_path do
+              | 「檢察體系改革」研討會
+        .mdl-card__supporting-text
+          |  聲援個案及議題1998-06-15檢察官定位的問題爭議不休，檢察官改革協會提出的司法官法草案，將檢察官明文定位為「公益代表人」，是代表國家追溯處罰犯罪而執行公務事務者，為排拒政治勢力不當介入，明文將「檢察一體」陽光透明化。除⋯⋯ 
+        .mdl-card__actions.mdl-card--border
+          span.category
+            | 聲援個案及議題
+          .mdl-layout-spacer
+          span.identifier
+            | A002-085
+      .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col.mdl-cell--hide-desktop
+        .mdl-card__title
+          h6.mdl-card__title-text
+            = link_to records_path do
+              | 法官法研討會邀請函
+        .mdl-card__supporting-text
+          |  聲援個案及議題1998-06-15檢察官定位的問題爭議不休，檢察官改革協會提出的司法官法草案，將檢察官明文定位為「公益代表人」，是代表國家追溯處罰犯罪而執行公務事務者，為排拒政治勢力不當介入，明文將「檢察一體」陽光透明化。除⋯⋯ 
+        .mdl-card__actions.mdl-card--border
+          span.category.email
+            | 信函
+          .mdl-layout-spacer
+          span.identifier
+            | A002-086
