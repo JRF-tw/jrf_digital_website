@@ -22,27 +22,23 @@ html lang="zh-TW"
     title #{@title} – 數位典藏檢索系統 – 民間司法改革基金會
     meta name="description" content="#{@description || '收錄民間司法改革基金會歷年聲明文件、剪報、會務資訊、以及其他數位內容。'}"
 
-  body class=(params[:action] == 'home' ? 'jrf-index-body' : 'jrf-#{params[:controller]}-body')
-    noscript
-      iframe height="0" src="//www.googletagmanager.com/ns.html?id=#{Setting.google_gtm.id}" style="display:none;visibility:hidden" width="0"
-    - if params[:action] == 'home'
-      .mdl-layout.mdl-js-layout.jrf-index-layout
-        = render 'layouts/header_home'
-        = render 'layouts/drawer'
-        main.mdl-layout__content
-          = yield
-          = render 'layouts/footer'
-    - elsif (['magazines', 'articles'].include? params[:controller]) and (params[:controller] == 'show')
-      .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-issue-layout
-        = render 'layouts/header_single_page'
-        = render 'layouts/drawer'
-        main.mdl-layout__content
-          = yield
-          = render 'layouts/footer'
-    - else
-      .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header.jrf-record-layout
-        = render 'layouts/header_fixed'
-        = render 'layouts/drawer'
-        main.mdl-layout__content.mdl-color--grey-100
-          = yield
-          = render 'layouts/footer'
+    
+  - if params[:controller] == 'static_pages'
+    = yield
+  - else
+    body
+      = render 'layouts/noscript'
+      - if (['magazines', 'articles'].include? params[:controller]) and (params[:controller] == 'show')
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-issue-layout
+          = render 'layouts/header_single_page'
+          = render 'layouts/drawer'
+          main.mdl-layout__content
+            = yield
+            = render 'layouts/footer'
+      - else
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header.jrf-record-layout
+          = render 'layouts/header_fixed'
+          = render 'layouts/drawer'
+          main.mdl-layout__content.mdl-color--grey-100
+            = yield
+            = render 'layouts/footer'
