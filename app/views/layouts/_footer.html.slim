@@ -3,6 +3,8 @@ footer.mdl-mini-footer
     .mdl-logo 民間司法改革基金會
     ul.mdl-mini-footer--link-list
       li
-        = link_to "使用方式", "#"
+        = link_to about_path, "使用方式"
       li
-        = mail_to "contact@jrf.org.tw"
+        a rel="external" href="https://github.com/jrf-tw" 檢視原始碼
+      li
+        = mail_to "contact@jrf.org.tw", "聯絡司改會"
