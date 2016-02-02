@@ -1,12 +1,21 @@
-.jrf-issue-ribbon.mdl-color--brown-600
-  .jrf-issue-ribbon-cover style="background-image: url(/images/backgrounds/102.jpg);"
-.mdl-grid.page-content
-  .jrf-issue-content.mdl-cell.mdl-cell--8-col
-    article.jrf-issue-article.content.mdl-color--white.mdl-shadow--4dp
-      h3 = @record.title
-      h6 = @record.identifier
-      = @record.category.try :name
-      = @record.catalog
-      = @record.date.try(:strftime, '%Y-%m-%d')
+.stretch.single.page-content
+  .jrf-article-item.mdl-grid.mdl-shadow--2dp
+    .mdl-cell.mdl-cell--12-col
+      h4 = @record.title
+    .mdl-cell.mdl-cell--4-col
+      |  資料類型：
+      span.media = @record.carrier
+    .mdl-cell.mdl-cell--4-col
+      |  編號：
+      span.identifier = @record.identifier
+    .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet
+      span.category.announcement
+        = @record.category.try :name
+    .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet
+      |  日期：
+      span.date = @record.date.try(:strftime, '%Y-%m-%d')
+    .mdl-cell.mdl-cell--6-col.mdl-cell--8-col-tablet
+      |  出版者：
+      span.publisher = record.collector
+    .mdl-cell.mdl-cell--12-col
       = @record.content.try :html_safe
-    
