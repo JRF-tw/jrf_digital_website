@@ -4,19 +4,32 @@
     .mdl-cell.mdl-cell--12-col
       h4 = @record.title
     .mdl-cell.mdl-cell--4-col
-      |  資料類型：
-      span.media = @record.carrier.try :name
-    .mdl-cell.mdl-cell--4-col
-      |  編號：
-      span.identifier = @record.identifier
-    .mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet
-      span.category.announcement
+      span.category
         = @record.category.try :name
-    .mdl-cell.mdl-cell--6-col.mdl-cell--4-col-tablet
-      |  日期：
-      span.date = @record.date.try(:strftime, '%Y-%m-%d')
-    .mdl-cell.mdl-cell--6-col.mdl-cell--8-col-tablet
-      |  出版者：
-      span.publisher = @record.collector.try :name
+    .mdl-cell.mdl-cell--4-col
+      span.property 日期：
+      = @record.date.try(:strftime, '%Y-%m-%d')
+    .mdl-cell.mdl-cell--4-col
+      span.property 編號：
+      = @record.identifier
+    .mdl-cell.mdl-cell--4-col
+      span.property 案名：
+      = @record.issue.try :name
+    .mdl-cell.mdl-cell--4-col
+      span.property 出版者：
+      = (@record.publisher.try :name) || '（未知）'
+    .mdl-cell.mdl-cell--4-col
+      span.property 典藏單位：
+      = (@record.collector.try :name)
+    .mdl-cell.mdl-cell--4-col.mdl-cell--8-col-tablet
+      span.property 資料類型：
+      = @record.carrier.try :name
+      - if @record.page
+        | （
+        = @record.size ? "#{@record.size} 大小、" : ''
+        | #{@record.page} #{@record.unit}）
+    .mdl-cell.mdl-cell--8-col.mdl-cell--8-col-tablet
+      span.property 關鍵字：
+      = safe_join(@record.keywords.map { |k| link_to k.name, keyword_path(k) }, '、'.html_safe)
     .mdl-cell.mdl-cell--12-col
       = @record.content.try :html_safe
