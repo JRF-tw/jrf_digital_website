@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :records, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :magazines, only: [:show, :index]
+  resources :categories, only: [:show]
   resources :keywords, only: [:show]
   resources :subjects, only: [:show]
 
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
-  
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
