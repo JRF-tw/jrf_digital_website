@@ -10,7 +10,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1
   def show
-    @records = @subject.records.page params[:page]
+    @records = @subject.records.includes(:subjects).page params[:page]
   end
 
   # GET /subjects/new

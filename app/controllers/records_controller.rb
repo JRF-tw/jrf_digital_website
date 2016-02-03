@@ -46,6 +46,7 @@ class RecordsController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
+        @query = params[:query] # TODO: Show search query
         query = "%#{params[:query]}%"
         @records = Record.where("title LIKE ? OR catalog LIKE ? OR content LIKE ?", query, query, query)
           .limit(params[:limit]).offset(params[:offset])
@@ -73,8 +74,8 @@ class RecordsController < ApplicationController
       format.html
       format.json {
         render :json => {
-          status: "success", 
-          records: filter_records(@records), 
+          status: "success",
+          records: filter_records(@records),
           count: count
         },
         callback: params[:callback]

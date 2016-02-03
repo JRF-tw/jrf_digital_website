@@ -166,6 +166,7 @@ if File.file?(record_path)
     # 主題
     subjects = record_data[16].strip.split('、')
     subjects.each do |k|
+      k.strip!
       subject = Subject.where(name: k).first
       unless subject
         subject = Subject.create({name: k})
@@ -177,6 +178,7 @@ if File.file?(record_path)
     # 關鍵字
     keywords = record_data[17].split('、')
     keywords.each do |k|
+      k.strip!
       keyword = Keyword.where(name: k).first
       unless keyword
         keyword = Keyword.create({name: k})
