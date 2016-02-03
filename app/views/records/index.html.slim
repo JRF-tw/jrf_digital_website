@@ -9,8 +9,9 @@
         .mdl-card__supporting-text
           = truncate r.content, length: 100, omission: '⋯⋯'
         .mdl-card__actions.mdl-card--border
-          span.category
-            = r.category.try(:name)
+          - r.subjects.each do |s|
+            span.category
+              = link_to s.name, subject_path(s)
           .mdl-layout-spacer
           span.identifier
             = r.identifier

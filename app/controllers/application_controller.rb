@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
     if ['magazines', 'articles'].include? params[:controller]
       @q = Article.includes(:magazine).search(params[:q])
     else
-      @q = Record.includes(:category).search(params[:q])
+      @q = Record.includes(:subjects).search(params[:q])
     end
   end
 end

@@ -21,10 +21,10 @@ class Api::RecordsController < ApplicationController
     ransack_params[:date_gt] = params[:date_start] if params[:date_start]
     ransack_params[:date_lt] = params[:date_end] if params[:date_end]
     if ransack_params.blank?
-      @records = Record.includes(:category).offset(params[:offset]).limit(limit)
+      @records = Record.includes(:subjects).offset(params[:offset]).limit(limit)
       @records_count = Record.count
     else
-      @records = Record.includes(:category).ransack(ransack_params).result(distinct: true)
+      @records = Record.includes(:subjects).ransack(ransack_params).result(distinct: true)
         .offset(params[:offset]).limit(limit)
       @records_count = Record.ransack(ransack_params).result(distinct: true).count
     end
@@ -40,7 +40,7 @@ class Api::RecordsController < ApplicationController
   end
 
   def show
-    @record = Record.includes(:category, :carrier, :pattern, :issue, :language, :collector).find(params[:id])
+    @record = Record.includes(:subjects, :carrier, :pattern, :issue, :language, :collector).find(params[:id])
     respond_with(@record)
   end
 

@@ -1,11 +1,12 @@
-- @title = @record.identifier
+- @title = "檔案編號 #{@record.identifier}"
 .stretch.single.page-content
   .jrf-article-item.mdl-grid.mdl-shadow--2dp
     .mdl-cell.mdl-cell--12-col
       h4 = @record.title
     .mdl-cell.mdl-cell--4-col
-      span.category
-        = @record.category.try :name
+      - @record.subjects.each do |s|
+        span.category
+          = link_to s.name, subject_path(s)
     .mdl-cell.mdl-cell--4-col
       span.property 日期：
       = @record.date.try(:strftime, '%Y-%m-%d')

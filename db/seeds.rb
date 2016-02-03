@@ -80,7 +80,7 @@ if File.file?(record_path)
     # 檔案數量
     record.quantity = record_data[14]
     # 主題
-    # record.subject = record_data[0]
+    # record.subject = record_data[16]
     # 目次∕附件
     record.catalog = record_data[18]
     # 內容描述
@@ -116,17 +116,12 @@ if File.file?(record_path)
     # 建目記錄-修改日期
     record.updated_at = (record_data[35].blank? ? nil : Date.parse(record_data[35]))
     # 資料類型-資源類型
-    unless record_data[16].blank?
-      categories = record_data[16].strip.split('、')
-      categories.each do |k|
-        category = Category.where(name: k).first
-        unless category
-          category = Category.create({name: k})
-        end
-        if not record.categories.include? category
-          record.categories << category
-        end
+    unless record_data[0].blank?
+      category_id = Category.where(name: record_data[0]).first.try(:id)
+      unless category_id
+        category_id = Category.create({name: record_data[0]}).id
       end
+      record.category_id = category_id
     end
     # 資料類型-載體
     unless record_data[1].blank?
@@ -169,7 +164,7 @@ if File.file?(record_path)
       record.collector_id = collector_id
     end
     # 主題
-    subjects = record_data[16].split('、')
+    subjects = record_data[16].strip.split('、')
     subjects.each do |k|
       subject = Subject.where(name: k).first
       unless subject

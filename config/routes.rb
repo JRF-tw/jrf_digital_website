@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :records, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :magazines, only: [:show, :index]
-  resources :categories, only: [:show]
   resources :keywords, only: [:show]
   resources :subjects, only: [:show]
 
