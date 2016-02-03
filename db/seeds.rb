@@ -10,6 +10,15 @@
 require 'open-uri'
 include ActionView::Helpers
 
+def reset_pk_sequence(table)
+  case ActiveRecord::Base.connection.adapter_name.downcase
+  when 'sqlite'
+    ActiveRecord::Base.connection.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = '#{table.table_name}'")
+  when 'postgresql'
+    ActiveRecord::Base.connection.reset_pk_sequence!(table)
+  end
+end
+
 def get_img_url_from_html(html)
   doc = Nokogiri::HTML(html)
   img_url = nil
@@ -41,7 +50,7 @@ ActiveRecord::Base.connection.execute("Delete from keywords_records;");
 ActiveRecord::Base.connection.execute("Delete from records_subjects;");
 
 ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  reset_pk_sequence(t)
 end
 
 record_path = Rails.root.join('db', 'data', 'records.json')
@@ -71,7 +80,7 @@ if File.file?(record_path)
     # 檔案數量
     record.quantity = record_data[14]
     # 主題
-    # record.subject = record_data[16]
+    # record.subject = record_data[0]
     # 目次∕附件
     record.catalog = record_data[18]
     # 內容描述
@@ -107,12 +116,17 @@ if File.file?(record_path)
     # 建目記錄-修改日期
     record.updated_at = (record_data[35].blank? ? nil : Date.parse(record_data[35]))
     # 資料類型-資源類型
-    unless record_data[0].blank?
-      category_id = Category.where(name: record_data[0]).first.try(:id)
-      unless category_id
-        category_id = Category.create({name: record_data[0]}).id
+    unless record_data[16].blank?
+      categories = record_data[16].strip.split('、')
+      categories.each do |k|
+        category = Category.where(name: k).first
+        unless category
+          category = Category.create({name: k})
+        end
+        if not record.categories.include? category
+          record.categories << category
+        end
       end
-      record.category_id = category_id
     end
     # 資料類型-載體
     unless record_data[1].blank?
@@ -237,5 +251,5 @@ end
 
 
 ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  reset_pk_sequence(t)
 end
