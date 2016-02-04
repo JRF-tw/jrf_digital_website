@@ -46,7 +46,6 @@ class RecordsController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
-        @query = params[:query] # TODO: Show search query
         query = "%#{params[:query]}%"
         @records = Record.where("title LIKE ? OR catalog LIKE ? OR content LIKE ?", query, query, query)
           .limit(params[:limit]).offset(params[:offset])
@@ -56,6 +55,7 @@ class RecordsController < ApplicationController
         count = Record.all.count
       end
     else
+      @query = params[:q] ? params[:q][:title_or_content_cont] : nil
       @records = @q.result(:distinct => true).page params[:page]
     end
 
