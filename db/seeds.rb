@@ -13,7 +13,7 @@ include ActionView::Helpers
 def reset_pk_sequence(table)
   case ActiveRecord::Base.connection.adapter_name.downcase
   when 'sqlite'
-    ActiveRecord::Base.connection.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = '#{table.table_name}'")
+    ActiveRecord::Base.connection.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = '#{table.table_name}';") rescue nil
   when 'postgresql'
     ActiveRecord::Base.connection.reset_pk_sequence!(table)
   end
@@ -198,7 +198,7 @@ Article.delete_all
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
 
 ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  reset_pk_sequence(t)
 end
 
 magazine_path = Rails.root.join('db', 'data', 'magazines.json')
