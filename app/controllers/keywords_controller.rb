@@ -10,6 +10,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1
   def show
+    @records = @keyword.records.includes(:subjects).page params[:page]
   end
 
   # GET /keywords/new

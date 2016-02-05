@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
-  
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

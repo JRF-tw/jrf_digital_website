@@ -5,6 +5,16 @@ class MagazinesController < ApplicationController
   # GET /magazines
   def index
     @magazines = Magazine.all.page(params[:page])
+    set_meta_tags({
+      title: "雜誌列表",
+      description: '',
+      keywords: '',
+      og: {
+        type: 'website',
+        title: "雜誌列表",
+        description: ''
+      }
+    })
   end
 
   # GET /magazines/1

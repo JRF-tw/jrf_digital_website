@@ -10,6 +10,15 @@
 require 'open-uri'
 include ActionView::Helpers
 
+def reset_pk_sequence(table)
+  case ActiveRecord::Base.connection.adapter_name.downcase
+  when 'sqlite'
+    ActiveRecord::Base.connection.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = '#{table.table_name}';") rescue nil
+  when 'postgresql'
+    ActiveRecord::Base.connection.reset_pk_sequence!(table)
+  end
+end
+
 def get_img_url_from_html(html)
   doc = Nokogiri::HTML(html)
   img_url = nil
@@ -41,7 +50,7 @@ ActiveRecord::Base.connection.execute("Delete from keywords_records;");
 ActiveRecord::Base.connection.execute("Delete from records_subjects;");
 
 ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  reset_pk_sequence(t)
 end
 
 record_path = Rails.root.join('db', 'data', 'records.json')
@@ -156,18 +165,19 @@ if File.file?(record_path)
     end
     # 主題
     subjects = record_data[16].split('、').map{ |s| s.strip }
-    subjects.each do |k|
-      subject = Subject.where(name: k).first
+    subjects.each do |s|
+      subject = Subject.where(name: s).first
       unless subject
-        subject = Subject.create({name: k})
+        subject = Subject.create({name: s})
       end
       if not record.subjects.include? subject
         record.subjects << subject
       end
     end
     # 關鍵字
-    keywords = record_data[17].split('、').map{ |s| s.strip }
+    keywords = record_data[17].split('、').map{ |k| k.strip }
     keywords.each do |k|
+      k.strip!
       keyword = Keyword.where(name: k).first
       unless keyword
         keyword = Keyword.create({name: k})
@@ -187,7 +197,7 @@ Article.delete_all
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
 
 ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  reset_pk_sequence(t)
 end
 
 magazine_path = Rails.root.join('db', 'data', 'magazines.json')
@@ -237,5 +247,5 @@ end
 
 
 ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  reset_pk_sequence(t)
 end

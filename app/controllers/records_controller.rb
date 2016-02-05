@@ -5,12 +5,12 @@ class RecordsController < ApplicationController
     @record.visits += 1
     @record.save
     set_meta_tags({
-      title: @record.title,
+      title: "檔案編號 #{@record.identifier}",
       description: '',
       keywords: '',
       og: {
         type: 'website',
-        title: @record.title,
+        title: "檔案編號 #{@record.identifier}",
         description: ''
       }
     })
@@ -28,16 +28,19 @@ class RecordsController < ApplicationController
         count = Record.all.count
       end
     else
-      @records = @q.result(:distinct => true).page params[:page]
+      @query = params[:q] ? params[:q][:title_or_content_cont] : nil
+      @records = @q.result(distinct: true).page params[:page]
     end
 
+    title = @query ? "搜尋結果：#{@query}" : '典藏列表'
+
     set_meta_tags({
-      title: '典藏列表',
+      title: title,
       description: '',
       keywords: '',
       og: {
         type: 'website',
-        title: '典藏列表',
+        title: title,
         description: ''
       }
     })
@@ -46,8 +49,8 @@ class RecordsController < ApplicationController
       format.html
       format.json {
         render :json => {
-          status: "success", 
-          records: filter_records(@records), 
+          status: "success",
+          records: filter_records(@records),
           count: count
         },
         callback: params[:callback]

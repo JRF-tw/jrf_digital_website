@@ -1,0 +1,18 @@
+- @title = "篩選主題：#{@subject.name}"
+.stretch.page-content
+  .jrf-search-result.mdl-grid
+    - @records.each do |r|
+      .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
+        .mdl-card__title
+          h6.mdl-card__title-text
+            = link_to r.title, record_path(r)
+        .mdl-card__supporting-text
+          = truncate r.content, length: 100, omission: '⋯⋯'
+        .mdl-card__actions.mdl-card--border
+          - r.subjects.each do |s|
+            span.category
+              = link_to s.name, subject_path(s)
+          .mdl-layout-spacer
+          span.identifier
+            = r.identifier
+  = paginate @records
