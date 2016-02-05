@@ -2,8 +2,7 @@ class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :destroy, :update, :create]
 
   def show
-    @record.visits += 1
-    @record.save
+    @record.update_columns(visits: (@record.visits + 1))
     set_meta_tags({
       title: "檔案編號 #{@record.identifier}",
       description: '',
