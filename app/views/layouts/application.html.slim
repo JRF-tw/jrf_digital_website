@@ -18,13 +18,15 @@ html lang="zh-TW"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    
-    title #{@title} – 數位典藏檢索系統 – 民間司法改革基金會
-    meta name="description" content="#{@description || '收錄民間司法改革基金會歷年聲明文件、剪報、會務資訊、以及其他數位內容。'}"
 
-    
   - if params[:controller] == 'static_pages'
-    = yield
+    body class='jrf-index-body' style='background-image: url(/images/backgrounds/102.jpg);'
+      .mdl-layout.mdl-js-layout.jrf-index-layout
+        = render 'layouts/header_home'
+        = render 'layouts/drawer'
+        main.mdl-layout__content
+          = yield
+          = render 'layouts/footer'
   - else
     body
       = render 'layouts/noscript'

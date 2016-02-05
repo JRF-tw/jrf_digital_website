@@ -17,4 +17,9 @@ class Record < ActiveRecord::Base
     where("keywords.name LIKE ?", query).
     group("records.id")
   }
+
+  def full_subject
+    subject_array = self.subjects.map { |s| s.name }
+    subject_array.join('、')
+  end
 end

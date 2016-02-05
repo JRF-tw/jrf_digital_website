@@ -4,7 +4,15 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   match '/about',     to: 'static_pages#about',     via: 'get'
-  resources :records, only: [:show, :index]
+  resources :records, only: [:show, :index] do
+    get :articles, on: :collection
+    get :propagandas, on: :collection
+    get :documents, on: :collection
+    get :statements, on: :collection
+    get :petitions, on: :collection
+    get :affairs, on: :collection
+    get :letters, on: :collection
+  end
   resources :articles, only: [:show, :index]
   resources :magazines, only: [:show, :index]
   resources :keywords, only: [:show]

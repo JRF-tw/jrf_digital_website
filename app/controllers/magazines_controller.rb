@@ -10,6 +10,17 @@ class MagazinesController < ApplicationController
   # GET /magazines/1
   def show
     @articles = @magazine.articles.page_order.all
+    set_meta_tags({
+      title: "司法改革雜誌第 #{@magazine.issue} 期",
+      description: '',
+      keywords: '',
+      og: {
+        type: 'website',
+        title: "司法改革雜誌第 #{@magazine.issue} 期",
+        description: ''
+      }
+    })
+    
   end
 
   # GET /magazines/new

@@ -5,7 +5,7 @@
       h4 = @record.title
     .mdl-cell.mdl-cell--4-col
       |  資料類型：
-      span.media = @record.carrier
+      span.media = @record.carrier.name
     .mdl-cell.mdl-cell--4-col
       |  編號：
       span.identifier = @record.identifier
@@ -17,6 +17,6 @@
       span.date = @record.date.try(:strftime, '%Y-%m-%d')
     .mdl-cell.mdl-cell--6-col.mdl-cell--8-col-tablet
       |  出版者：
-      span.publisher = record.collector
+      span.publisher = @record.collector.name
     .mdl-cell.mdl-cell--12-col
       = @record.content.try :html_safe

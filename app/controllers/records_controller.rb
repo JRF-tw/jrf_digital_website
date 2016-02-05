@@ -1,46 +1,19 @@
 class RecordsController < ApplicationController
-  before_action :set_record, except: [:index, :new]
+  before_action :set_record, only: [:show, :edit, :destroy, :update, :create]
 
   def show
-    respond_to do |format|
-      format.html
-      format.json {render :json => {
-        status: "success",
-        legislator: JSON.parse(@legislator.to_json(
-        except: [:description, :now_party_id, :created_at, :updated_at],
-        include: {
-          party: {except: [:created_at, :updated_at]},
-          elections: {
-            except: [:created_at, :updated_at],
-            include: {ad: {except: [:created_at, :updated_at]}
-            }
-          },
-          interpellations: {}, entries:{}, videos:{}
-        }))},
-        callback: params[:callback]
+    @record.visits += 1
+    @record.save
+    set_meta_tags({
+      title: @record.title,
+      description: '',
+      keywords: '',
+      og: {
+        type: 'website',
+        title: @record.title,
+        description: ''
       }
-    end
-
-
-    # id = params[:id]
-    # if id.to_i.to_s == id
-    #   begin
-    #     @record = Record.find(id)
-    #   rescue
-    #     @record = nil
-    #   end
-    # else
-    #   begin
-    #     @record = Record.where({identifier: id}).first
-    #   rescue
-    #     @record = nil
-    #   end
-    # end
-    # if @record
-    #   render json: {status: "success", record: filter_record(@record)}
-    # else
-    #   render json: {status: "failed", error: "not found"}
-    # end
+    })
   end
 
   def index
@@ -59,12 +32,12 @@ class RecordsController < ApplicationController
     end
 
     set_meta_tags({
-      title: '',
+      title: '典藏列表',
       description: '',
       keywords: '',
       og: {
         type: 'website',
-        title: '',
+        title: '典藏列表',
         description: ''
       }
     })
@@ -80,6 +53,48 @@ class RecordsController < ApplicationController
         callback: params[:callback]
       }
     end
+  end
+
+  def articles
+    @subject = Subject.where(name: "文章").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
+  end
+
+  def propagandas
+    @subject = Subject.where(name: "宣傳品").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
+  end
+
+  def documents
+    @subject = Subject.where(name: "公文書").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
+  end
+
+  def statements
+    @subject = Subject.where(name: "聲明文件").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
+  end
+
+  def petitions
+    @subject = Subject.where(name: "陳情相關資料").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
+  end
+
+  def affairs
+    @subject = Subject.where(name: "會務").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
+  end
+
+  def letters
+    @subject = Subject.where(name: "信函").first
+    @q = @subject.records.includes(:category).search(params[:q])
+    @records = @q.result(distinct: true).page params[:page]
   end
 
   private
