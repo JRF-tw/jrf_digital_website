@@ -30,7 +30,7 @@ html lang="zh-TW"
   - else
     body
       = render 'layouts/noscript'
-      - if (['magazines', 'articles'].include? params[:controller]) and (params[:controller] == 'show')
+      - if (['magazines', 'articles'].include? params[:controller]) and (params[:action] == 'show')
         .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-issue-layout
           = render 'layouts/header_single_page'
           = render 'layouts/drawer'
