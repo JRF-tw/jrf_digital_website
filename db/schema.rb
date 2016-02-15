@@ -11,23 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205074758) do
+ActiveRecord::Schema.define(version: 20160215101830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.integer  "magazine_id"
-    t.integer  "column_id"
     t.string   "image"
     t.string   "title"
     t.string   "author"
     t.integer  "page"
     t.text     "content"
     t.text     "comment"
-    t.boolean  "is_cover",    default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "is_cover",        default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "issue_column_id"
   end
 
   create_table "articles_keywords", force: :cascade do |t|
@@ -54,6 +53,14 @@ ActiveRecord::Schema.define(version: 20160205074758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "issue_columns", force: :cascade do |t|
+    t.integer "magazine_id",             null: false
+    t.integer "column_id",               null: false
+    t.integer "page",        default: 0
+  end
+
+  add_index "issue_columns", ["magazine_id", "column_id"], name: "issue_columns_index", unique: true, using: :btree
 
   create_table "issues", force: :cascade do |t|
     t.string "name"

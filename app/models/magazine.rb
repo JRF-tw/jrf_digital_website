@@ -1,6 +1,7 @@
 class Magazine < ActiveRecord::Base
-  has_many :articles
-  has_many :columns, -> { distinct }, through: :articles
+  has_many :issue_columns
+  has_many :column, through: :issue_columns
+  has_many :articles, through: :issue_columns
   before_save :update_name
   mount_uploader :image, ImageUploader
   default_scope { order(issue: :desc) }

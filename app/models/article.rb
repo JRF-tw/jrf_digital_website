@@ -1,7 +1,8 @@
 class Article < ActiveRecord::Base
   has_and_belongs_to_many :keywords, -> { uniq }
-  belongs_to :magazine
-  belongs_to :column
+  delegate :magazine, to: :issue_column, allow_nil: true
+  delegate :column, to: :issue_column, allow_nil: true
+  belongs_to :issue_column
   mount_uploader :image, ImageUploader
   paginates_per 10
 
