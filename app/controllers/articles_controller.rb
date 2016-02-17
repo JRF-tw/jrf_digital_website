@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, except: [:show, :index]
-  #before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_article, except: [:new, :index]
+  #before_action :authenticate_user!, except: [:new, :index]
 
   # GET /articles
   def index
@@ -47,12 +47,12 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = params[:id] ? Article.includes(:magazine).find(params[:id]) : Article.new(article_params)
+      @article = params[:id] ? Article.includes(issue_column: [:magazine, :column]).find(params[:id]) : Article.new(article_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :published_at, :comment, :magazine_id, :column_id,
+      params.require(:article).permit(:title, :content, :published_at, :comment, :issue_column_id,
         {keyword_ids: []}, :author, :comment)
     end
 end
