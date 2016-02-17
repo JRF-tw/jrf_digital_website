@@ -214,7 +214,7 @@ if File.file?(magazine_path)
       magazine.id = article_data["期"]
       published_at = Date.strptime(article_data["日期"], "%Y-%m-%d") rescue Date.strptime(article_data["日期"], "%m/%d/%Y")
       magazine.published_at = published_at
-      magazine.name = "司改雜誌第#{article_data["期"]}期"
+      magazine.name = "司改雜誌第 #{article_data["期"]} 期"
       magazine.created_at = published_at
       magazine.save
     end
@@ -228,11 +228,22 @@ if File.file?(magazine_path)
       column.name = article_data["專欄"]
       column.save
     end
+    article_page = article_data["頁碼"]
+    issue_column = IssueColumn.where(magazine: magazine, column: column).first
+    unless issue_column
+      issue_column = IssueColumn.new
+      issue_column.magazine = magazine
+      issue_column.column = column
+      issue_column.page = article_page
+    elsif issue_column.page > article_page
+      issue_column.page = article_page
+      issue_column.save
+    end
+    article.issue_column = issue_column
     if article_data["專欄"] == "封面故事"
       article.is_cover = true
     end
-    article.column = column
-    article.page = article_data["頁碼"]
+    article.page = article_page
     article.title = article_data["標題"].gsub(/\n/, '')
     article.author = article_data["作者"]
     article.content = simple_format(article_data["全文"]).gsub(/\n/, '')
