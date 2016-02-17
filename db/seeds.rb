@@ -198,6 +198,7 @@ end
 Magazine.delete_all
 Column.delete_all
 Article.delete_all
+IssueColumn.delete_all
 
 ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
 
