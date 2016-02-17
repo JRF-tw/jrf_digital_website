@@ -58,6 +58,11 @@ record_path = Rails.root.join('db', 'data', 'records.json')
 if File.file?(record_path)
   File.readlines(record_path).each do |line|
     record_data = JSON.parse(line)
+    unless record_data and record_data.length == 36
+      puts "[格式不正確] #{line}"
+      next
+    end
+
     record = Record.new
     # 資料識別碼
     record.identifier = record_data[3].strip
@@ -218,7 +223,6 @@ if File.file?(magazine_path)
       magazine.created_at = published_at
       magazine.save
     end
-    article.magazine = magazine
     if article_data["專欄"].blank?
       article_data["專欄"] = "其他"
     end
@@ -235,7 +239,8 @@ if File.file?(magazine_path)
       issue_column.magazine = magazine
       issue_column.column = column
       issue_column.page = article_page
-    elsif issue_column.page > article_page
+    end
+    if issue_column.page > article_page
       issue_column.page = article_page
       issue_column.save
     end
