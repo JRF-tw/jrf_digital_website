@@ -43,6 +43,7 @@ gem 'lograge'
 gem 'rollbar', '~> 2.5.1'
 gem 'oj', '~> 2.12.14'
 gem "skylight"
+gem 'smarter_csv'
 
 
 # Use ActiveModel has_secure_password

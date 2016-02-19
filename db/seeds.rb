@@ -56,10 +56,12 @@ end
 record_path = Rails.root.join('db', 'data', 'records.json')
 
 if File.file?(record_path)
+  num = 0
   File.readlines(record_path).each do |line|
+    num += 1
     record_data = JSON.parse(line)
     unless record_data and record_data.length == 36
-      puts "[格式不正確] #{line}"
+      puts "#{num} [格式不正確，抓到#{record_data.length}個值] #{line}"
       next
     end
 
