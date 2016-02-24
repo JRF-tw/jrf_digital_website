@@ -44,6 +44,7 @@ gem 'rollbar', '~> 2.5.1'
 gem 'oj', '~> 2.12.14'
 gem "skylight"
 gem 'smarter_csv'
+gem 'canonical-rails'
 
 
 # Use ActiveModel has_secure_password
