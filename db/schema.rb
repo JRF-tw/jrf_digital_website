@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215101830) do
+ActiveRecord::Schema.define(version: 20160224064905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160215101830) do
     t.string  "unit"
     t.string  "size"
     t.string  "page"
-    t.string  "quantity"
+    t.integer "quantity"
     t.text    "catalog"
     t.text    "content"
     t.string  "information"
@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(version: 20160215101830) do
     t.date    "updated_at"
     t.string  "image"
     t.integer "visits",       default: 0,     null: false
+    t.integer "statistics",   default: 0,     null: false
+    t.string  "serial_no"
   end
 
   add_index "records", ["identifier"], name: "index_records_on_identifier", unique: true, using: :btree

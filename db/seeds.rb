@@ -53,125 +53,129 @@ ActiveRecord::Base.connection.tables.each do |t|
   reset_pk_sequence(t)
 end
 
-record_path = Rails.root.join('db', 'data', 'records.json')
+record_path = Rails.root.join('db', 'data', 'records.csv')
 
 if File.file?(record_path)
   num = 0
-  File.readlines(record_path).each do |line|
+  SmarterCSV.process(record_path).each do |line|
     num += 1
-    record_data = JSON.parse(line)
-    unless record_data and record_data.length == 36
-      puts "#{num} [格式不正確，抓到#{record_data.length}個值] #{line}"
-      next
-    end
-
+    record_data = line
     record = Record.new
     # 資料識別碼
-    record.identifier = record_data[3].strip
+    record.identifier = record_data[:資料識別碼].strip
     # 敏感資料與否
-    record.sensitive = (record_data[4].blank? ? false : true)
+    record.sensitive = (record_data[:敏感資料與否].blank? ? false : true)
     # 文件標題
-    record.title = record_data[5].strip
+    record.title = record_data[:文件標題].strip if record_data[:文件標題].present?
     # 貢獻者
-    record.contributor = record_data[6].strip
+    record.contributor = record_data[:貢獻者].strip if record_data[:貢獻者].present?
     # 出版者
-    record.publisher = record_data[8].strip
+    record.publisher = record_data[:出版者].strip if record_data[:出版者].present?
     # 產生日期
-    record.date = (record_data[10].blank? ? nil : Date.parse(record_data[10]))
+    record.date = (record_data[:檢索用日期].blank? ? nil : Date.parse(record_data[:檢索用日期]))
     # 資料格式-單位
-    record.unit = record_data[11].strip
+    record.unit = record_data[:資料單位].strip if record_data[:資料單位].present?
     # 資料格式-大小
-    record.size = record_data[12].strip
+    record.size = record_data[:資料大小].to_s.strip if record_data[:資料大小].present?
     # 資料格式-面數
-    record.page = record_data[13].gsub(/頁/, '')
+    record.page = record_data[:資料頁數].gsub(/頁/, '') if record_data[:資料頁數].present?
     # 檔案數量
-    record.quantity = record_data[14].strip
+    if record_data[:檔案數量] == '無'
+      record.quantity = nil
+    else
+      record.quantity = record_data[:檔案數量].to_i if record_data[:附註項].present?
+    end
     # 主題
-    # record.subject = record_data[16]
+    # record.subject = record_data[:主題]
     # 目次∕附件
-    record.catalog = record_data[18].strip
+    record.catalog = record_data[:目次／附件].strip if record_data[:目次／附件].present?
     # 內容描述
-    record.content = record_data[19].strip
+    record.content = record_data[:內容描述].strip if record_data[:內容描述].present?
     # 對應資訊
-    record.information = record_data[20].strip
+    record.information = record_data[:對應資訊].strip if record_data[:對應資訊].present?
     # 附註項
-    record.comment = record_data[22].strip
+    record.comment = record_data[:附註項].strip if record_data[:附註項].present?
     # 原件權利-著作權
-    record.copyright = record_data[23].strip
+    record.copyright = record_data[:原件著作權].strip if record_data[:原件著作權].present?
     # 原件權利-財產物權
-    record.right_in_rem = record_data[24].strip
+    record.right_in_rem = record_data[:原件財產物權].strip if record_data[:原件財產物權].present?
     # 數位檔權利-所有權人
-    record.ownership = record_data[25].strip
+    record.ownership = record_data[:數位檔所有權人].strip if record_data[:數位檔所有權人].present?
     # 數位檔權利-公開與否
-    record.published = (record_data[26].blank? ? false : true)
+    record.published = (record_data[:數位檔公開與否].blank? ? true : false)
     # 數位檔權利-授權狀況
-    record.licence = record_data[27].strip
+    record.licence = record_data[:數位檔授權狀況].strip if record_data[:數位檔授權狀況].present?
     # 數位檔連結-檔案名稱
-    record.filename = record_data[28].strip
+    record.filename = record_data[:數位檔案名稱].strip if record_data[:數位檔案名稱].present?
     # 數位檔連結-檔案格式
-    record.filetype = record_data[29].strip
+    record.filetype = record_data[:數位檔案格式].strip if record_data[:數位檔案格式].present?
     # 建目記錄-登錄者
-    record.creator = record_data[30].strip
+    record.creator = record_data[:登錄者].strip if record_data[:登錄者].present?
     # 建目記錄-建檔日期
-    record.created_at = (record_data[31].blank? ? nil : Date.parse(record_data[31]))
+    record.created_at = (record_data[:建檔日期].blank? ? nil : Date.parse(record_data[:建檔日期]))
     # 建目記錄-描述者
-    record.commentor = record_data[32].strip
+    record.commentor = record_data[:描述者].strip if record_data[:描述者].present?
     # 建目記錄-描述日期
-    record.commented_at = (record_data[33].blank? ? nil : Date.parse(record_data[33]))
+    record.commented_at = (record_data[:描述日期].blank? ? nil : Date.parse(record_data[:描述日期]))
     # 建目記錄-修改者
-    record.updater = record_data[34].strip
+    record.updater = record_data[:修改者].strip if record_data[:修改者].present?
     # 建目記錄-修改日期
-    record.updated_at = (record_data[35].blank? ? nil : Date.parse(record_data[35]))
+    record.updated_at = (record_data[:修改日期].blank? ? nil : Date.parse(record_data[:修改日期]))
+    # 統計
+    record.statistics = record_data[:統計] if record_data[:統計].present?
+    # 序號
+    record.serial_no = record_data[:序號] if record_data[:序號].present?
+
     # 資料類型-資源類型
-    unless record_data[0].blank?
-      category_id = Category.where(name: record_data[0].strip).first.try(:id)
+    unless record_data[:資料類型].blank?
+      category_id = Category.where(name: record_data[:資料類型].strip).first.try(:id)
       unless category_id
-        category_id = Category.create({name: record_data[0].strip}).id
+        category_id = Category.create({name: record_data[:資料類型].strip}).id
       end
       record.category_id = category_id
     end
     # 資料類型-載體
-    unless record_data[1].blank?
-      carrier_id = Carrier.where(name: record_data[1].strip).first.try(:id)
+    unless record_data[:資料載體].blank?
+      carrier_id = Carrier.where(name: record_data[:資料載體].strip).first.try(:id)
       unless carrier_id
-        carrier_id = Carrier.create({name: record_data[1].strip}).id
+        carrier_id = Carrier.create({name: record_data[:資料載體].strip}).id
       end
       record.carrier_id = carrier_id
     end
     # 資料類型-型式
-    unless record_data[2].blank?
-      pattern_id = Pattern.where(name: record_data[2].strip).first.try(:id)
+    unless record_data[:資料型式].blank?
+      pattern_id = Pattern.where(name: record_data[:資料型式].strip).first.try(:id)
       unless pattern_id
-        pattern_id = Pattern.create({name: record_data[2].strip}).id
+        pattern_id = Pattern.create({name: record_data[:資料型式].strip}).id
       end
       record.pattern_id = pattern_id
     end
     # 案名
-    unless record_data[7].blank?
-      issue_id = Issue.where(name: record_data[7].strip).first.try(:id)
+    unless record_data[:案名].blank?
+      issue_id = Issue.where(name: record_data[:案名].strip).first.try(:id)
       unless issue_id
-        issue_id = Issue.create({name: record_data[7].strip}).id
+        issue_id = Issue.create({name: record_data[:案名].strip}).id
       end
       record.issue_id = issue_id
     end
     # 語言
-    unless record_data[15].blank?
-      language_id = Language.where(name: record_data[15].strip).first.try(:id)
+    unless record_data[:語言].blank?
+      language_id = Language.where(name: record_data[:語言].strip).first.try(:id)
       unless language_id
-        language_id = Language.create({name: record_data[15].strip}).id
+        language_id = Language.create({name: record_data[:語言].strip}).id
       end
       record.language_id = language_id
     end
     # 典藏單位
-    unless record_data[21].blank?
-      collector_id = Collector.where(name: record_data[21].strip).first.try(:id)
+    unless record_data[:典藏單位].blank?
+      collector_id = Collector.where(name: record_data[:典藏單位].strip).first.try(:id)
       unless collector_id
-        collector_id = Collector.create({name: record_data[21].strip}).id
+        collector_id = Collector.create({name: record_data[:典藏單位].strip}).id
       end
       record.collector_id = collector_id
     end
     # 主題
-    subjects = record_data[16].split('、').map{ |s| s.strip }
+    subjects = record_data[:主題].present? ? record_data[:主題].split('、').map{ |s| s.strip } : []
     subjects.each do |s|
       subject = Subject.where(name: s).first
       unless subject
@@ -182,7 +186,7 @@ if File.file?(record_path)
       end
     end
     # 關鍵字
-    keywords = record_data[17].split('、').map{ |k| k.strip }
+    keywords = record_data[:關鍵字].present? ? record_data[:關鍵字].split('、').map{ |k| k.strip } : []
     keywords.each do |k|
       k.strip!
       keyword = Keyword.where(name: k).first

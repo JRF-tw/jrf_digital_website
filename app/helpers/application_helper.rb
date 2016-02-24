@@ -11,6 +11,10 @@ module ApplicationHelper
         type: 'website',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg",
         site_name: '民間司改會數位典藏'
+      },
+      twitter: {
+        card: 'summary_large_image',
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg"
       }
     }
   end
