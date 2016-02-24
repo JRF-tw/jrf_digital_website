@@ -1,6 +1,6 @@
 class Magazine < ActiveRecord::Base
   has_many :issue_columns
-  has_many :column, through: :issue_columns
+  has_many :columns, through: :issue_columns
   has_many :articles, through: :issue_columns
   before_save :update_name
   mount_uploader :image, ImageUploader
