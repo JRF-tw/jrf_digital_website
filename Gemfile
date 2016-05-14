@@ -46,7 +46,6 @@ gem "skylight"
 gem 'smarter_csv'
 gem 'canonical-rails'
 
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
