@@ -69,7 +69,7 @@ class MagazinesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_magazine
-      @magazine = params[:id] ? Magazine.find(params[:id]) : Magazine.new(magazine_params)
+      @magazine = params[:id] ? Magazine.includes([issue_columns: :column]).find(params[:id]) : Magazine.new(magazine_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

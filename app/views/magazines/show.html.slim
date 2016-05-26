@@ -16,9 +16,9 @@
           = link_to "下載 PDF", "/magazines/#{@magazine.issue}.pdf", download: "#{@magazine.name}.pdf", class: 'mdl-button'
           = link_to "在 Google Play 圖書閱讀", rel: 'external nofollow', class: 'mdl-button', disabled: 'disabled'
     section.jrf-issue-articles.content.mdl-color--white.mdl-shadow--4dp.mdl-color-text--grey-800
-      - @magazine.columns.each do |c|
-        h5 = c.name
-        - @magazine.articles.page_order.each do |a|
+      - @magazine.issue_columns.each do |i|
+        h5 = i.column.name
+        - i.articles.page_order.each do |a|
           .jrf-issue-entry
             h6 = link_to a.title, article_path(a)
             = a.author
