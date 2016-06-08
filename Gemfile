@@ -31,7 +31,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'settingslogic'
-gem 'pg'
+#gem 'pg'
 gem 'ransack'
 gem "twitter-bootstrap-rails"
 gem 'unicode-display_width'
@@ -72,4 +72,3 @@ group :development, :test do
   gem "bullet"
   gem 'simplecov'
 end
-

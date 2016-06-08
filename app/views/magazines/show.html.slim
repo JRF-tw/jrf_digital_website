@@ -14,7 +14,7 @@
             = @magazine.published_at.strftime('%Y-%m-%d')
         .mdl-card__actions
           = link_to "下載 PDF", "/magazines/#{@magazine.issue}.pdf", download: "#{@magazine.name}.pdf", class: 'mdl-button'
-          = link_to "在 Google Play 圖書閱讀", rel: 'external nofollow', class: 'mdl-button', disabled: 'disabled'
+          = link_to "在 Google Play 圖書閱讀", "https://play.google.com/store/books/author?id=財團法人民間司法改革基金會", rel: 'external nofollow', class: 'mdl-button', disabled: 'disabled'
     section.jrf-issue-articles.content.mdl-color--white.mdl-shadow--4dp.mdl-color-text--grey-800
       - @magazine.issue_columns.each do |i|
         h5 = i.column.name
