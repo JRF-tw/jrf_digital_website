@@ -1,18 +1,17 @@
 .jrf-issue-ribbon.mdl-color--brown-600
-  .jrf-issue-ribbon-cover style="background-image: url(/images/backgrounds/102.jpg);"
-.mdl-grid.page-content
-  .jrf-issue-content.mdl-cell.mdl-cell--8-col
-    article.jrf-issue-article.mdl-color--white.mdl-shadow--4dp.content
+  .jrf-issue-ribbon-cover style="background-image: url(/images/covers/#{article.magazine.issue}.jpg);"
+  .jrf-issue-container
+    article.jrf-issue-article.mdl-color--white.mdl-shadow--4dp 
       h3 = @article.title
       h6 = @article.author
       = @article.content.try :html_safe
       - unless @article.comment.blank?
         .comment
           = @article.comment.try :html_safe
-  nav.jrf-issue-nav.mdl-cell.mdl-cell--4-col
-    h6
-      = link_to @article.magazine.name, magazine_path(@article.magazine)
-    ul
-      - @article.magazine.articles.page_order.each do |a|
-        li
-          = link_to a.title, article_path(a)
+    nav.jrf-issue-nav.mdl-cell.mdl-cell--4-col
+      h6
+        = link_to @article.magazine.name, magazine_path(@article.magazine)
+      ul
+        - @article.magazine.articles.page_order.each do |a|
+          li
+            = link_to a.title, article_path(a)

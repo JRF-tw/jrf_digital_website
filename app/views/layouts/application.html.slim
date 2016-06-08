@@ -33,7 +33,7 @@ html lang="zh-TW"
     body
       = render 'layouts/noscript'
       - if (['magazines', 'articles'].include? params[:controller]) and (params[:action] == 'show')
-        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-issue-layout
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100 class="jrf-#{params[:controller] == 'magazines' ? 'issue' : 'articles'}-layout"
           = render 'layouts/header_single_page'
           = render 'layouts/drawer'
           main.mdl-layout__content
