@@ -32,8 +32,15 @@ html lang="zh-TW"
   - else
     body
       = render 'layouts/noscript'
-      - if (['magazines', 'articles'].include? params[:controller]) and (params[:action] == 'show')
-        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100 class="jrf-#{params[:controller] == 'magazines' ? 'issue' : 'articles'}-layout"
+      - if params[:controller] == 'magazines' and params[:action] == 'show'
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-issue-layout
+          = render 'layouts/header_single_page'
+          = render 'layouts/drawer'
+          main.mdl-layout__content
+            = yield
+            = render 'layouts/footer'
+      - elsif params[:controller] == 'articles' and params[:action] == 'show'
+        .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-article-layout
           = render 'layouts/header_single_page'
           = render 'layouts/drawer'
           main.mdl-layout__content
