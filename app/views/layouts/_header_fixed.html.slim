@@ -1,5 +1,5 @@
 header.mdl-layout__header.mdl-color--white.mdl-color-text--grey-600
-  - if params[:controller] == 'magazines'
+  - if ['magazines', 'articles'].include?(params[:controller])
     = search_form_for @q, url: articles_path, class: "mdl-layout__header-row search-header" do |f|
       span.mdl-layout-title #{@title || "司法改革雜誌資料庫"}
       .mdl-layout-spacer

@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   paginates_per 10
 
-  scope :magazine_order , -> { includes(:magazine).order("magazines.published_at DESC, articles.page ASC") }
+  scope :magazine_order , -> { includes(issue_column: [:magazine]).order("magazines.published_at DESC, articles.page ASC") }
   scope :page_order, -> { order("page ASC") }
   scope :cover_articles , -> { where(is_cover: true) }
   scope :not_cover_articles , -> { where(is_cover: false) }

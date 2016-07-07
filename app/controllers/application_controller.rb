@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
 
   def set_q
     if ['magazines', 'articles'].include? params[:controller]
-      @q = Article.includes(:magazine).search(params[:q])
+      @q = Article.includes(issue_column: [:magazine]).search(params[:q])
     else
       @q = Record.includes(:subjects).search(params[:q])
     end
