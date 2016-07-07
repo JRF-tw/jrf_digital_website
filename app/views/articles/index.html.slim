@@ -6,9 +6,10 @@
           h6.mdl-card__title-text
             = link_to a.title, article_path(a)
         .mdl-card__supporting-text
-          = truncate a.content, length: 100, omission: '⋯⋯'
+          = display_shorter(a.content, 100)
         .mdl-card__actions.mdl-card--border
           span.author = a.author
           .mdl-layout-spacer
-          span.issue-number = a.magazine.issue
+          span.issue-number
+            = link_to "第 #{a.magazine.issue} 期", magazine_path(a.magazine)
   = paginate @articles
