@@ -1,18 +1,14 @@
-.mdl-grid.page-content
-  .mdl-cell.mdl-cell--12-col.mdl-color--white.mdl-shadow--2dp.search-result-wrapper
-    table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.search-result-table
-      thead
-        tr
-          th 司改雜誌期數
-          th.fill-column 標題
-          th 作者
-          th 內文簡略
-      tbody
-        - @articles.each do |a|
-          tr
-            td = link_to a.magazine.name, magazine_path(a.magazine)
-            td.fill-column
-              = link_to a.title, article_path(a)
-            td = a.author
-            td = display_shorter(a.content, 200)
-    = paginate @articles
+.stretch.page-content
+  .jrf-search-result.mdl-grid
+    - @articles.each do |a|
+      .jrf-article-item.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col
+        .mdl-card__title
+          h6.mdl-card__title-text
+            = link_to a.title, article_path(a)
+        .mdl-card__supporting-text
+          = truncate a.content, length: 100, omission: '⋯⋯'
+        .mdl-card__actions.mdl-card--border
+          span.author = a.author
+          .mdl-layout-spacer
+          span.issue-number = a.magazine.issue
+  = paginate @articles
