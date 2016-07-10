@@ -1,0 +1,18 @@
+main.mdl-layout__content.mdl-color--grey-100
+  .stretch.page-content
+    table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-color--white.mdl-shadow--2dp.jrf-result-table
+      thead
+        tr
+          th 期 #
+          th 名稱
+          th 日期
+      tbody
+        - @magazines.each do |m|
+          tr
+            td
+              = link_to m.issue, edit_admin_magazine_path(m)
+            td = m.name
+            td = m.published_at.strftime('%Y-%m-%d')
+
+    nav.pagination
+      = paginate @magazines

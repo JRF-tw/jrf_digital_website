@@ -1,0 +1,22 @@
+main.mdl-layout__content.mdl-color--grey-100
+  .stretch.page-content
+    table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-color--white.mdl-shadow--2dp.jrf-result-table
+      thead
+        tr
+          th 編號
+          th 標題
+          th 分類
+          th 資料類型
+          th 日期
+      tbody
+        - @records.each do |r|
+          tr
+            td = r.identifier
+            td
+              = link_to r.title, edit_admin_record_path(r)
+            td
+              span.category.announcement = r.category.name
+            td = r.carrier.name
+            td = r.date.strftime('%Y-%m-%d')
+    nav.pagination
+      = paginate @records

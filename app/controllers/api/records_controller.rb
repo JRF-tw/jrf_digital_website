@@ -77,7 +77,7 @@ class Api::RecordsController < ApplicationController
     property :copyright, :string, :required, "著作權"
     property :right_in_rem, :string, :required, "所有權"
     property :ownership, :string, :required, "擁有者"
-    property :licence, :string, :required, "授權"
+    property :license, :string, :required, "授權"
     property :filename, :string, :required, "檔名"
     property :filetype, :string, :required, "檔案種類"
     property :creator, :string, :required, "建立者"

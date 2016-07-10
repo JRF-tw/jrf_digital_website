@@ -1,0 +1,16 @@
+main.mdl-layout__content
+  .stretch.single.page-content
+    .jrf-login-item.mdl-shadow--4dp
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'mdl-grid') do |f|
+        header.mdl-cell.mdl-cell--12-col.main-header
+          = image_tag('app-icon.png', alt: '民間司法改革基金會', class: 'avatar')
+          h4
+            small 民間司法改革基金會
+            br
+            | 數位典藏檢索系統
+        .mdl-cell.mdl-cell--12-col
+          = link_to '以 Google 帳號登入', user_google_oauth2_omniauth_authorize_path, class: 'mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect'
+        .mdl-cell.mdl-cell--12-col
+          = link_to '以 Facebook 帳號登入', user_facebook_omniauth_authorize_path, class: 'mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect'
+        .mdl-cell.mdl-cell--12-col
+          = link_to '« 返回首頁', root_path, class: 'mdl-button mdl-js-button mdl-js-ripple-effect'

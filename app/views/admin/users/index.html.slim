@@ -1,0 +1,31 @@
+h1.text-center 後台使用者管理
+table.table
+  thead
+    tr
+      th E-mail
+      th 來源（Google／Facebook）
+      th 當前權限
+      th 權限管理
+  tbody
+    - @users.each do |u|
+      tr
+        td = u.email
+        td
+          - if u.provider == 'google_oauth2'
+            | Google
+          - elsif u.provider == 'facebook'
+            | Facebook
+          - else
+            | 未知
+        - if u.admin?
+          td 管理員
+          td
+            = simple_form_for u, url: admin_user_path(u), method: :put do |f|
+              = f.input :admin, as: :hidden, :input_html => { :value => 0 }
+              = f.button :submit, "移除管理權限"
+        - else
+          td 無
+          td
+            = simple_form_for u, url: admin_user_path(u), method: :put do |f|
+              = f.input :admin, as: :hidden, :input_html => { :value => 1 }
+              = f.button :submit, "授與管理權限"

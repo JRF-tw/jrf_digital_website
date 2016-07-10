@@ -1,0 +1,23 @@
+main.mdl-layout__content.mdl-color--grey-100
+  .stretch.page-content
+    table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-color--white.mdl-shadow--2dp.jrf-result-table
+      thead
+        tr
+          th 期 #
+          th 頁碼
+          th 專欄
+          th 標題
+          th 作者
+      tbody
+        - @articles.each do |a|
+          tr
+            td
+              = link_to a.magazine.issue, edit_admin_magazine_path(a.magazine)
+            td = a.page
+            td = a.issue_column.column.name
+            td
+              = link_to a.title, edit_admin_article_path(a)
+            td = a.author
+
+    nav.pagination
+      = paginate @articles

@@ -104,7 +104,7 @@ if File.file?(record_path)
     # 數位檔權利-公開與否
     record.published = (record_data[:數位檔公開與否].blank? ? true : false)
     # 數位檔權利-授權狀況
-    record.licence = record_data[:數位檔授權狀況].strip if record_data[:數位檔授權狀況].present?
+    record.license = record_data[:數位檔授權狀況].strip if record_data[:數位檔授權狀況].present?
     # 數位檔連結-檔案名稱
     record.filename = record_data[:數位檔案名稱].strip if record_data[:數位檔案名稱].present?
     # 數位檔連結-檔案格式
@@ -228,6 +228,9 @@ if File.file?(magazine_path)
       magazine.published_at = published_at
       magazine.name = "司改雜誌第 #{article_data["期"]} 期"
       magazine.created_at = published_at
+      File.open(Rails.root.join('db', 'fixtures', 'covers', "#{article_data["期"]}.jpg")) do |f|
+        magazine.image = f
+      end
       magazine.save
     end
     if article_data["專欄"].blank?
@@ -259,6 +262,7 @@ if File.file?(magazine_path)
     article.title = article_data["標題"].gsub(/\n/, '')
     article.author = article_data["作者"]
     article.content = simple_format(article_data["全文"]).gsub(/\n/, '')
+    article.published_at = published_at
     img_url = get_img_url_from_html(article.content)
     if img_url
       article.remote_image_url = img_url

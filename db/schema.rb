@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224064905) do
+ActiveRecord::Schema.define(version: 20160710103107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160224064905) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "issue_column_id"
+    t.date     "published_at"
   end
 
   create_table "articles_keywords", force: :cascade do |t|
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160224064905) do
     t.integer "magazine_id",             null: false
     t.integer "column_id",               null: false
     t.integer "page",        default: 0
+    t.string  "name"
   end
 
   add_index "issue_columns", ["magazine_id", "column_id"], name: "issue_columns_index", unique: true, using: :btree
@@ -124,7 +126,7 @@ ActiveRecord::Schema.define(version: 20160224064905) do
     t.string  "right_in_rem"
     t.string  "ownership"
     t.boolean "published",    default: true
-    t.string  "licence"
+    t.string  "license"
     t.string  "filename"
     t.string  "filetype"
     t.string  "creator"
@@ -148,10 +150,53 @@ ActiveRecord::Schema.define(version: 20160224064905) do
 
   add_index "records_subjects", ["record_id", "subject_id"], name: "records_subjects_index", unique: true, using: :btree
 
+  create_table "redactor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
+  add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+
   create_table "subjects", force: :cascade do |t|
     t.string  "name"
     t.string  "icon"
     t.integer "order"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "name",                   default: "",    null: false
+    t.boolean  "admin",                  default: false, null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "provider"
+    t.string   "provider_uid"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

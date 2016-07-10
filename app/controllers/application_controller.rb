@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
   before_filter :set_q
+  layout :layout_by_resource
 
   def append_info_to_payload(payload)
     super
@@ -15,6 +16,16 @@ class ApplicationController < ActionController::Base
       payload[:ip] = request.env["HTTP_X_FORWARDED_FOR"]
     else
       payload[:ip] = request.env['REMOTE_ADDR']
+    end
+  end
+
+  protected
+
+  def layout_by_resource
+    if devise_controller?
+      "admin"
+    else
+      "application"
     end
   end
 
@@ -56,7 +67,7 @@ class ApplicationController < ActionController::Base
       right_in_rem: record.right_in_rem,
       ownership: record.ownership,
       published: record.published,
-      licence: record.licence,
+      license: record.license,
       filename: record.filename,
       filetype: record.filetype,
       creator: record.creator,
@@ -73,10 +84,33 @@ class ApplicationController < ActionController::Base
   end
 
   def set_q
-    if ['magazines', 'articles'].include? params[:controller]
+    if ['magazines', 'articles', 'admin/magazines', 'admin/articles'].include? params[:controller]
       @q = Article.includes(issue_column: [:magazine]).search(params[:q])
     else
       @q = Record.includes(:subjects).search(params[:q])
+    end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def require_admin
+    unless current_user.admin?
+      begin
+        redirect_to :back
+      rescue ActionController::RedirectBackError
+        redirect_to root_path
+      end
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    if current_user.admin
+      request.env['omniauth.origin'] || stored_location_for(resource) || admin_catalogs_path
+    else
+      sign_out current_user
+      root_path
     end
   end
 end
