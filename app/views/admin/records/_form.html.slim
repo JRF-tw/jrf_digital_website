@@ -141,11 +141,11 @@
       label.mdl-textfield__label for="updated_at-field"  修改日期
   .mdl-cell.mdl-cell--3-col
     label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect for="sensitive-field" 
-      = f.input_field :sensitive, class:'mdl-textfield__input', id: 'sensitive-field'
+      = f.input_field :sensitive, class:'mdl-checkbox__input', id: 'sensitive-field'
       span.mdl-checkbox__label for="sensitive-field"  敏感資料
   .mdl-cell.mdl-cell--3-col
     label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect for="published-field" 
-      = f.input_field :published, class:'mdl-textfield__input', id: 'published-field'
+      = f.input_field :published, class:'mdl-checkbox__input', id: 'published-field'
       span.mdl-checkbox__label for="published-field"  公開數位檔
   .mdl-cell.mdl-cell--12-col
     = f.button :submit, "儲存", class: 'mdl-button mdl-js-button mdl-button--primary jrf-align-right'
