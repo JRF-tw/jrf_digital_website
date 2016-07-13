@@ -6,11 +6,11 @@
       label.mdl-textfield__label for="title-field"  標題
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :issue, label_method: :name, value_method: :id, include_blank: false, class:'mdl-textfield__input', id: 'issue-field'
+      = f.association :issue, label_method: :name, value_method: :id, include_blank: false, label: false, wrapper: false, class:'mdl-textfield__input', id: 'issue-field'
       label.mdl-textfield__label for="issue-field"  案名
   .mdl-cell.mdl-cell--8-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :keywords, collection: Keyword.all, input_html: { class: 'chosen-select mdl-textfield__input', id: 'keywords-field' }
+      = f.association :keywords, collection: Keyword.all, label: false, wrapper: false, class: 'chosen-select mdl-textfield__input', id: 'keywords-field'
       label.mdl-textfield__label for="keywords-field"  關鍵字
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -18,7 +18,7 @@
       label.mdl-textfield__label for="identifier-field"  編號
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :subjects, collection: Keyword.all, input_html: { class: 'chosen-select mdl-textfield__input', id: 'subjects-field' }
+      = f.association :subjects, collection: Keyword.all, label: false, wrapper: false, class: 'chosen-select mdl-textfield__input', id: 'subjects-field'
       label.mdl-textfield__label for="subjects-field" 主題
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -26,20 +26,20 @@
       label.mdl-textfield__label for="date-field" 日期
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :category, label_method: :name, value_method: :id, include_blank: false, class:'mdl-textfield__input', id: 'category-field'
+      = f.association :category, label_method: :name, value_method: :id, label: false, wrapper: false, include_blank: false, class:'mdl-textfield__input', id: 'category-field'
         option selected="selected"  聲援個案及議題
       label.mdl-textfield__label for="category-field"  資料類型
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :carrier, label_method: :name, value_method: :id, include_blank: false, class:'mdl-textfield__input', id: 'carrier-field' 
+      = f.association :carrier, label_method: :name, value_method: :id, label: false, wrapper: false, include_blank: false, class:'mdl-textfield__input', id: 'carrier-field' 
       label.mdl-textfield__label for="carrier-field" 資料類型
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :pattern, label_method: :name, value_method: :id, include_blank: false, class:'mdl-textfield__input', id: 'pattern-field' 
+      = f.association :pattern, label_method: :name, value_method: :id, label: false, wrapper: false, include_blank: false, class:'mdl-textfield__input', id: 'pattern-field' 
       label.mdl-textfield__label for="pattern-field"  資料形式
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :language, label_method: :name, value_method: :id, include_blank: false, class:'mdl-textfield__input', id: 'language-field' 
+      = f.association :language, label_method: :name, value_method: :id, label: false, wrapper: false, include_blank: false, class:'mdl-textfield__input', id: 'language-field' 
       label.mdl-textfield__label for="language-field"  語言
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -51,7 +51,7 @@
       label.mdl-textfield__label for="publisher-field"  出版者
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :collector, label_method: :name, value_method: :id, include_blank: false, class:'mdl-textfield__input', id: 'collector-field' 
+      = f.association :collector, label_method: :name, value_method: :id, label: false, wrapper: false, include_blank: false, class:'mdl-textfield__input', id: 'collector-field' 
       label.mdl-textfield__label for="collector-field"  典藏單位
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label

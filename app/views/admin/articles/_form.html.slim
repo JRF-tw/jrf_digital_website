@@ -6,7 +6,7 @@
       label.mdl-textfield__label for="title-field"  標題
   .mdl-cell.mdl-cell--8-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :issue_column, :name, value_method: :id, include_blank: false, input_html: { class:'mdl-textfield__input', id: 'issue_column-field'
+      = f.association :issue_column, :name, value_method: :id, include_blank: false, label: false, wrapper: false, class:'mdl-textfield__input', id: 'issue_column-field'
       label.mdl-textfield__label for="issue_column-field"  專欄
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
