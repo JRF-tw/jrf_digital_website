@@ -2,38 +2,27 @@
 .jrf-article-item.mdl-grid.mdl-shadow--2dp
   .mdl-cell.mdl-cell--12-col.jrf-title-col
     .mdl-textfield.mdl-js-textfield.jrf-title-textfield
-      = f.input :title, label: false, input_html: { class: 'mdl-textfield__input', id: 'title-field' }
+      = f.input_field :title, label: false, input_html: { class: 'mdl-textfield__input', id: 'title-field' }
       label.mdl-textfield__label for="title-field"  標題
-  .mdl-cell.mdl-cell--4-col
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :issue_column, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class:'mdl-textfield__input', id: 'issue_column-field' }
-      label.mdl-textfield__label for="issue_column-field"  專欄
-  .mdl-cell.mdl-cell--4-col
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :page, label: false, input_html: { class: 'mdl-textfield__input', id: 'page-field' }
-      label.mdl-textfield__label for="page-field"  頁碼
-  .mdl-cell.mdl-cell--4-col
-    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.association :issue_column, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class:'mdl-textfield__input', id: 'issue_column-field' }
-      label.mdl-textfield__label for="issue_column-field"  專欄
   .mdl-cell.mdl-cell--8-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :author, label: false, input_html: { class: 'mdl-textfield__input', id: 'author-field' }
+      = f.association :issue_column, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class:'mdl-textfield__input', id: 'issue_column-field' }
+      label.mdl-textfield__label for="issue_column-field"  專欄
+  .mdl-cell.mdl-cell--4-col
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      = f.input_field :page, label: false, input_html: { class: 'mdl-textfield__input', id: 'page-field' }
+      label.mdl-textfield__label for="page-field"  頁碼
+  .mdl-cell.mdl-cell--8-col
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      = f.input_field :author, label: false, input_html: { class: 'mdl-textfield__input', id: 'author-field' }
       label.mdl-textfield__label for="author-field"  作者
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :published_at, as: :string, label: false, input_html: { class: 'mdl-textfield__input datepicker', id: 'published_at-field' }
+      = f.input_field :published_at, as: :string, label: false, input_html: { class: 'mdl-textfield__input datepicker', id: 'published_at-field' }
       label.mdl-textfield__label for="published_at-field"  日期
   .mdl-cell.mdl-cell--12-col
-    .mdl-textfield.mdl-js-textfield
-      = f.input :content, as: :text, label: false, input_html: { class:'mdl-textfield__input redactor', row: '5', id: 'content-field'}
-      label.mdl-textfield__label for="content-field"  內容
+    = f.input :content, as: :text, label: false, input_html: { class:'redactor', row: '10', id: 'content-field' }
   .mdl-cell.mdl-cell--12-col
-    .mdl-textfield.mdl-js-textfield
-      = f.input :comment, as: :text, label: false, input_html: { class:'mdl-textfield__input redactor', row: '5', id: 'content-field'}
-      label.mdl-textfield__label for="comment-field"  註釋
+    = f.input :comment, as: :text, label: false, input_html: { class:'redactor', row: '5', id: 'comment-field' }
   .mdl-cell.mdl-cell--12-col
     = f.button :submit, "儲存", class: 'mdl-button mdl-js-button mdl-button--primary jrf-align-right'
-
-
-

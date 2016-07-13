@@ -2,7 +2,7 @@
 .jrf-article-item.mdl-grid.mdl-shadow--2dp
   .mdl-cell.mdl-cell--12-col.jrf-title-col
     .mdl-textfield.mdl-js-textfield.jrf-title-textfield
-      = f.input :title, label: false, input_html: { class:'mdl-textfield__input', id: 'title-field'}
+      = f.input_field :title, label: false, input_html: { class:'mdl-textfield__input', id: 'title-field' }
       label.mdl-textfield__label for="title-field"  標題
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -14,7 +14,7 @@
       label.mdl-textfield__label for="keywords-field"  關鍵字
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :identifier, label: false, input_html: { class:'mdl-textfield__input', id: 'identifier-field'}
+      = f.input_field :identifier, label: false, input_html: { class:'mdl-textfield__input', id: 'identifier-field' }
       label.mdl-textfield__label for="identifier-field"  編號
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -22,7 +22,7 @@
       label.mdl-textfield__label for="subjects-field" 主題
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :date, as: :string, label: false, input_html: { class: "datepicker mdl-textfield__input", id: 'date-field' }, required: true
+      = f.input_field :date, as: :string, label: false, input_html: { class: "datepicker mdl-textfield__input", id: 'date-field' }, required: true
       label.mdl-textfield__label for="date-field" 日期
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -43,7 +43,7 @@
       label.mdl-textfield__label for="language-field"  語言
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :contributor, label: false, input_html: { class:'mdl-textfield__input', id: 'contributor-field'}
+      = f.input_field :contributor, label: false, input_html: { class:'mdl-textfield__input', id: 'contributor-field' }
       label.mdl-textfield__label for="contributor-field"  貢獻者
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -55,99 +55,97 @@
       label.mdl-textfield__label for="collector-field"  典藏單位
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :unit, label: false, input_html: { class:'mdl-textfield__input', id: 'unit-field'}
+      = f.input_field :unit, label: false, input_html: { class:'mdl-textfield__input', id: 'unit-field' }
       label.mdl-textfield__label for="unit-field"  資料單位
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :size, label: false, input_html: { class:'mdl-textfield__input', id: 'size-field'}
+      = f.input_field :size, label: false, input_html: { class:'mdl-textfield__input', id: 'size-field' }
       label.mdl-textfield__label for="size-field"  資料大小
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :page, label: false, input_html: { class:'mdl-textfield__input', id: 'page-field'}
+      = f.input_field :page, label: false, input_html: { class:'mdl-textfield__input', id: 'page-field' }
       label.mdl-textfield__label for="page-field"  資料面數
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :quantity, label: false, input_html: { class:'mdl-textfield__input', id: 'quantity-field'}
+      = f.input_field :quantity, label: false, input_html: { class:'mdl-textfield__input', id: 'quantity-field' }
       label.mdl-textfield__label for="quantity-field"  檔案數量
   .mdl-cell.mdl-cell--12-col
-    .mdl-textfield.mdl-js-textfield
-      = f.input :content, as: :text, label: false, input_html: { class:'mdl-textfield__input redactor', row: '5', id: 'content-field'}
-      label.mdl-textfield__label for="content-field"  內容
+    = f.input :content, as: :text, label: false, input_html: { class:'redactor', row: '5', id: 'content-field' }
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :catalog, label: false, input_html: { class:'mdl-textfield__input', id: 'catalog-field'}
+      = f.input_field :catalog, label: false, input_html: { class:'mdl-textfield__input', id: 'catalog-field' }
       label.mdl-textfield__label for="catalog-field"  目次 / 附件
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :information, label: false, input_html: { class:'mdl-textfield__input', id: 'information-field'}
+      = f.input_field :information, label: false, input_html: { class:'mdl-textfield__input', id: 'information-field' }
       label.mdl-textfield__label for="information-field"  對應資訊
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :comment, label: false, input_html: { class:'mdl-textfield__input', id: 'comment-field'}
+      = f.input_field :comment, label: false, input_html: { class:'mdl-textfield__input', id: 'comment-field' }
       label.mdl-textfield__label for="comment-field"  附註項
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :copyright, label: false, input_html: { class:'mdl-textfield__input', id: 'copyright-field'}
+      = f.input_field :copyright, label: false, input_html: { class:'mdl-textfield__input', id: 'copyright-field' }
       label.mdl-textfield__label for="copyright-field"  原件著作權
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :right_in_rem, label: false, input_html: { class:'mdl-textfield__input', id: 'right_in_rem-field'}
+      = f.input_field :right_in_rem, label: false, input_html: { class:'mdl-textfield__input', id: 'right_in_rem-field' }
       label.mdl-textfield__label for="right_in_rem-field"  原件財產物權
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :statistics, label: false, input_html: { class:'mdl-textfield__input', id: 'statistics-field'}
+      = f.input_field :statistics, label: false, input_html: { class:'mdl-textfield__input', id: 'statistics-field' }
       label.mdl-textfield__label for="statistics-field"  統計
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :serial_no, label: false, input_html: { class:'mdl-textfield__input', id: 'serial_no-field'}
+      = f.input_field :serial_no, label: false, input_html: { class:'mdl-textfield__input', id: 'serial_no-field' }
       label.mdl-textfield__label for="serial_no-field"  序號
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :ownership, label: false, input_html: { class:'mdl-textfield__input', id: 'ownership-field'}
+      = f.input_field :ownership, label: false, input_html: { class:'mdl-textfield__input', id: 'ownership-field' }
       label.mdl-textfield__label for="ownership-field"  數位檔所有權
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :license, label: false, input_html: { class:'mdl-textfield__input', id: 'license-field'}
+      = f.input_field :license, label: false, input_html: { class:'mdl-textfield__input', id: 'license-field' }
       label.mdl-textfield__label for="license-field"  數位檔授權狀況
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :filename, label: false, input_html: { class:'mdl-textfield__input', id: 'filename-field'}
+      = f.input_field :filename, label: false, input_html: { class:'mdl-textfield__input', id: 'filename-field' }
       label.mdl-textfield__label for="filename-field"  數位檔名稱
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :filetype, label: false, input_html: { class:'mdl-textfield__input', id: 'filetype-field'}
+      = f.input_field :filetype, label: false, input_html: { class:'mdl-textfield__input', id: 'filetype-field' }
       label.mdl-textfield__label for="filetype-field"  數位檔格式
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :creator, label: false, input_html: { class:'mdl-textfield__input', id: 'creator-field'}
+      = f.input_field :creator, label: false, input_html: { class:'mdl-textfield__input', id: 'creator-field' }
       label.mdl-textfield__label for="creator-field"  登錄者
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :created_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'created_at-field'}
+      = f.input_field :created_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'created_at-field' }
       label.mdl-textfield__label for="created_at-field"  建檔日期
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :commentor, label: false, input_html: { class:'mdl-textfield__input', id: 'commentor-field'}
+      = f.input_field :commentor, label: false, input_html: { class:'mdl-textfield__input', id: 'commentor-field' }
       label.mdl-textfield__label for="commentor-field"  描述者
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :commented_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'commented_at-field'}
+      = f.input_field :commented_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'commented_at-field' }
       label.mdl-textfield__label for="commented_at-field"  描述日期
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :updater, label: false, input_html: { class:'mdl-textfield__input', id: 'updater-field'}
+      = f.input_field :updater, label: false, input_html: { class:'mdl-textfield__input', id: 'updater-field' }
       label.mdl-textfield__label for="updater-field"  修改者
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :updated_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'updated_at-field'}
+      = f.input_field :updated_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'updated_at-field' }
       label.mdl-textfield__label for="updated_at-field"  修改日期
   .mdl-cell.mdl-cell--3-col
     label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect for="sensitive-field" 
-      = f.input :sensitive, label: false, input_html: { class:'mdl-textfield__input', id: 'sensitive-field'}
+      = f.input_field :sensitive, label: false, input_html: { class:'mdl-textfield__input', id: 'sensitive-field' }
       span.mdl-checkbox__label for="sensitive-field"  敏感資料
   .mdl-cell.mdl-cell--3-col
     label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect for="published-field" 
-      = f.input :published, label: false, input_html: { class:'mdl-textfield__input', id: 'published-field'}
+      = f.input_field :published, label: false, input_html: { class:'mdl-textfield__input', id: 'published-field' }
       span.mdl-checkbox__label for="published-field"  公開數位檔
   .mdl-cell.mdl-cell--12-col
     = f.button :submit, "儲存", class: 'mdl-button mdl-js-button mdl-button--primary jrf-align-right'
