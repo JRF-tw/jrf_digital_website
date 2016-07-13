@@ -123,7 +123,7 @@
       label.mdl-textfield__label for="creator-field"  登錄者
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :created_at, label: false, input_html: { class:'mdl-textfield__input', id: 'created_at-field'}
+      = f.input :created_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'created_at-field'}
       label.mdl-textfield__label for="created_at-field"  建檔日期
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -131,7 +131,7 @@
       label.mdl-textfield__label for="commentor-field"  描述者
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :commented_at, label: false, input_html: { class:'mdl-textfield__input', id: 'commented_at-field'}
+      = f.input :commented_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'commented_at-field'}
       label.mdl-textfield__label for="commented_at-field"  描述日期
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -139,7 +139,7 @@
       label.mdl-textfield__label for="updater-field"  修改者
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :updated_at, label: false, input_html: { class:'mdl-textfield__input', id: 'updated_at-field'}
+      = f.input :updated_at, as: :string, label: false, input_html: { class:'mdl-textfield__input datepicker', id: 'updated_at-field'}
       label.mdl-textfield__label for="updated_at-field"  修改日期
   .mdl-cell.mdl-cell--3-col
     label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect for="sensitive-field" 

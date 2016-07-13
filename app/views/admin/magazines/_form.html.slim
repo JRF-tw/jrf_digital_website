@@ -8,7 +8,7 @@
       label.mdl-textfield__label for="issue-field"  期 #
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :published_at, label: false, input_html: { class: 'mdl-textfield__input datepicker', id: 'published_at-field' }
+      = f.input :published_at, as: :string, label: false, input_html: { class: 'mdl-textfield__input datepicker', id: 'published_at-field' }
       label.mdl-textfield__label for="published_at-field"  日期
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label

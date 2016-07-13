@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require jquery.datetimepicker
+ *= require jquery-ui/datepicker
  *= require chosen
  *= require redactor-rails
  *= require material

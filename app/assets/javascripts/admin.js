@@ -31,4 +31,5 @@ $( document ).ready(function() {
     width: '400px'
   });
   $(".chosen-select").trigger('chosen:updated');
+  $(".datepicker").datepicker();
 });
