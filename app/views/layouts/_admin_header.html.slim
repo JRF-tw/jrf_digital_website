@@ -15,7 +15,7 @@ header.mdl-layout__header.mdl-layout__header--waterfall
       = link_to '返回資料庫', root_path, class: 'mdl-navigation__link'
       = link_to '登出', destroy_user_session_path, method: :delete, class: 'mdl-navigation__link'
 
-  .mdl-layout__header-row.jrf-icon-row
+  = search_form_for @q, url: admin_records_path, class: "mdl-layout__header-row jrf-icon-row" do |f|
     nav.mdl-navigation
       = link_to admin_records_path, class: 'mdl-navigation__link' do
         i.material-icons storage
@@ -26,11 +26,10 @@ header.mdl-layout__header.mdl-layout__header--waterfall
     .mdl-layout-spacer
     a#add-button.mdl-button.mdl-js-button.mdl-button--icon href="#" 
       i.material-icons add
-    .mdl-tooltip for="add-button"  新增
+    .mdl-tooltip for="add-button" 新增
     .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label
-      = search_form_for @q, url: admin_records_path do |f|
-        label.mdl-button.mdl-js-button.mdl-button--icon for="search-field" 
-          i.material-icons search
-        .mdl-textfield__expandable-holder
-          = f.search_field :title_or_content_cont, id: "search-field", placeholder: "搜尋", label: false, input_html: {class: 'mdl-textfield__input'}
-          label.mdl-textfield__label.mdl-color-text--brown-300 for="search-field"  快速搜尋
+      label.mdl-button.mdl-js-button.mdl-button--icon for="search-field" 
+        i.material-icons search
+      .mdl-textfield__expandable-holder
+        = f.search_field :title_or_content_cont, id: "search-field", placeholder: "搜尋", label: false, input_html: { class: 'mdl-textfield__input' }
+        label.mdl-textfield__label.mdl-color-text--brown-300 for="search-field" 快速搜尋

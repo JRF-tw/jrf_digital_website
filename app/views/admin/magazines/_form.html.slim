@@ -4,29 +4,27 @@
     h4 = @magazine.name
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :issue, label: false, input_html: { class: 'mdl-textfield__input', id: 'issue-field' }
+      = f.input_field :issue, class: 'mdl-textfield__input', id: 'issue-field'
       label.mdl-textfield__label for="issue-field"  期 #
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :published_at, as: :string, label: false, input_html: { class: 'mdl-textfield__input datepicker', id: 'published_at-field' }
+      = f.input_field :published_at, as: :string, class: 'mdl-textfield__input datepicker', id: 'published_at-field'
       label.mdl-textfield__label for="published_at-field"  日期
   .mdl-cell.mdl-cell--4-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :issue, label: false, input_html: { class: 'mdl-textfield__input', id: 'image-field' }
-      = f.input :image, as: :file, label: '圖示', required: true, input_html: { id: 'exampleInputFile' }, label_html: {for: "exampleInputFile"}
+      = f.input_field :issue, class: 'mdl-textfield__input', id: 'image-field'
+      = f.input :image, as: :file, label: '圖示', required: true, input_html: { id: 'exampleInputFile' }, label_html: { for: "exampleInputFile" }
       = f.input :image_cache, as: :hidden
       = f.input :remove_image, as:  :boolean, label: '移除圖片'
       = image_tag(f.object.image_url, alt:"") if f.object.image?
       label.mdl-textfield__label for="image-field"  封面
   .mdl-cell.mdl-cell--6-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :pdf, label: false, input_html: { class: 'mdl-textfield__input', id: 'pdf-field' }
+      = f.input_field :pdf, class: 'mdl-textfield__input', id: 'pdf-field'
       label.mdl-textfield__label for="url-field"  PDF 連結
   .mdl-cell.mdl-cell--6-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-      = f.input :google_play, label: false, input_html: { class: 'mdl-textfield__input', id: 'google_play-field' }
+      = f.input_field :google_play, class: 'mdl-textfield__input', id: 'google_play-field'
       label.mdl-textfield__label for="google_play-field"  Google Play 圖書連結
   .mdl-cell.mdl-cell--12-col
     = f.button :submit, "儲存", class: 'mdl-button mdl-js-button mdl-button--primary jrf-align-right'
-
-
