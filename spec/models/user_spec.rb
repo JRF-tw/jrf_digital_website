@@ -1,5 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User do
+  let(:user) {FactoryGirl.create(:user)}
+
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :user
+    }.to change { User.count }.by(1)
+  end
+
+  it "#factory_creat_admin_success" do
+    expect {
+      FactoryGirl.create :admin
+    }.to change { User.count }.by(1)
+  end
 end
