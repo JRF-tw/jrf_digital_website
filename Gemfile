@@ -40,7 +40,7 @@ gem 'rabl-rails'
 gem 'responders', '~> 2.0'
 gem 'swagger-docs', git: 'git://github.com/billy3321/swagger-docs.git'
 gem 'lograge'
-gem 'rollbar', '~> 2.5.1'
+gem 'rollbar', '~>2.11.3'
 gem 'oj', '~> 2.12.14'
 gem "skylight"
 gem 'smarter_csv'
