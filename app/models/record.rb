@@ -9,6 +9,10 @@ class Record < ActiveRecord::Base
   belongs_to :pattern
   paginates_per 12
 
+  scope :insensitive, -> {
+    where(sensitive: false)
+  }
+
   scope :query_keywords, -> (query) {
     select("records.*").
     joins('LEFT OUTER JOIN "keywords_records" ON "keywords_records"."record_id" = "records"."id"

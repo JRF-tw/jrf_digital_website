@@ -11,4 +11,12 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+  def sitemap
+    @records = Record.insensitive
+    @articles = Article.all
+    @magazines = Magazine.all
+    @keywords = Keyword.all
+    @subjects = Subject.all
+  end
 end
