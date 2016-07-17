@@ -13,39 +13,6 @@ class SubjectsController < ApplicationController
     @records = @subject.records.includes(:subjects).page params[:page]
   end
 
-  # GET /subjects/new
-  def new
-    @subject = Subject.new
-  end
-
-  # GET /subjects/1/edit
-  def edit
-  end
-
-  # POST /subjects
-  def create
-    if @subject.save
-        redirect_to @subject, notice: '主題建立成功'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /subjects/1
-  def update
-    if @subject.update(subject_params)
-      redirect_to @subject, notice: '主題更新成功'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /subjects/1
-  def destroy
-    @subject.destroy
-    redirect_to subjects_url, notice: '主題已刪除'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subject

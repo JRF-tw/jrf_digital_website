@@ -59,44 +59,72 @@ class RecordsController < ApplicationController
 
   def articles
     @subject = Subject.where(name: "文章").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   def propagandas
     @subject = Subject.where(name: "宣傳品").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   def documents
     @subject = Subject.where(name: "公文書").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   def statements
     @subject = Subject.where(name: "聲明文件").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   def petitions
     @subject = Subject.where(name: "陳情相關資料").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   def affairs
     @subject = Subject.where(name: "會務").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   def letters
     @subject = Subject.where(name: "信函").first
-    @q = @subject.records.includes(:category).search(params[:q])
-    @records = @q.result(distinct: true).page params[:page]
+    if @subject
+      @q = @subject.records.includes(:category).search(params[:q])
+      @records = @q.result(distinct: true).page params[:page]
+    else
+      @records = Kaminari.paginate_array([]).page(params[:page])
+    end
   end
 
   private

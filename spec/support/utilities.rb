@@ -9,3 +9,8 @@ def sign_out
   delete '/users/sign_out'
   @current_user = nil if response.status == 302
 end
+
+def create_subject(name)
+  @subject = Subject.where(name: name).first
+  @subject ||= FactoryGirl.create(:subject, name: name)
+end

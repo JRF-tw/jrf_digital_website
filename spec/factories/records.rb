@@ -39,4 +39,32 @@ FactoryGirl.define do
     image "/images/backgrounds/102.jpg"
     sequence(:serial_no)  { |n| "Record #{n} Serial No" }
   end
+
+  factory :article_record, parent: :record do
+    subjects {[ create_subject('文章') ]}
+  end
+
+  factory :propaganda_record, parent: :record do
+    subjects {[ create_subject('宣傳品') ]}
+  end
+
+  factory :document_record, parent: :record do
+    subjects {[ create_subject('公文書') ]}
+  end
+
+  factory :statement_record, parent: :record do
+    subjects {[ create_subject('聲明文件') ]}
+  end
+
+  factory :petition_record, parent: :record do
+    subjects {[ create_subject('陳情相關資料') ]}
+  end
+
+  factory :affair_record, parent: :record do
+    subjects {[ create_subject('會務') ]}
+  end
+
+  factory :letter_record, parent: :record do
+    subjects {[ create_subject('信函') ]}
+  end
 end
