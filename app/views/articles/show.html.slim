@@ -1,5 +1,5 @@
 .jrf-issue-ribbon.mdl-color--brown-600
-  .jrf-issue-ribbon-cover style="background-image: url(/images/covers/#{@article.magazine.issue}.jpg);"
+  .jrf-issue-ribbon-cover style="background-image: url(#{@article.magazine.image_url});"
   .jrf-issue-container
     article.jrf-issue-article.mdl-color--white.mdl-shadow--4dp 
       h3 = @article.title
