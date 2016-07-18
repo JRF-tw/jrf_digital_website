@@ -6,6 +6,7 @@ module ApplicationHelper
       reverse: true,
       description: '收錄民間司法改革基金會歷年聲明文件、剪報、會務資訊、以及其他數位內容。',
       canonical: request.url,
+      publisher: Setting.google.pages,
       og: {
         title: '民間司改會數位典藏',
         description: '收錄民間司法改革基金會歷年聲明文件、剪報、會務資訊、以及其他數位內容。',
