@@ -3,11 +3,10 @@ section.jrf-index-hero
     | 司法改革二十年
   h4.sub-slogan
     | 戴著閃亮鋼盔的司改典藏資料庫
-  form.search-row-wrapper[action="http://digital.jrf.org.tw/records" accept-charset="UTF-8" method="GET"]
-    input#search-field[type="search" name="q[title_or_content_cont]" placeholder="搜尋關鍵字，例如「司法」"]
-    button.mdl-button.mdl-js-button.mdl-button--icon.mdl-button--accent[type="submit"]
-      i.material-icons
-        | search
+  = search_form_for @q, url: records_path, class: "search-row-wrapper" do |f|
+    = f.search_field :title_or_content_cont, id: "search-field", label: false
+    = button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon mdl-button--accent") do
+      i.material-icons search
 section.jrf-index-featured.mdl-color--white
   .mdl-grid.page-content
     .jrf-index-item.mdl-cell.mdl-cell--2-col
