@@ -28,6 +28,9 @@ defaults: &defaults
   fb:
     pages: ""
 
+  google:
+    pages: ""
+
   rollbar:
     access_token: ''
 

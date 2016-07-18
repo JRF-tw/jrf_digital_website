@@ -33,8 +33,14 @@ defaults: &defaults
   google_gtm:
     id: ""
 
+  fb:
+    pages: ""
+
   rollbar:
     access_token: ""
+
+  google:
+    pages: ""
 
 development:
   <<: *defaults

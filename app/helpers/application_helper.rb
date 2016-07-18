@@ -5,16 +5,21 @@ module ApplicationHelper
       site: '數位典藏檢索系統 – 民間司法改革基金會',
       reverse: true,
       description: '收錄民間司法改革基金會歷年聲明文件、剪報、會務資訊、以及其他數位內容。',
+      canonical: request.url,
       og: {
         title: '民間司改會數位典藏',
         description: '收錄民間司法改革基金會歷年聲明文件、剪報、會務資訊、以及其他數位內容。',
         type: 'website',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg",
-        site_name: '民間司改會數位典藏'
+        site_name: '民間司改會數位典藏',
+        url: request.url
       },
       twitter: {
         card: 'summary_large_image',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg"
+      },
+      fb: {
+        pages: Setting.fb.pages
       }
     }
   end

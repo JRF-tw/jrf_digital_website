@@ -3,14 +3,24 @@ class RecordsController < ApplicationController
 
   def show
     @record.update_columns(visits: (@record.visits + 1))
+    keywords = @record.keywords.to_a.map{ |k| k.name }.join(',')
     set_meta_tags({
-      title: "檔案編號 #{@record.identifier}",
-      description: '',
-      keywords: '',
+      title: @record.title,
+      description: display_shorter(@record.content, 100),
+      keywords: keywords,
       og: {
-        type: 'website',
-        title: "檔案編號 #{@record.identifier}",
-        description: ''
+        type: 'article',
+        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : @record.image,
+        title: @record.title,
+        description: display_shorter(@record.content, 100)
+      },
+      article: {
+        publisher: Setting.url.fb,
+        published_time: @record.created_at.strftime('%FT%T%:z'),
+        modified_time: @record.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : @record.image,
       }
     })
   end
@@ -35,12 +45,10 @@ class RecordsController < ApplicationController
 
     set_meta_tags({
       title: title,
-      description: '',
-      keywords: '',
+      keywords: '司法改革,數位典藏',
       og: {
         type: 'website',
-        title: title,
-        description: ''
+        title: title
       }
     })
 

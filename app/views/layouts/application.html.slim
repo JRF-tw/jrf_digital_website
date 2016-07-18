@@ -19,7 +19,6 @@ html lang="zh-TW"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
-    = canonical_tag
 
   - if params[:controller] == 'static_pages'
     body class='jrf-index-body' style='background-image: url(/images/backgrounds/102.jpg);'

@@ -5,14 +5,13 @@ class MagazinesController < ApplicationController
   # GET /magazines
   def index
     @magazines = Magazine.all.page(params[:page])
+
     set_meta_tags({
-      title: "雜誌列表",
-      description: '',
-      keywords: '',
+      title: '雜誌列表',
+      keywords: '司法改革,數位典藏',
       og: {
         type: 'website',
-        title: "雜誌列表",
-        description: ''
+        title: '雜誌列表'
       }
     })
   end
@@ -22,12 +21,21 @@ class MagazinesController < ApplicationController
     @articles = @magazine.articles.page_order.all
     set_meta_tags({
       title: "司法改革雜誌第 #{@magazine.issue} 期",
-      description: '',
-      keywords: '',
+      description: "司法改革雜誌第 #{@magazine.issue} 期",
+      keywords: "司法改革",
       og: {
-        type: 'website',
+        type: 'article',
+        image: "#{Setting.url.protocol}://#{Setting.url.host}#{@magazine.image}",
         title: "司法改革雜誌第 #{@magazine.issue} 期",
-        description: ''
+        description: "司法改革雜誌第 #{@magazine.issue} 期",
+      },
+      article: {
+        publisher: Setting.url.fb,
+        published_time: @magazine.published_at.strftime('%FT%T%:z'),
+        modified_time: @magazine.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: "#{Setting.url.protocol}://#{Setting.url.host}#{@magazine.image}",
       }
     })
     
