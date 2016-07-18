@@ -44,7 +44,6 @@ gem 'rollbar', '~>2.11.3'
 gem 'oj', '~> 2.12.14'
 gem "skylight"
 gem 'smarter_csv'
-gem 'canonical-rails'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'devise'
