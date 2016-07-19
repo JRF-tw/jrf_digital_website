@@ -16,7 +16,6 @@ html lang="zh-TW"
     = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", media: "all"
     link href="/jrf.ico" rel="shortcut icon"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
 
@@ -28,9 +27,10 @@ html lang="zh-TW"
         main.mdl-layout__content
           = yield
           = render 'layouts/footer'
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = render 'layouts/noscript'
   - else
     body
-      = render 'layouts/noscript'
       - if params[:controller] == 'magazines' and params[:action] == 'show'
         .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-color--grey-100.jrf-issue-layout
           = render 'layouts/header_single_page'
@@ -52,3 +52,5 @@ html lang="zh-TW"
           main.mdl-layout__content.mdl-color--grey-100
             = yield
             = render 'layouts/footer'
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = render 'layouts/noscript'

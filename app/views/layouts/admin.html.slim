@@ -16,7 +16,6 @@ html lang="zh-TW"
     = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", media: "all"
     link href="/jrf.ico" rel="shortcut icon"
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'admin', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
 
@@ -25,4 +24,5 @@ html lang="zh-TW"
       = render 'layouts/admin_header'
       = yield
       = render 'layouts/admin_footer'
+    = javascript_include_tag 'admin', 'data-turbolinks-track' => true
         

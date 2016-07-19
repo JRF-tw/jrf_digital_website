@@ -14,7 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require gtm
 //= require chosen-jquery
 //= require jquery-ui/datepicker
 //= require redactor-rails/redactor.min
