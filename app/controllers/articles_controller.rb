@@ -22,13 +22,13 @@ class ArticlesController < ApplicationController
     keywords = @article.keywords.to_a.map{ |k| k.name }.join(',')
     set_meta_tags({
       title: @article.title,
-      description: display_shorter(@article.content, 100),
+      description: display_shorter(@article.content, 150),
       keywords: keywords,
       og: {
         type: 'article',
         image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
         title: @article.title,
-        description: display_shorter(@article.content, 100)
+        description: display_shorter(@article.content, 150)
       },
       article: {
         publisher: Setting.url.fb,

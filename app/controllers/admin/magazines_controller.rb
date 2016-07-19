@@ -5,7 +5,10 @@ class Admin::MagazinesController < Admin::BaseController
   def index
     @magazines = Magazine.order(id: :asc).page(params[:page])
     set_meta_tags({
-      title: "雜誌管理"
+      title: "雜誌管理",
+      og: {
+        title: "雜誌管理"
+      }
     })
   end
 
@@ -17,14 +20,20 @@ class Admin::MagazinesController < Admin::BaseController
   def new
     @magazine = Magazine.new
     set_meta_tags({
-      title: "新增雜誌"
+      title: "新增雜誌",
+      og: {
+        title: "新增雜誌"
+      }
     })
   end
 
   # GET /magazines/1/edit
   def edit
     set_meta_tags({
-      title: "編輯雜誌"
+      title: "編輯雜誌",
+      og: {
+        title: "編輯雜誌"
+      }
     })
   end
 

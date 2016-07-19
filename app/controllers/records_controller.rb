@@ -6,13 +6,13 @@ class RecordsController < ApplicationController
     keywords = @record.keywords.to_a.map{ |k| k.name }.join(',')
     set_meta_tags({
       title: @record.title,
-      description: display_shorter(@record.content, 100),
+      description: display_shorter(@record.content, 150),
       keywords: keywords,
       og: {
         type: 'article',
         image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : @record.image,
         title: @record.title,
-        description: display_shorter(@record.content, 100)
+        description: display_shorter(@record.content, 150)
       },
       article: {
         publisher: Setting.url.fb,

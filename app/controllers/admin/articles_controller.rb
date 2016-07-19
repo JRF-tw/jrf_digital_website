@@ -10,7 +10,10 @@ class Admin::ArticlesController < Admin::BaseController
       @articles = Article.includes(issue_column: [:magazine, :column]).order(id: :asc).page(params[:page])
     end
     set_meta_tags({
-      title: "文章管理"
+      title: "文章管理",
+      og: {
+        title: "文章管理"
+      }
     })
   end
 
@@ -22,14 +25,20 @@ class Admin::ArticlesController < Admin::BaseController
   def new
     @article = Article.new
     set_meta_tags({
-      title: "新增文章"
+      title: "新增文章",
+      og: {
+        title: "新增文章"
+      }
     })
   end
 
   # GET /articles/1/edit
   def edit
     set_meta_tags({
-      title: "編輯文章"
+      title: "編輯文章",
+      og: {
+        title: "編輯文章"
+      }
     })
   end
 

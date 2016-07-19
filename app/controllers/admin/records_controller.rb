@@ -5,7 +5,10 @@ class Admin::RecordsController < Admin::BaseController
   def index
     @records = Record.includes(:category, :carrier).order(id: :asc).page(params[:page])
     set_meta_tags({
-      title: "典藏記錄管理"
+      title: "典藏記錄管理",
+      og: {
+        title: "典藏記錄管理"
+      }
     })
   end
 
@@ -17,14 +20,20 @@ class Admin::RecordsController < Admin::BaseController
   def new
     @record = Record.new
     set_meta_tags({
-      title: "新增典藏記錄"
+      title: "新增典藏記錄",
+      og: {
+        title: "新增典藏記錄"
+      }
     })
   end
 
   # GET /records/1/edit
   def edit
     set_meta_tags({
-      title: "編輯典藏記錄"
+      title: "編輯典藏記錄",
+      og: {
+        title: "編輯典藏記錄"
+      }
     })
   end
 

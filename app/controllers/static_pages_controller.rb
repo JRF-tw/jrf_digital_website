@@ -10,6 +10,12 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+    set_meta_tags({
+      title: '關於我們',
+      og: {
+        title: '關於我們'
+      }
+    })
   end
 
   def sitemap

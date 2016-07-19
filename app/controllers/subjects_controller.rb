@@ -6,11 +6,27 @@ class SubjectsController < ApplicationController
   def index
     @q = Subject.search(params[:q])
     @subjects = @q.result(distinct: true).page(params[:page])
+    set_meta_tags({
+      title: "主題列表",
+      keywords: '司法改革,數位典藏',
+      og: {
+        type: 'website',
+        title: "主題列表"
+      }
+    })
   end
 
   # GET /subjects/1
   def show
     @records = @subject.records.includes(:subjects).page params[:page]
+    set_meta_tags({
+      title: "主題 #{@subject.name}",
+      keywords: '司法改革,數位典藏',
+      og: {
+        type: 'website',
+        title: "主題 #{@subject.name}"
+      }
+    })
   end
 
   private
