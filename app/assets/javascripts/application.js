@@ -16,3 +16,7 @@
 //= require turbolinks
 //= require material
 //= require_tree .
+
+$(document).ready(function() {
+  componentHandler.upgradeDom(); // Ask Material library to refresh DOM
+ });

@@ -20,9 +20,9 @@
 //= require redactor-rails/plugins
 //= require redactor-rails/langs/zh_tw
 //= require redactor-rails/app_config
-//= require material
 
 $( document ).ready(function() {
+  componentHandler.upgradeDom(); // Ask Material library to refresh DOM
   $('.chosen-select').chosen({
     search_contains: true,
     allow_single_deselect: true,
