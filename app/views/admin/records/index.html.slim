@@ -11,9 +11,8 @@ main.mdl-layout__content.mdl-color--grey-100
       tbody
         - @records.each do |r|
           tr
-            td = r.identifier
-            td
-              = link_to r.title, edit_admin_record_path(r)
+            td = link_to r.identifier, admin_record_path(r)
+            td = link_to r.title, edit_admin_record_path(r)
             td
               span.category.announcement = r.category.name
             td = r.carrier.name

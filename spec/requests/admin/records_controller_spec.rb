@@ -74,6 +74,13 @@ describe "Admin/Record" do
       end
     end
 
+    describe "#show" do
+      it "redirect" do
+        get "/admin/records/#{record.identifier}"
+        expect(response).to be_redirect
+      end
+    end
+
     describe "#new" do
       it "redirect" do
         get "/admin/records/new"
@@ -122,6 +129,13 @@ describe "Admin/Record" do
     describe "#index" do
       it "success" do
         get "/admin/records/"
+        expect(response).to be_success
+      end
+    end
+
+    describe "#show" do
+      it "success" do
+        get "/admin/records/#{record.identifier}"
         expect(response).to be_success
       end
     end
