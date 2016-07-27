@@ -9,7 +9,7 @@ class Record < ActiveRecord::Base
   belongs_to :issue
   belongs_to :language
   belongs_to :pattern
-  default_scope { order(identifier: :asc) } 
+  default_scope { order(identifier: :asc) }
 
 
   paginates_per 12
