@@ -2,6 +2,9 @@ class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :destroy, :update, :create]
 
   def show
+    if @record.blank?
+      not_found
+    end
     @record.update_columns(visits: (@record.visits + 1))
     keywords = @record.keywords.to_a.map{ |k| k.name }.join(',')
     set_meta_tags({
@@ -138,7 +141,7 @@ class RecordsController < ApplicationController
   private
 
   def set_record
-    @record = params[:id] ? Record.find(params[:id]) : Record.new(record_params)
+    @record = params[:id] ? Record.friendly.find(params[:id]) : Record.new(record_params)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

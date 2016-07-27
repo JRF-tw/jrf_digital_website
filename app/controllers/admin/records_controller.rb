@@ -3,7 +3,7 @@ class Admin::RecordsController < Admin::BaseController
 
   # GET /records
   def index
-    @records = Record.includes(:category, :carrier).order(id: :asc).page(params[:page])
+    @records = Record.includes(:category, :carrier).order(identifier: :asc).page(params[:page])
     set_meta_tags({
       title: "典藏記錄管理",
       og: {
@@ -72,7 +72,7 @@ class Admin::RecordsController < Admin::BaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_record
-    @record = params[:id] ? Record.find(params[:id]) : Record.new(record_params)
+    @record = params[:id] ? Record.friendly.find(params[:id]) : Record.new(record_params)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

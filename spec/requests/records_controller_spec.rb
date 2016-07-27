@@ -14,7 +14,7 @@ describe "Record" do
 
   describe "#show" do
     it "success" do
-      get "/records/#{record.id}"
+      get "/records/#{record.identifier}"
       expect(response).to be_success
     end
   end

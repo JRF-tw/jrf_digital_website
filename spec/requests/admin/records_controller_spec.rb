@@ -31,7 +31,7 @@ describe "Admin/Record" do
 
     describe "#edit" do
       it "redirect" do
-        get "/admin/records/#{record.id}/edit"
+        get "/admin/records/#{record.identifier}/edit"
         expect(response).to be_redirect
       end
     end
@@ -47,7 +47,7 @@ describe "Admin/Record" do
       it "redirect" do
         record
         update_data = { title: "new_title" }
-        put "/admin/records/#{record.id}", record: update_data
+        put "/admin/records/#{record.identifier}", record: update_data
         expect(response).to be_redirect
       end
     end
@@ -56,7 +56,7 @@ describe "Admin/Record" do
       it "redirect" do
         record
         expect {
-          delete "/admin/records/#{record.id}"
+          delete "/admin/records/#{record.identifier}"
         }.to change { Record.count }.by(0)
         expect(response).to be_redirect
       end
@@ -83,7 +83,7 @@ describe "Admin/Record" do
 
     describe "#edit" do
       it "redirect" do
-        get "/admin/records/#{record.id}/edit"
+        get "/admin/records/#{record.identifier}/edit"
         expect(response).to be_redirect
       end
     end
@@ -99,7 +99,7 @@ describe "Admin/Record" do
       it "redirect" do
         record
         update_data = { title: "new_title" }
-        put "/admin/records/#{record.id}", record: update_data
+        put "/admin/records/#{record.identifier}", record: update_data
         expect(response).to be_redirect
       end
     end
@@ -108,7 +108,7 @@ describe "Admin/Record" do
       it "redirect" do
         record
         expect {
-          delete "/admin/records/#{record.id}"
+          delete "/admin/records/#{record.identifier}"
         }.to change { Record.count }.by(0)
         expect(response).to be_redirect
       end
@@ -160,7 +160,7 @@ describe "Admin/Record" do
       it "success" do
         record
         expect {
-          delete "/admin/records/#{record.id}"
+          delete "/admin/records/#{record.identifier}"
         }.to change { Record.count }.by(-1)
         expect(response).to be_redirect
       end

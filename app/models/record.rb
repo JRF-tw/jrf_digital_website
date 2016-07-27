@@ -1,4 +1,6 @@
 class Record < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :identifier, use: :slugged
   has_and_belongs_to_many :keywords, -> { uniq }
   has_and_belongs_to_many :subjects, -> { uniq }
   belongs_to :carrier
@@ -7,6 +9,9 @@ class Record < ActiveRecord::Base
   belongs_to :issue
   belongs_to :language
   belongs_to :pattern
+  default_scope { order(identifier: :asc) } 
+
+
   paginates_per 12
 
   scope :insensitive, -> {

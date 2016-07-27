@@ -197,6 +197,11 @@ if File.file?(record_path)
         record.keywords << keyword
       end
     end
+    pdf_path = File.foreach('db/data/pdf_list').grep(/#{record.identifier}\..*$/).first
+    unless pdf_path.blank?
+      pdf_path = pdf_path.gsub('\n', '')
+      record.pdf = "https://s3-ap-northeast-1.amazonaws.com/jrf-digital/#{pdf_path}"
+    end
     record.save
   end
 end
