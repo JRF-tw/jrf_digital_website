@@ -267,7 +267,7 @@ if File.file?(magazine_path)
     article.title = article_data["標題"].gsub(/\n/, '')
     article.author = article_data["作者"]
     article.content = simple_format(article_data["全文"]).gsub(/\n/, '')
-    article.published_at = published_at
+    article.published_at = magazine.published_at
     img_url = get_img_url_from_html(article.content)
     if img_url
       article.remote_image_url = img_url
