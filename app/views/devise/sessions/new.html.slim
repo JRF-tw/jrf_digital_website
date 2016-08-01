@@ -1,7 +1,7 @@
 main.mdl-layout__content
   .stretch.single.page-content
     .jrf-login-item.mdl-shadow--4dp
-      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'mdl-grid') do |f|
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'mdl-grid' }) do |f|
         header.mdl-cell.mdl-cell--12-col.main-header
           = image_tag('app-icon.png', alt: '民間司法改革基金會', class: 'avatar')
           h4
