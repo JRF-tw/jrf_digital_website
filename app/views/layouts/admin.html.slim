@@ -19,14 +19,14 @@ html lang="zh-TW"
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
 
-  if user_signed_in?
+  - if user_signed_in?
     body.jrf-admin-body
       .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-admin-layout
         = render 'layouts/admin_header'
         = yield
         = render 'layouts/admin_footer'
       = javascript_include_tag 'admin', 'data-turbolinks-track' => true
-  else
+  - else
     body.jrf-admin-body style="background-image: url('assets/background/102.jpg');"
       .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-login-layout
         header.mdl-layout__header.mdl-layout__header--scroll.mdl-layout__header--transparent
