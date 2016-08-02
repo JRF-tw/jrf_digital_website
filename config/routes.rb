@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
   get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
 
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'not_found'
+  match "/422" => "errors#error422", via: [ :get, :post, :patch, :delete ]
+  match "/500" => "errors#error500", via: [ :get, :post, :patch, :delete ]
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
