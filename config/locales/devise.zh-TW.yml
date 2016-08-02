@@ -1,62 +1,91 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-zh-TW:
-  devise:
-    confirmations:
-      confirmed: "您的帳號已通過驗證，現在您已成功登入。"
-      send_instructions: "您將在幾分鐘後收到一封電子郵件，內有驗證帳號的步驟說明。"
-      send_paranoid_instructions: "如果我們有您的信箱，您將會收到一封驗證您的帳號的電子郵件。"
-    failure:
-      already_authenticated: "您已經登入。"
-      inactive: "您的帳號尚未被啟用。"
-      invalid: "信箱或密碼是無效的。"
-      locked: "您的帳號已被鎖定。"
-      last_attempt: "您還有最後一次嘗試機會，再次失敗您的帳號將會被鎖定。"
-      not_found_in_database: "信箱或密碼是無效的。"
-      timeout: "您的登入時效過期，請重新登入。"
-      unauthenticated: "您需要先登入或註冊後才能繼續。"
-      unconfirmed: "您的帳號需需要經過驗證後，才能繼續。"
-    mailer:
-      confirmation_instructions:
-        subject: "【國會調查兵團】帳號驗證步驟"
-      reset_password_instructions:
-        subject: "【國會調查兵團】密碼重設步驟"
-      unlock_instructions:
-        subject: "【國會調查兵團】帳號解鎖步驟"
-    omniauth_callbacks:
-      failure: "無法從 %{kind} 驗證，因為 \"%{reason}\"。"
-      success: "成功從 %{kind} 驗證。"
-    passwords:
-      no_token: "這是密碼重設頁面，僅能透過密碼重設信件進入。如果您是透過重設信件進入的，請確認您的網址是完整的。"
-      send_instructions: "您將在幾分鐘後收到一封電子郵件，內有重新設定密碼的步驟說明。"
-      send_paranoid_instructions: "如果我們有您的信箱，您將會收到一封內含可重新設定密碼連結的電子郵件。"
-      updated: "您的密碼已被修改，您現在已經登入。"
-      updated_not_active: "您的密碼已被修改。"
-    registrations:
-      destroyed: "再會！您的帳號已被取消。有緣再會。"
-      signed_up: "註冊成功，歡迎！"
-      signed_up_but_inactive: "您已註冊成功。然而因為您的帳號尚未啓動，暫時無法登入，抱歉！"
-      signed_up_but_locked: "您已註冊成功。 然而因為您的帳號已被鎖定，暫時無法登入，抱歉！"
-      signed_up_but_unconfirmed: "確認信件已送至您的 Email 信箱，請點擊信件內連結以啓動您的帳號。"
-      update_needs_confirmation: "您已經成功的更新帳號資訊，但我們仍需確認您的電子信箱，請至新信箱收信並點擊連結以確認您的新電子郵件帳號。"
-      updated: "您已經成功的更新帳號資訊。"
-    sessions:
-      signed_in: "成功登入了。"
-      signed_out: "成功登出了。"
-      user:
-        already_signed_out: "已經登出了。"
-        recaptcha_error: "驗證碼輸入錯誤。"
-    unlocks:
-      send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
-      send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"
-      unlocked: "您的帳號已被解鎖，現在已經登入。"
+zh_tw:
   errors:
     messages:
-      already_confirmed: "已經驗證，請直接登入。"
-      confirmation_period_expired: "必須在 %{period} 內驗證，請重新申請。"
-      expired: "已經過期，請重新申請。"
-      not_found: "找不到。"
-      not_locked: "並未被鎖定。"
+      expired: "已經過期，請重新申請一個"
+      not_found: "找不到"
+      already_confirmed: "已經驗證，請直接登入"
+      not_locked: "被鎖定了"
       not_saved:
-        one: "有一個錯誤導致 %{resource} 不能被儲存："
-        other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
+        one: "有一個錯誤導致%{resource}不能被儲存："
+        other: "有 %{count} 個錯誤導致%{resource}不能被儲存："
+  devise:
+    failure:
+      already_authenticated: '你已經登入。'
+      unauthenticated: '您需要先註冊，登入後才能繼續。'
+      unconfirmed: '您的帳號需需要經過確認後，才能繼續。'
+      locked: '您的帳號已被鎖定。'
+      invalid: 'Email 或密碼是無效的。'
+      invalid_token: '無效的認證代碼。'
+      timeout: '您的登入時效過期，請重新登入，才能繼續。'
+      inactive: '您的帳號尚未被啟用。'
+    sessions:
+      signed_in: '成功登入了。'
+      signed_out: '成功登出了。'
+    passwords:
+      send_instructions: '您將在幾分鐘後收到一封電子郵件，內有重新設定密碼的步驟說明。'
+      updated: '您的密碼已被修改，而您現在已重新登入。'
+      updated_not_active: '您的密碼已被修改。'
+      send_paranoid_instructions: "如果我們有您的電子信箱，您將會收到一封內含可重新設定密碼連結的電子郵件。"
+    confirmations:
+      send_instructions: '您將在幾分鐘後收到一封電子郵件，內有確認帳號的步驟說明。'
+      send_paranoid_instructions: '如果我們有您的電子信箱，您將會收到一封確認您的帳號的電子郵件。'
+      confirmed: '您的帳號已經過確認，現在您已成功登入。'
+    registrations:
+      signed_up: '註冊成功，歡迎！'
+      igned_up_but_unconfirmed: '確認信件已送至您的 Email 信箱，請點擊信件內連結以啓動您的帳號。'
+      signed_up_but_inactive: '您已註冊成功。然而因為您的帳號尚未啓動，暫時無法登入，抱歉！'
+      signed_up_but_locked: '您已註冊成功。 然而因為您的帳號已被鎖定，暫時無法登入，抱歉！'
+      updated: '您已經成功的更新帳號資訊。'
+      update_needs_confirmation: "您已經成功的更新帳號資訊，但我們仍需確認您的電子信箱，請至新信箱收信並點擊連結以確認您的新電子郵件帳號。"
+      destroyed: '再會！您的帳號已被取消。有緣再會。'
+    unlocks:
+      send_instructions: '您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。'
+      unlocked: '您的帳號已被解鎖，現在請重新登入。'
+      send_paranoid_instructions: '如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。'
+    omniauth_callbacks:
+      success: '成功從 %{kind} 取得認證'
+      failure: '從 %{kind} 無法取得認證，因為 "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: '確認步驟'
+      reset_password_instructions:
+        subject: '重設密碼步驟'
+      unlock_instructions:
+        subject: '解鎖步驟'
+    instructions:
+      welcome: '歡迎'
+      hello: 'Hi'
+      resend_confirmation_instructions: '重新寄送確認信'
+      confirm_link_below: '你可以透過下方連結來啟動您的帳號'
+      confirm_my_account: '啟動我的帳號'
+      click_link_below_to_change_password: '你可以透過點擊下方的連結來更改你的密碼'
+      change_my_password: '更改我的密碼'
+      ignore_this_if_you_didnt_request: '如果您沒有要求更換您的密碼，請忽略這封信'
+      didnt_receive_confirmation_mail: '沒有收到帳號認證信？'
+      didnt_receive_unlock_mail: '沒有收到帳號解鎖信？'
+      wont_change_password_until_click_link: '除非您點擊了上面的連結並建立了一個新的密碼，否則您的密碼將不會被更改'
+      lock_account_because_invalid_access_counts: '您的帳號由於登入失敗次數過多而被鎖定'
+      click_link_below_to_unlick_account: '點擊下方的連結來為您的帳號解鎖'
+      unlock_my_account: '解鎖我的帳號'
+      change_your_password: '更改您的密碼'
+      new_password: '新密碼'
+      confirm_new_password: '再輸入一次新密碼'
+      change_my_password: '更改我的密碼'
+      forget_your_password: '忘記您的密碼？'
+      send_me_reset_password_instructions: '寄給我密碼重設信'
+      edit: '編輯'
+      leave_blank_if_you_dont_want_to_change_it: '如果你沒有要更改的話，請不要填入任何東西'
+      we_need_your_current_password_to_confirm_your_changes: '請提供您的密碼來確認您的更動'
+      update: '更新'
+      cancel_my_account: '取消我的帳號'
+      unhappy: '對我們的服務感到不滿意'
+      back: '回上一步'
+      sign_up: '註冊'
+      sign_in: '登入'
+      resend_unlock_instructions: '寄送帳號解鎖信'
+      remember_me: '記住我'
+      password: '密碼'
+      password_confirmation: '再確認一次您的密碼'
+      cancel: '取消'
