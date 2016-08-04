@@ -1,0 +1,37 @@
+doctype html
+html lang="zh-TW"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta content="yes" name="mobile-web-app-capable"
+    link href="/app-icon.png" rel="icon" sizes="192x192"
+    meta content="yes" name="apple-mobile-web-app-capable"
+    meta content="black" name="apple-mobile-web-app-status-bar-style"
+    meta content="JRF 數位典藏" name="apple-mobile-web-app-title"
+    link href="/app-icon.png" rel="apple-touch-icon-precomposed"
+    meta content="/app-icon.png" name="msapplication-TileImage"
+    meta content="#795548" name="msapplication-TileColor"
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:regular,bold,thin,light,medium", media: "all"
+    = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", media: "all"
+    link href="/jrf.ico" rel="shortcut icon"
+    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = display_meta_tags(default_meta_tags)
+  body.jrf-admin-body style="background-image: url('/images/backgrounds/102.jpg');"
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-login-layout
+      header.mdl-layout__header.mdl-layout__header--scroll.mdl-layout__header--transparent
+        .mdl-layout__drawer-button.jrf-back-button
+          = link_to root_path, class: 'mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect' do
+            i.material-icons arrow_back
+        .mdl-layout__header-row
+      main.mdl-layout__content
+        .stretch.single.page-content
+          .jrf-login-item.mdl-shadow--4dp
+            .mdl-grid
+              .mdl-cell.mdl-cell--12-col
+                = yield
+              .mdl-cell.mdl-cell--12-col
+                = link_to '« 返回首頁', root_path, class: 'mdl-button mdl-js-button mdl-js-ripple-effect'
+      = render 'layouts/admin_footer'
+    = javascript_include_tag 'admin', 'data-turbolinks-track' => true
