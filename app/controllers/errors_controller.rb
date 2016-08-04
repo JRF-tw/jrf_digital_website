@@ -1,4 +1,5 @@
 class ErrorsController < ApplicationController
+  layout 'errors'
   def error404
     if json_request?
       render json: {error: "not found", status: "failed"}, status: :not_found, callback: params[:callback]
