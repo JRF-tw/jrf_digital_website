@@ -18,8 +18,8 @@ html lang="zh-TW"
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
-  body.jrf-admin-body style="background-image: url('/images/backgrounds/102.jpg');"
-    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-login-layout
+  body.jrf-error-body style="background-image: url('/images/backgrounds/102.jpg');"
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-dialog-layout
       header.mdl-layout__header.mdl-layout__header--scroll.mdl-layout__header--transparent
         .mdl-layout__drawer-button.jrf-back-button
           = link_to root_path, class: 'mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect' do
@@ -27,11 +27,7 @@ html lang="zh-TW"
         .mdl-layout__header-row
       main.mdl-layout__content
         .stretch.single.page-content
-          .jrf-login-item.mdl-shadow--4dp
-            .mdl-grid
-              .mdl-cell.mdl-cell--12-col
-                = yield
-              .mdl-cell.mdl-cell--12-col
-                = link_to '« 返回首頁', root_path, class: 'mdl-button mdl-js-button mdl-js-ripple-effect'
+          .jrf-dialog-item.mdl-shadow--4dp
+            = yield
       = render 'layouts/admin_footer'
     = javascript_include_tag 'admin', 'data-turbolinks-track' => true
