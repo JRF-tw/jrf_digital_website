@@ -5,7 +5,7 @@ describe "404 page" do
     # Haven't been able to get the "show instead of exceptions" thing working in tests, but this at least makes sure the page can render correctly.
     visit "/404"
     expect(page.status_code).to eq 404
-    expect(page).to have_content("page not found")
+    expect(page).to have_css("img[src*='ˋ404.png']")
   end
 
   it "json work" do
@@ -19,7 +19,7 @@ describe "422 page" do
     # Haven't been able to get the "show instead of exceptions" thing working in tests, but this at least makes sure the page can render correctly.
     visit "/422"
     expect(page.status_code).to eq 422
-    expect(page).to have_content("action aborted")
+    expect(page).to have_css("img[src*='422.png']")
   end
 
   it "json work" do
@@ -33,7 +33,7 @@ describe "500 page" do
     # Haven't been able to get the "show instead of exceptions" thing working in tests, but this at least makes sure the page can render correctly.
     visit "/500"
     expect(page.status_code).to eq 500
-    expect(page).to have_content("internal error")
+    expect(page).to have_css("img[src*='500.png']")
   end
 
   it "json work" do
