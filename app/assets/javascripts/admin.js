@@ -22,7 +22,10 @@
 //= require redactor-rails/app_config
 //= require material
 
-var ready_ran = 0;
+var ready_ran;
+if (typeof ready_ran == 'undefined') {
+  ready_ran = 0;
+}
 
 $( document ).ready(function() {
   if (ready_ran == 1){
