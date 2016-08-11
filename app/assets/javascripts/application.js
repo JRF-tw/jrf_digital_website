@@ -16,6 +16,13 @@
 //= require turbolinks
 //= require material
 
+var ready_ran = 0;
+
 $(document).ready(function() {
+  if (ready_ran == 1){
+    return;
+  }else{
+    ready_ran = 1;
+  }
   componentHandler.upgradeDom(); // Ask Material library to refresh DOM
  });

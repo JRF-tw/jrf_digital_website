@@ -22,7 +22,14 @@
 //= require redactor-rails/app_config
 //= require material
 
+var ready_ran = 0;
+
 $( document ).ready(function() {
+  if (ready_ran == 1){
+    return;
+  }else{
+    ready_ran = 1;
+  }
   componentHandler.upgradeDom(); // Ask Material library to refresh DOM
   $('.chosen-select').chosen({
     search_contains: true,
