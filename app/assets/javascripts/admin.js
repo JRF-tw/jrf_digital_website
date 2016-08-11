@@ -42,4 +42,5 @@ $( document ).ready(function() {
   });
   $(".chosen-select").trigger('chosen:updated');
   $(".datepicker").datepicker();
+  window.init_redactor();
 });

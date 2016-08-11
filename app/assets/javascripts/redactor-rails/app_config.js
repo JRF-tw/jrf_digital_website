@@ -20,5 +20,3 @@ window.init_redactor = function(){
         "lang":'zh_tw'
       });
 }
-
-$(document).on( 'ready page:load', window.init_redactor );
