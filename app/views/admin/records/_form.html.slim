@@ -16,12 +16,12 @@
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.input_field :date, as: :string, class: "datepicker mdl-textfield__input", id: 'date-field', required: true
       label.mdl-textfield__label for="date-field" 日期
-  .mdl-cell.mdl-cell--8-col
-      label for="keywords-field"  關鍵字
-      = f.association :keywords, collection: Keyword.all, label: false, wrapper: false, input_html: { class: 'chosen-select mdl-textfield__input', id: 'keywords-field' }
-  .mdl-cell.mdl-cell--4-col
-    label.mdl-textfield__label for="subjects-field" 主題
-    = f.association :subjects, collection: Keyword.all, label: false, wrapper: false, input_html: { class: 'chosen-select mdl-textfield__input', id: 'subjects-field' }
+  .mdl-cell.mdl-cell--7-col
+    label for="keywords-field"  關鍵字
+    = f.association :keywords, collection: Keyword.all, label: false, wrapper: false, input_html: { class: 'chosen-select', id: 'keywords-field' }
+  .mdl-cell.mdl-cell--5-col
+    label for="subjects-field" 主題
+    = f.association :subjects, collection: Keyword.all, label: false, wrapper: false, input_html: { class: 'chosen-select', id: 'subjects-field' }
   .mdl-cell.mdl-cell--3-col
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
       = f.association :category, label_method: :name, value_method: :id, label: false, wrapper: false, include_blank: false, input_html: { class:'mdl-textfield__input', id: 'category-field' }
