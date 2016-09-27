@@ -35,7 +35,7 @@ $( document ).ready(function() {
     search_contains: true,
     allow_single_deselect: true,
     no_results_text: 'No results matched',
-    width: '400px'
+    width: '100%'
   });
   $(".chosen-select").trigger('chosen:updated');
   $(".datepicker").datepicker();
