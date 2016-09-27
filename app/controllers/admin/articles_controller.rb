@@ -5,9 +5,9 @@ class Admin::ArticlesController < Admin::BaseController
   def index
     if params[:m]
       @articles = Article.includes(issue_column: [:magazine, :column]).ransack({issue_column_magazine_issue_eq: params[:m]}).
-        result(distinct: true).order(id: :asc).page(params[:page])
+        result(distinct: true).order(id: :asc).page(params[:page]).per(10)
     else
-      @articles = Article.includes(issue_column: [:magazine, :column]).order(id: :asc).page(params[:page])
+      @articles = Article.includes(issue_column: [:magazine, :column]).order(id: :asc).page(params[:page]).per(10)
     end
     set_meta_tags({
       title: "文章管理",

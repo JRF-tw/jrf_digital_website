@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   delegate :column, to: :issue_column, allow_nil: true
   belongs_to :issue_column
   mount_uploader :image, ImageUploader
-  paginates_per 10
+  paginates_per 12
 
   scope :magazine_order , -> { includes(issue_column: [:magazine]).order("magazines.published_at DESC, articles.page ASC") }
   scope :page_order, -> { order("page ASC") }
