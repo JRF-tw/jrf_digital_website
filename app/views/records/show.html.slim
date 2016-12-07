@@ -33,3 +33,6 @@
       = safe_join(@record.keywords.map { |k| link_to k.name, keyword_path(k) }, '、'.html_safe)
     .mdl-cell.mdl-cell--12-col
       = @record.content.try :html_safe
+    - if @record.pdf.present? and (@record.published? or (user_signed_in? and current_user.admin?))
+      .mdl-cell.mdl-cell--12-col
+        = link_to '下載', @record.pdf, target: '_blank'
