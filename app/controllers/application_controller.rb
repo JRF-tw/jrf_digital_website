@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
-  before_filter :set_q
+  before_action :set_q
   layout :layout_by_resource
 
   def append_info_to_payload(payload)

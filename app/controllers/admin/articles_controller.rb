@@ -70,7 +70,7 @@ class Admin::ArticlesController < Admin::BaseController
     article_params[:order].each do |key,value|
       Article.find(value[:id]).update_attribute(:position, value[:position])
     end
-    render nothing: true
+    render body: nil
   end
 
   private

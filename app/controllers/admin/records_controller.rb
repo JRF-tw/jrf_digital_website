@@ -65,7 +65,7 @@ class Admin::RecordsController < Admin::BaseController
     record_params[:order].each do |key,value|
       Record.find(value[:id]).update_attribute(:position, value[:position])
     end
-    render nothing: true
+    render body: nil
   end
 
   private
