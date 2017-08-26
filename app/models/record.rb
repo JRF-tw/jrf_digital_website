@@ -27,7 +27,7 @@ class Record < ApplicationRecord
   }
 
   def full_subject
-    subject_array = self.subjects.map { |s| s.name }
+    subject_array = subjects.map { |s| s.name }
     subject_array.join('、')
   end
 end

@@ -20,7 +20,7 @@ html lang="zh-TW"
     = display_meta_tags(default_meta_tags)
 
   - if params[:controller] == 'static_pages'
-    body class='jrf-index-body' style='background-image: url(/images/backgrounds/102.jpg);'
+    body class='jrf-index-body' style="background-image: url(#{asset_path('backgrounds/102.jpg')});"
       .mdl-layout.mdl-js-layout.jrf-index-layout
         = render 'layouts/header_home'
         = render 'layouts/drawer'
