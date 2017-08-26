@@ -58,7 +58,7 @@ class RecordsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => {
+        render json: {
           status: "success",
           records: filter_records(@records),
           count: count

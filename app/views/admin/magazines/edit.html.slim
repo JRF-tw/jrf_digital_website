@@ -1,4 +1,4 @@
 main.mdl-layout__content.mdl-color--grey-100
   .stretch.single.page-content
     = simple_form_for @magazine, url: admin_magazine_path(@magazine), method: :put, html: { class: 'jrf-edit-form' }, id: 'edit-form' do |f|
-      = render :partial => 'form', :locals => { :f => f }
+      = render partial: 'form', locals: { f: f }

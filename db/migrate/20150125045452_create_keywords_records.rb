@@ -4,6 +4,6 @@ class CreateKeywordsRecords < ActiveRecord::Migration[4.2]
       t.belongs_to :keyword
       t.belongs_to :record
     end
-    add_index :keywords_records, [:keyword_id, :record_id], :unique => true
+    add_index :keywords_records, [:keyword_id, :record_id], unique: true
   end
 end
