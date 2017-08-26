@@ -1,3 +1,3 @@
-class Collector < ActiveRecord::Base
+class Collector < ApplicationRecord
   has_many :records
 end

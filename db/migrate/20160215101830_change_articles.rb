@@ -1,4 +1,4 @@
-class ChangeArticles < ActiveRecord::Migration
+class ChangeArticles < ActiveRecord::Migration[4.2]
   def change
     remove_column :articles, :magazine_id, :integer
     remove_column :articles, :column_id, :integer

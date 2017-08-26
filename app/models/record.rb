@@ -1,8 +1,8 @@
-class Record < ActiveRecord::Base
+class Record < ApplicationRecord
   extend FriendlyId
   friendly_id :identifier, use: :slugged
-  has_and_belongs_to_many :keywords, -> { uniq }
-  has_and_belongs_to_many :subjects, -> { uniq }
+  has_and_belongs_to_many :keywords, index: { unique: true }
+  has_and_belongs_to_many :subjects, index: { unique: true }
   belongs_to :carrier
   belongs_to :category
   belongs_to :collector

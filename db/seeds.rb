@@ -11,11 +11,11 @@ require 'open-uri'
 include ActionView::Helpers
 
 def reset_pk_sequence(table)
-  case ActiveRecord::Base.connection.adapter_name.downcase
+  case ApplicationRecord.connection.adapter_name.downcase
   when 'sqlite'
-    ActiveRecord::Base.connection.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = '#{table.table_name}';") rescue nil
+    ApplicationRecord.connection.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = '#{table.table_name}';") rescue nil
   when 'postgresql'
-    ActiveRecord::Base.connection.reset_pk_sequence!(table)
+    ApplicationRecord.connection.reset_pk_sequence!(table)
   end
 end
 
@@ -46,10 +46,10 @@ Issue.delete_all
 Language.delete_all
 Pattern.delete_all
 
-ActiveRecord::Base.connection.execute("Delete from keywords_records;");
-ActiveRecord::Base.connection.execute("Delete from records_subjects;");
+ApplicationRecord.connection.execute("Delete from keywords_records;");
+ApplicationRecord.connection.execute("Delete from records_subjects;");
 
-ActiveRecord::Base.connection.tables.each do |t|
+ApplicationRecord.connection.tables.each do |t|
   reset_pk_sequence(t)
 end
 
@@ -211,9 +211,9 @@ Column.delete_all
 Article.delete_all
 IssueColumn.delete_all
 
-ActiveRecord::Base.connection.execute("Delete from articles_keywords;");
+ApplicationRecord.connection.execute("Delete from articles_keywords;");
 
-ActiveRecord::Base.connection.tables.each do |t|
+ApplicationRecord.connection.tables.each do |t|
   reset_pk_sequence(t)
 end
 
@@ -278,6 +278,6 @@ if File.file?(magazine_path)
 end
 
 
-ActiveRecord::Base.connection.tables.each do |t|
+ApplicationRecord.connection.tables.each do |t|
   reset_pk_sequence(t)
 end

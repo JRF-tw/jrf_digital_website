@@ -1,4 +1,4 @@
-class CreateKeywordsRecords < ActiveRecord::Migration
+class CreateKeywordsRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :keywords_records do |t|
       t.belongs_to :keyword

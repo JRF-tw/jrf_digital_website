@@ -1,4 +1,4 @@
-class Column < ActiveRecord::Base
+class Column < ApplicationRecord
   has_many :issue_columns
   has_many :magazines, through: :issue_columns
   has_many :articles, through: :issue_columns

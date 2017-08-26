@@ -1,4 +1,4 @@
-class CreateRecordsSubjects < ActiveRecord::Migration
+class CreateRecordsSubjects < ActiveRecord::Migration[4.2]
   def change
     create_table :records_subjects do |t|
       t.references :record, null: false

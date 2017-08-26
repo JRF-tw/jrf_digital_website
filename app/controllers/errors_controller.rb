@@ -27,6 +27,6 @@ class ErrorsController < ApplicationController
   private
 
   def json_request?
-    env['ORIGINAL_FULLPATH'] =~ /\.json$/
+    request.env['ORIGINAL_FULLPATH'] =~ /\.json$/
   end
 end

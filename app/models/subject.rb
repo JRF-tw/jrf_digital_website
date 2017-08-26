@@ -1,3 +1,3 @@
-class Subject < ActiveRecord::Base
-  has_and_belongs_to_many :records, -> { uniq }
+class Subject < ApplicationRecord
+  has_and_belongs_to_many :records, index: { unique: true }
 end

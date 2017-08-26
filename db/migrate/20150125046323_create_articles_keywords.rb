@@ -1,4 +1,4 @@
-class CreateArticlesKeywords < ActiveRecord::Migration
+class CreateArticlesKeywords < ActiveRecord::Migration[4.2]
   def change
     create_table :articles_keywords do |t|
       t.references :article, null: false

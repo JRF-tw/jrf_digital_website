@@ -37,7 +37,7 @@ describe "Admin/Magazine" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/magazines", magazine: new_magazine
+        post "/admin/magazines", params: { magazine: new_magazine }
         expect(response).to be_redirect
       end
     end
@@ -46,7 +46,7 @@ describe "Admin/Magazine" do
       it "redirect" do
         magazine
         update_data = { volumn: "new_volumn" }
-        put "/admin/magazines/#{magazine.id}", magazine: update_data
+        put "/admin/magazines/#{magazine.id}", params: { magazine: update_data }
         expect(response).to be_redirect
       end
     end
@@ -89,7 +89,7 @@ describe "Admin/Magazine" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/magazines", magazine: new_magazine
+        post "/admin/magazines", params: { magazine: new_magazine }
         expect(response).to be_redirect
       end
     end
@@ -98,7 +98,7 @@ describe "Admin/Magazine" do
       it "redirect" do
         magazine
         update_data = { volumn: "new_volumn" }
-        put "/admin/magazines/#{magazine.id}", magazine: update_data
+        put "/admin/magazines/#{magazine.id}", params: { magazine: update_data }
         expect(response).to be_redirect
       end
     end
@@ -141,7 +141,7 @@ describe "Admin/Magazine" do
 
     describe "#create" do
       it "success" do
-        post "/admin/magazines", magazine: new_magazine
+        post "/admin/magazines", params: { magazine: new_magazine }
         expect(response).to be_success
       end
     end
@@ -150,7 +150,7 @@ describe "Admin/Magazine" do
       it "success" do
         magazine
         update_data = { volumn: "new_volumn" }
-        put "/admin/magazines/#{magazine.id}", magazine: update_data
+        put "/admin/magazines/#{magazine.id}", params: { magazine: update_data }
         expect(response).to be_redirect
       end
     end
