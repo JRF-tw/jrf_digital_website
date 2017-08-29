@@ -1,4 +1,4 @@
-class IssueColumn < ActiveRecord::Base
+class IssueColumn < ApplicationRecord
   has_many :articles
   belongs_to :magazine
   belongs_to :column

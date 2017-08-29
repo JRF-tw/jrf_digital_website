@@ -1,4 +1,4 @@
-class Keyword < ActiveRecord::Base
-  has_and_belongs_to_many :records, -> { uniq }
-  has_and_belongs_to_many :articles, -> { uniq }
+class Keyword < ApplicationRecord
+  has_and_belongs_to_many :records, index: { unique: true }
+  has_and_belongs_to_many :articles, index: { unique: true }
 end

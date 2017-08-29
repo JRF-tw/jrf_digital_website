@@ -38,7 +38,7 @@ describe "Admin/Record" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/records", record: new_record
+        post "/admin/records", params: { record: new_record }
         expect(response).to be_redirect
       end
     end
@@ -47,7 +47,7 @@ describe "Admin/Record" do
       it "redirect" do
         record
         update_data = { title: "new_title" }
-        put "/admin/records/#{record.identifier}", record: update_data
+        put "/admin/records/#{record.identifier}", params: { record: update_data }
         expect(response).to be_redirect
       end
     end
@@ -97,7 +97,7 @@ describe "Admin/Record" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/records", record: new_record
+        post "/admin/records", params: { record: new_record }
         expect(response).to be_redirect
       end
     end
@@ -106,7 +106,7 @@ describe "Admin/Record" do
       it "redirect" do
         record
         update_data = { title: "new_title" }
-        put "/admin/records/#{record.identifier}", record: update_data
+        put "/admin/records/#{record.identifier}", params: { record: update_data }
         expect(response).to be_redirect
       end
     end
@@ -156,7 +156,7 @@ describe "Admin/Record" do
 
     describe "#create" do
       it "success" do
-        post "/admin/records", record: new_record
+        post "/admin/records", params: { record: new_record }
         expect(response).to be_redirect
       end
     end
@@ -165,7 +165,7 @@ describe "Admin/Record" do
       it "success" do
         record
         update_data = { title: "new_title" }
-        put "/admin/records/#{record.id}", record: update_data
+        put "/admin/records/#{record.id}", params: { record: update_data }
         expect(response).to be_redirect
       end
     end

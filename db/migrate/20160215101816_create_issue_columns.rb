@@ -1,4 +1,4 @@
-class CreateIssueColumns < ActiveRecord::Migration
+class CreateIssueColumns < ActiveRecord::Migration[4.2]
   def change
     create_table :issue_columns do |t|
       t.references :magazine, null: false

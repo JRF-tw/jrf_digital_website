@@ -1,3 +1,3 @@
-class Language < ActiveRecord::Base
+class Language < ApplicationRecord
   has_many :records
 end

@@ -1,13 +1,13 @@
-class CreateRedactorAssets < ActiveRecord::Migration
+class CreateRedactorAssets < ActiveRecord::Migration[4.2]
   def self.up
     create_table :redactor_assets do |t|
-      t.string  :data_file_name, :null => false
+      t.string  :data_file_name, null: false
       t.string  :data_content_type
       t.integer :data_file_size
 
       t.integer :assetable_id
-      t.string  :assetable_type, :limit => 30
-      t.string  :type, :limit => 30
+      t.string  :assetable_type, limit: 30
+      t.string  :type, limit: 30
 
       # Uncomment	it to save images dimensions, if your need it
       t.integer :width
@@ -18,8 +18,8 @@ class CreateRedactorAssets < ActiveRecord::Migration
 
     # Uncomment it to add foreign key. gem 'foreigner' is required in your .Gemfile
     # add_foreign_key(:redactor_assets, :users, dependent: :delete)
-    add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_redactor_assetable_type"
-    add_index "redactor_assets", ["assetable_type", "assetable_id"], :name => "idx_redactor_assetable"
+    add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type"
+    add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable"
   end
 
   def self.down

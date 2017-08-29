@@ -39,7 +39,7 @@ describe "Admin/Article" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/articles", article: new_article
+        post "/admin/articles", params: { article: new_article }
         expect(response).to be_redirect
       end
     end
@@ -48,7 +48,7 @@ describe "Admin/Article" do
       it "redirect" do
         article
         update_data = { title: "new_title" }
-        put "/admin/articles/#{article.id}", article: update_data
+        put "/admin/articles/#{article.id}", params: { article: update_data }
         expect(response).to be_redirect
       end
     end
@@ -91,7 +91,7 @@ describe "Admin/Article" do
 
     describe "#create" do
       it "redirect" do
-        post "/admin/articles", article: new_article
+        post "/admin/articles", params: { article: new_article }
         expect(response).to be_redirect
       end
     end
@@ -100,7 +100,7 @@ describe "Admin/Article" do
       it "redirect" do
         article
         update_data = { title: "new_title" }
-        put "/admin/articles/#{article.id}", article: update_data
+        put "/admin/articles/#{article.id}", params: { article: update_data }
         expect(response).to be_redirect
       end
     end
@@ -143,7 +143,7 @@ describe "Admin/Article" do
 
     describe "#create" do
       it "success" do
-        post "/admin/articles", article: new_article
+        post "/admin/articles", params: { article: new_article }
         expect(response).to be_redirect
       end
     end
@@ -152,7 +152,7 @@ describe "Admin/Article" do
       it "success" do
         article
         update_data = { title: "new_title" }
-        put "/admin/articles/#{article.id}", article: update_data
+        put "/admin/articles/#{article.id}", params: { article: update_data }
         expect(response).to be_redirect
       end
     end

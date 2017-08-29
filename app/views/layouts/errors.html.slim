@@ -18,7 +18,7 @@ html lang="zh-TW"
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
-  body.jrf-error-body style="background-image: url('/images/backgrounds/102.jpg');"
+  body.jrf-error-body style="background-image: url(#{asset_path('backgrounds/102.jpg')});"
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.jrf-dialog-layout
       header.mdl-layout__header.mdl-layout__header--scroll.mdl-layout__header--transparent
         .mdl-layout__drawer-button.jrf-back-button

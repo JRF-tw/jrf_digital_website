@@ -65,7 +65,7 @@ class Admin::MagazinesController < Admin::BaseController
     magazine_params[:order].each do |key,value|
       Magazine.find(value[:id]).update_attribute(:position, value[:position])
     end
-    render nothing: true
+    render body: nil
   end
 
   private

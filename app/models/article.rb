@@ -1,5 +1,5 @@
-class Article < ActiveRecord::Base
-  has_and_belongs_to_many :keywords, -> { uniq }
+class Article < ApplicationRecord
+  has_and_belongs_to_many :keywords, index: { unique: true }
   delegate :magazine, to: :issue_column, allow_nil: true
   delegate :column, to: :issue_column, allow_nil: true
   belongs_to :issue_column

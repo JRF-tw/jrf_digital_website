@@ -1,4 +1,4 @@
-class AddColumnsToRecords < ActiveRecord::Migration
+class AddColumnsToRecords < ActiveRecord::Migration[4.2]
   def change
     add_column :records, :statistics, :integer, null: false, default: 0
     add_column :records, :serial_no, :string
