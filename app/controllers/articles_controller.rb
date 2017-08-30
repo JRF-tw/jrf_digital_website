@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
       keywords: keywords,
       og: {
         type: 'article',
-        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
         title: @article.title,
         description: display_shorter(@article.content, 150)
       },
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
         modified_time: @article.updated_at.strftime('%FT%T%:z')
       },
       twitter: {
-        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
+        image: @article.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : "#{Setting.url.protocol}://#{Setting.url.host}#{@article.image}",
       }
     })
   end

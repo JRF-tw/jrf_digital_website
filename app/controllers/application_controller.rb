@@ -129,4 +129,8 @@ class ApplicationController < ActionController::Base
       text
     end
   end
+
+  def assets_path(resource)
+    ActionController::Base.helpers.asset_path(resource)
+  end
 end

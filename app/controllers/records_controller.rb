@@ -13,7 +13,7 @@ class RecordsController < ApplicationController
       keywords: keywords,
       og: {
         type: 'article',
-        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : @record.image,
+        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : @record.image,
         title: @record.title,
         description: display_shorter(@record.content, 150)
       },
@@ -23,7 +23,7 @@ class RecordsController < ApplicationController
         modified_time: @record.updated_at.strftime('%FT%T%:z')
       },
       twitter: {
-        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}/images/jrf.jpg" : @record.image,
+        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : @record.image,
       }
     })
   end
