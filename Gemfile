@@ -39,7 +39,7 @@ gem 'jquery-turbolinks'
 gem 'rabl-rails'
 gem 'responders', '~> 2.0'
 gem 'lograge'
-gem 'rollbar', '~>2.11.3'
+gem 'rollbar'
 gem 'oj', '~> 2.12.14'
 gem "skylight"
 gem 'smarter_csv'
