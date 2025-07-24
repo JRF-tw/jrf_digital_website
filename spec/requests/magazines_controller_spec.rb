@@ -2,20 +2,20 @@ require "rails_helper"
 
 describe "Magazine" do
 
-  let(:magazine) { FactoryGirl.create(:magazine) }
+  let(:magazine) { FactoryBot.create(:magazine) }
 
   describe "#index" do
     it "success" do
-      2.times { FactoryGirl.create(:magazine) }
+      2.times { FactoryBot.create(:magazine) }
       get "/magazines"
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "#show" do
     it "success" do
       get "/magazines/#{magazine.id}"
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end

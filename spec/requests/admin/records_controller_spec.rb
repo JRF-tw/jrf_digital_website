@@ -4,9 +4,9 @@ require "uuidtools"
 
 describe "Admin/Record" do
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
-  let(:record) { FactoryGirl.create(:record) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:admin) }
+  let(:record) { FactoryBot.create(:record) }
   let(:new_record) do
     {
       identifier: UUIDTools::UUID.timestamp_create.to_s,
@@ -129,28 +129,28 @@ describe "Admin/Record" do
     describe "#index" do
       it "success" do
         get "/admin/records/"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#show" do
       it "success" do
         get "/admin/records/#{record.identifier}"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#new" do
       it "success" do
         get "/admin/records/new"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/admin/records/#{record.id}/edit"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 

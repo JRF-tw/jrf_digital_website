@@ -2,12 +2,12 @@ require "rails_helper"
 
 describe "Subject" do
 
-  let(:subject) { FactoryGirl.create(:subject) }
+  let(:subject) { FactoryBot.create(:subject) }
 
   describe "#show" do
     it "success" do
       get "/subjects/#{subject.id}"
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end

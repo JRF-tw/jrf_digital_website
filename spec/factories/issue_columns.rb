@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :issue_column do
-    magazine { FactoryGirl.create(:magazine) }
-    column { FactoryGirl.create(:column) }
+    magazine { FactoryBot.create(:magazine) }
+    column { FactoryBot.create(:column) }
     sequence(:page) { |n| n }
     sequence(:name) { |n| "Issue Column #{n}" }
   end

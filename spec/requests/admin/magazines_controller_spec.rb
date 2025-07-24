@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe "Admin/Magazine" do
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
-  let(:magazine) { FactoryGirl.create(:magazine) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:admin) }
+  let(:magazine) { FactoryBot.create(:magazine) }
   let(:new_magazine) do
     {
       issue: 3,
@@ -121,28 +121,28 @@ describe "Admin/Magazine" do
     describe "#index" do
       it "success" do
         get "/admin/magazines/"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#new" do
       it "success" do
         get "/admin/magazines/new"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/admin/magazines/#{magazine.id}/edit"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#create" do
       it "success" do
         post "/admin/magazines", params: { magazine: new_magazine }
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 

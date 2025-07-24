@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :keyword do
     sequence(:name)  { |n| "Keyword #{n}" }
   end

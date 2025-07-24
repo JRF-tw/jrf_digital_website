@@ -1,18 +1,18 @@
 require "uuidtools"
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :record do
     identifier { UUIDTools::UUID.timestamp_create.to_s }
-    carrier { FactoryGirl.create(:carrier) }
-    pattern { FactoryGirl.create(:pattern) }
-    issue { FactoryGirl.create(:issue) }
-    language { FactoryGirl.create(:language) }
-    collector { FactoryGirl.create(:collector) }
-    keywords {[ FactoryGirl.create(:keyword) ]}
-    subjects {[ FactoryGirl.create(:subject) ]}
+    carrier { FactoryBot.create(:carrier) }
+    pattern { FactoryBot.create(:pattern) }
+    issue { FactoryBot.create(:issue) }
+    language { FactoryBot.create(:language) }
+    collector { FactoryBot.create(:collector) }
+    keywords {[ FactoryBot.create(:keyword) ]}
+    subjects {[ FactoryBot.create(:subject) ]}
     sequence(:title)  { |n| "Record #{n} Title" }
     sequence(:contributor) { |n| "Record_#{n} Contributor"}
-    sensitive false
+    sensitive { false }
     sequence(:publisher) { |n| "Record_#{n} Publisher"}
     sequence(:date) { |n| Date.today - ( 6 * ( (1..10).to_a[n % 10] )).days }
     sequence(:unit)  { |n| "Record #{n} Unit" }
@@ -26,7 +26,7 @@ FactoryGirl.define do
     sequence(:copyright)  { |n| "Record #{n} Copyright" }
     sequence(:right_in_rem)  { |n| "Record #{n} Right in Rem" }
     sequence(:ownership)  { |n| "Record #{n} Ownership" }
-    published true
+    published { true }
     sequence(:license)  { |n| "Record #{n} License" }
     sequence(:filename)  { |n| "Record #{n} Filename" }
     sequence(:filetype)  { |n| "Record #{n} Filetype" }
@@ -36,7 +36,7 @@ FactoryGirl.define do
     sequence(:commented_at) { |n| Date.today - ( 6 * ( (1..10).to_a[n % 10] )).days }
     sequence(:updater)  { |n| "Record #{n} Updater" }
     sequence(:updated_at) { |n| Date.today - ( 6 * ( (1..10).to_a[n % 10] )).days }
-    image "/images/backgrounds/102.jpg"
+    image { "/images/backgrounds/102.jpg" }
     sequence(:serial_no)  { |n| "Record #{n} Serial No" }
   end
 

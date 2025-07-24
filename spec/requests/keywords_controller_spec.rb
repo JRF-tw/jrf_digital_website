@@ -2,12 +2,12 @@ require "rails_helper"
 
 describe "Keyword" do
 
-  let(:keyword) { FactoryGirl.create(:keyword) }
+  let(:keyword) { FactoryBot.create(:keyword) }
 
   describe "#show" do
     it "success" do
       get "/keywords/#{keyword.id}"
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end

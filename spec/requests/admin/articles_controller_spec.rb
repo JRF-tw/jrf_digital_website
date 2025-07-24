@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe "Admin/Article" do
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
-  let(:article) { FactoryGirl.create(:article) }
-  let(:issue_column) { FactoryGirl.create(:issue_column) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:admin) }
+  let(:article) { FactoryBot.create(:article) }
+  let(:issue_column) { FactoryBot.create(:issue_column) }
   let(:new_article) do
     {
       title: "new_article_title",
@@ -123,21 +123,21 @@ describe "Admin/Article" do
     describe "#index" do
       it "success" do
         get "/admin/articles/"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#new" do
       it "success" do
         get "/admin/articles/new"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/admin/articles/#{article.id}/edit"
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
