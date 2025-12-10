@@ -16,6 +16,6 @@ main.mdl-layout__content.mdl-color--grey-100
             td
               span.category.announcement = r.category.name
             td = r.carrier.name
-            td = r.date.strftime('%Y-%m-%d')
+            td = r.date&.strftime('%Y-%m-%d')
     nav.pagination
       = paginate @records
