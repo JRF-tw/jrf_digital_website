@@ -35,4 +35,4 @@
       = @record.content.try :html_safe
     - if @record.pdf.present?
       .mdl-cell.mdl-cell--12-col
-        = link_to '下載', @record.pdf, target: '_blank'
+        = link_to '下載', @record.pdf, target: '_blank', rel: 'noopener'

@@ -41,8 +41,12 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  # Force all access to the app over SSL, send HSTS, and use secure cookies.
+  # Gated behind an env var because this app sits behind Cloudflare: enabling it
+  # while Cloudflare talks to the origin over plain HTTP (Flexible SSL) causes an
+  # infinite redirect loop. Turn it on (RAILS_FORCE_SSL=true) only once the origin
+  # is reached over HTTPS or Cloudflare forwards X-Forwarded-Proto: https (Full SSL).
+  config.force_ssl = ENV['RAILS_FORCE_SSL'].present?
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

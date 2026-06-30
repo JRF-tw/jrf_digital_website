@@ -47,6 +47,10 @@ gem "skylight"
 gem 'smarter_csv'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+# Protects the OmniAuth request phase against CVE-2015-9284 (login CSRF) by
+# validating Rails' authenticity token. Works with the existing button_to POST
+# login buttons. Replaces the manual OmniAuth.config.request_validation_phase.
+gem 'omniauth-rails_csrf_protection'
 gem 'devise'
 gem 'jquery-datetimepicker-rails'
 gem 'redactor-rails', git: 'https://github.com/billy3321/redactor-rails.git'

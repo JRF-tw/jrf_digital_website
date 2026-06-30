@@ -11,6 +11,16 @@ class Record < ApplicationRecord
   belongs_to :pattern
   default_scope { order(identifier: :asc) }
 
+  # Ransack allow-lists: restrict searchable/sortable surface to this model's own
+  # columns and its (non-sensitive) content associations, so crafted `q[...]`
+  # params can't traverse to unexpected tables. Also required by Ransack >= 4.
+  def self.ransackable_attributes(_auth = nil)
+    column_names
+  end
+
+  def self.ransackable_associations(_auth = nil)
+    %w[keywords subjects carrier category collector issue language pattern]
+  end
 
   paginates_per 12
 

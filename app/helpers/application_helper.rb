@@ -49,4 +49,31 @@ module ApplicationHelper
   def assets_path(resource)
     ActionController::Base.helpers.asset_path(resource)
   end
+
+  # Schema.org Article structured data (JSON-LD) for an archive record. Improves
+  # how search engines understand the page and its eligibility for rich results.
+  def record_json_ld(record)
+    image = record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : record.image
+    data = {
+      "@context" => "https://schema.org",
+      "@type" => "Article",
+      "headline" => record.title,
+      "description" => display_shorter(record.content.to_s, 150),
+      "identifier" => record.identifier,
+      "inLanguage" => "zh-TW",
+      "datePublished" => (record.date || record.created_at)&.iso8601,
+      "dateModified" => record.updated_at&.iso8601,
+      "image" => image,
+      "author" => { "@type" => "Organization", "name" => "財團法人民間司法改革基金會" },
+      "publisher" => {
+        "@type" => "Organization",
+        "name" => "財團法人民間司法改革基金會",
+        "logo" => { "@type" => "ImageObject", "url" => "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" }
+      },
+      "mainEntityOfPage" => { "@type" => "WebPage", "@id" => record_url(record) }
+    }
+    # json_escape turns <, > and & into their \uXXXX form so record content can't
+    # break out of the <script> tag (XSS-safe), then mark the result html_safe.
+    content_tag(:script, json_escape(data.to_json).html_safe, type: "application/ld+json")
+  end
 end
