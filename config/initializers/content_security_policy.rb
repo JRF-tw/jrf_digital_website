@@ -39,6 +39,7 @@ Rails.application.config.content_security_policy do |policy|
   # XHR / analytics beacons.
   policy.connect_src :self, :https
 
-  # Login forms post to the app itself.
-  policy.form_action :self
+  # OAuth starts with a POST to this app, then redirects the form navigation
+  # to the provider. Browsers also check those redirects against form-action.
+  policy.form_action :self, "https://accounts.google.com", "https://www.facebook.com"
 end
