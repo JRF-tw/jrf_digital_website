@@ -12,6 +12,7 @@ header.mdl-layout__header.mdl-layout__header--waterfall
     span.mdl-layout-title 數位典藏維護系統
     .mdl-layout-spacer
     nav.mdl-navigation
+      = link_to '後台使用者', admin_users_path, class: 'mdl-navigation__link'
       = link_to '返回資料庫', root_path, class: 'mdl-navigation__link'
       = link_to '登出', destroy_user_session_path, method: :delete, class: 'mdl-navigation__link'
   - if @q.present?

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :records
     resources :magazines
     resources :articles
-    resources :users, only: [:index, :update]
+    resources :users, only: [:index, :update, :destroy]
   end
 
   namespace :api do

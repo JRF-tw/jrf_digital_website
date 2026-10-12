@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
+
+  def self.ransackable_attributes(_auth = nil)
+    %w[name email]
+  end
+
+  def self.ransackable_associations(_auth = nil)
+    []
+  end
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, provider_uid: auth.uid).first
     if user

@@ -50,8 +50,17 @@ describe "Admin/User" do
 
     describe "#index" do
       it "success" do
+        user
         get "/admin/users/"
         expect(response).to be_successful
+        expect(response.body).to include(user.email)
+      end
+
+      it "search by email" do
+        user
+        get "/admin/users/", params: { q: { name_or_email_cont: user.email } }
+        expect(response.body).to include(user.email)
+        expect(response.body).not_to include(admin.email)
       end
     end
 
@@ -63,6 +72,22 @@ describe "Admin/User" do
         expect(response).to be_redirect
         user.reload
         expect(user.admin).to eq(true)
+      end
+
+      it "can't change self" do
+        put "/admin/users/#{admin.id}", params: { user: { admin: 0 } }
+        expect(admin.reload.admin).to eq(true)
+      end
+    end
+
+    describe "#destroy" do
+      it "success" do
+        user
+        expect { delete "/admin/users/#{user.id}" }.to change { User.count }.by(-1)
+      end
+
+      it "can't delete self" do
+        expect { delete "/admin/users/#{admin.id}" }.not_to change { User.count }
       end
     end
   end
