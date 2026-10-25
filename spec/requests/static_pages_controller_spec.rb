@@ -25,5 +25,13 @@ describe "Static Pages" do
       get "/sitemap.xml"
       expect(response).to be_successful
     end
+
+    it "leaves sensitive records out" do
+      open_record = FactoryBot.create(:record, sensitive: false)
+      sensitive = FactoryBot.create(:record, sensitive: true)
+      get "/sitemap.xml"
+      expect(response.body).to include(open_record.identifier)
+      expect(response.body).not_to include(sensitive.identifier)
+    end
   end
 end

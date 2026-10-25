@@ -9,6 +9,7 @@ describe "Admin/Magazine" do
     {
       issue: 3,
       volumn: 'new_magazine_volumn',
+      published_at: '2026-01-01',
       image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'test.jpg'))
     }
   end
@@ -141,8 +142,18 @@ describe "Admin/Magazine" do
 
     describe "#create" do
       it "success" do
-        post "/admin/magazines", params: { magazine: new_magazine }
+        expect {
+          post "/admin/magazines", params: { magazine: new_magazine }
+        }.to change { Magazine.count }.by(1)
+        expect(response).to redirect_to(admin_magazines_url)
+      end
+
+      it "shows the form again without a publish date" do
+        expect {
+          post "/admin/magazines", params: { magazine: new_magazine.except(:published_at) }
+        }.not_to change { Magazine.count }
         expect(response).to be_successful
+        expect(response.body).to include("請填寫出版日期")
       end
     end
 
@@ -152,6 +163,14 @@ describe "Admin/Magazine" do
         update_data = { volumn: "new_volumn" }
         put "/admin/magazines/#{magazine.id}", params: { magazine: update_data }
         expect(response).to be_redirect
+        expect(magazine.reload.volumn).to eq("new_volumn")
+      end
+
+      it "shows the form again when the issue is cleared" do
+        put "/admin/magazines/#{magazine.id}", params: { magazine: { issue: "" } }
+        expect(response).to be_successful
+        expect(response.body).to include("請填寫雜誌期數")
+        expect(magazine.reload.issue).to be_present
       end
     end
 

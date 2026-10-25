@@ -34,6 +34,25 @@ describe "API" do
     end
   end
 
+  describe "records" do
+    it "lists records and filters by keyword" do
+      wanted = FactoryBot.create(:record, title: "司法改革紀錄甲")
+      FactoryBot.create(:record, title: "其他紀錄乙")
+      get "/api/records.json"
+      expect(response).to be_successful
+      expect(json["count"]).to eq(2)
+      get "/api/records.json", params: { query: "紀錄甲" }
+      expect(json["records"].map { |r| r["identifier"] }).to eq([wanted.identifier])
+    end
+
+    it "shows one record" do
+      record = FactoryBot.create(:record)
+      get "/api/records/#{record.id}.json"
+      expect(response).to be_successful
+      expect(json["record"]["identifier"]).to eq(record.identifier)
+    end
+  end
+
   describe "magazines" do
     it "lists magazines" do
       magazine
