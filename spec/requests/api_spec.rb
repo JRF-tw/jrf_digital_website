@@ -1,0 +1,51 @@
+require "rails_helper"
+
+describe "API" do
+  let(:article) { FactoryBot.create(:article) }
+  let(:magazine) { article.magazine }
+
+  def json
+    JSON.parse(response.body)
+  end
+
+  describe "articles" do
+    it "lists articles with their magazine and column" do
+      article
+      get "/api/articles.json"
+      expect(response).to be_successful
+      item = json["articles"].first
+      expect(item["title"]).to eq(article.title)
+      expect(item["magazine"]["issue"]).to eq(magazine.issue)
+      expect(item["column"]["name"]).to eq(article.column.name)
+    end
+
+    it "filters by magazine publish date" do
+      article
+      get "/api/articles.json", params: { date_start: magazine.published_at - 1.day }
+      expect(json["count"]).to eq(1)
+      get "/api/articles.json", params: { date_start: magazine.published_at + 1.day }
+      expect(json["count"]).to eq(0)
+    end
+
+    it "shows one article" do
+      get "/api/articles/#{article.id}.json"
+      expect(response).to be_successful
+      expect(json["article"]["magazine"]["issue"]).to eq(magazine.issue)
+    end
+  end
+
+  describe "magazines" do
+    it "lists magazines" do
+      magazine
+      get "/api/magazines.json"
+      expect(response).to be_successful
+      expect(json["count"]).to eq(1)
+    end
+
+    it "shows one magazine with its articles" do
+      get "/api/magazines/#{magazine.id}.json"
+      expect(response).to be_successful
+      expect(json["magazine"]["articles"].first["column"]["name"]).to eq(article.column.name)
+    end
+  end
+end

@@ -19,7 +19,7 @@ class Api::MagazinesController < ApplicationController
   end
 
   def show
-    @magazine = Magazine.includes(articles: :column).find(params[:id])
+    @magazine = Magazine.includes(articles: { issue_column: :column }).find(params[:id])
     respond_with(@magazine)
   end
 end
