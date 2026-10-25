@@ -34,9 +34,11 @@ RSpec.describe "OAuth login", type: :request do
 
     it "rejects a #{provider} POST without a CSRF token" do
       get new_user_session_path
-      # omniauth-rails_csrf_protection rejects the request phase; in the test
-      # environment OmniAuth raises the error instead of redirecting.
-      expect { post "/users/auth/#{provider}" }.to raise_error(ActionController::InvalidAuthenticityToken)
+      # omniauth-rails_csrf_protection rejects the request phase before any
+      # redirect to the provider happens.
+      post "/users/auth/#{provider}"
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.location).to be_nil
     end
   end
 end

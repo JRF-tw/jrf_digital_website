@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0.8'
+gem 'rails', '~> 7.2.3'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -36,9 +36,9 @@ gem 'rabl-rails'
 gem 'responders'
 gem 'lograge'
 gem 'rollbar'
-gem 'nokogiri', '~> 1.15'
-gem 'oj', '~> 3.13'
-gem 'json', '~> 2.3'
+gem 'nokogiri'
+gem 'oj'
+gem 'json', '~> 2.21' # json 3 drops the quirks_mode option ActiveSupport still passes
 gem "skylight"
 gem 'smarter_csv'
 gem 'omniauth-facebook'
