@@ -12,10 +12,48 @@ describe "Record" do
     end
   end
 
+  describe "#index as JSON" do
+    it "lists records and filters by keyword" do
+      wanted = FactoryBot.create(:record, title: "司法改革紀錄甲")
+      FactoryBot.create(:record, title: "其他紀錄乙")
+      get "/records.json", params: { query: "紀錄甲" }
+      expect(response).to be_successful
+      body = JSON.parse(response.body)
+      expect(body["records"].map { |r| r["identifier"] }).to eq([wanted.identifier])
+    end
+  end
+
   describe "#show" do
     it "success" do
       get "/records/#{record.identifier}"
       expect(response).to be_successful
+    end
+
+    it "counts the visit" do
+      expect { get "/records/#{record.identifier}" }.to change { record.reload.visits }.by(1)
+    end
+
+    it "raises not found (served as 404) for an unknown record" do
+      expect { get "/records/no-such-record" }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it "hides the download link of an unpublished file from the public" do
+      hidden = FactoryBot.create(:record, published: false, pdf: "https://example.com/hidden.pdf")
+      get "/records/#{hidden.identifier}"
+      expect(response.body).not_to include("hidden.pdf")
+    end
+
+    it "shows the download link of an unpublished file to an admin" do
+      hidden = FactoryBot.create(:record, published: false, pdf: "https://example.com/hidden.pdf")
+      sign_in(FactoryBot.create(:admin))
+      get "/records/#{hidden.identifier}"
+      expect(response.body).to include("hidden.pdf")
+    end
+
+    it "shows the download link of a published file" do
+      shown = FactoryBot.create(:record, published: true, pdf: "https://example.com/shown.pdf")
+      get "/records/#{shown.identifier}"
+      expect(response.body).to include("shown.pdf")
     end
   end
 

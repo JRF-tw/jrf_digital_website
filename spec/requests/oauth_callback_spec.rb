@@ -36,6 +36,13 @@ RSpec.describe "OAuth callback", type: :request do
       expect(admin.reload.provider_uid).to eq("uid-2")
     end
 
+    it "sends a #{provider} account without an email to sign-up instead of creating a user" do
+      mock_auth(provider, uid: "uid-4", email: nil)
+
+      expect { get "/users/auth/#{provider}/callback" }.not_to change { User.count }
+      expect(response).to redirect_to(new_user_registration_url)
+    end
+
     it "creates a non-admin user for an unknown #{provider} account and keeps them out" do
       mock_auth(provider, uid: "uid-3", email: "new-#{provider}@example.com")
 
