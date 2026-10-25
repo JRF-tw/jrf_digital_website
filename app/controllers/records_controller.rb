@@ -32,12 +32,12 @@ class RecordsController < ApplicationController
     if params[:format] == "json"
       if params[:query]
         query = "%#{params[:query]}%"
-        @records = Record.includes(:subjects).where("title LIKE ? OR catalog LIKE ? OR content LIKE ?", query, query, query)
+        @records = Record.insensitive.includes(:subjects).where("title LIKE ? OR catalog LIKE ? OR content LIKE ?", query, query, query)
           .limit(params[:limit]).offset(params[:offset])
-        count = Record.where("title LIKE ? OR catalog LIKE ? OR content LIKE ?", query, query, query).count
+        count = Record.insensitive.where("title LIKE ? OR catalog LIKE ? OR content LIKE ?", query, query, query).count
       else
-        @records = Record.includes(:subjects).limit(params[:limit]).offset(params[:offset])
-        count = Record.all.count
+        @records = Record.insensitive.includes(:subjects).limit(params[:limit]).offset(params[:offset])
+        count = Record.insensitive.count
       end
     else
       @query = params[:q] ? params[:q][:title_or_content_cont] : nil

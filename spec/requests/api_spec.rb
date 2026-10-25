@@ -45,6 +45,21 @@ describe "API" do
       expect(json["records"].map { |r| r["identifier"] }).to eq([wanted.identifier])
     end
 
+    it "leaves sensitive records out" do
+      open_record = FactoryBot.create(:record, sensitive: false, title: "公開紀錄")
+      sensitive = FactoryBot.create(:record, sensitive: true, title: "敏感紀錄")
+      get "/api/records.json"
+      expect(json["count"]).to eq(1)
+      expect(json["records"].map { |r| r["identifier"] }).to eq([open_record.identifier])
+      get "/api/records.json", params: { query: "紀錄" }
+      expect(json["records"].map { |r| r["identifier"] }).not_to include(sensitive.identifier)
+    end
+
+    it "doesn't show a sensitive record" do
+      sensitive = FactoryBot.create(:record, sensitive: true)
+      expect { get "/api/records/#{sensitive.id}.json" }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
     it "shows one record" do
       record = FactoryBot.create(:record)
       get "/api/records/#{record.id}.json"

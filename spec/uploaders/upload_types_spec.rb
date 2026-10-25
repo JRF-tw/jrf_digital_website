@@ -1,9 +1,9 @@
 require "rails_helper"
 require "tmpdir"
 
-# Admins upload pictures/documents through the Redactor editor; only the
-# configured file types may be stored under public/system.
-describe "Redactor upload types" do
+# Admins upload covers and Redactor pictures/documents; only the configured
+# file types may be stored under public/.
+describe "Upload types" do
   around do |example|
     Dir.mktmpdir { |dir| @dir = dir; example.run }
   end
@@ -27,5 +27,15 @@ describe "Redactor upload types" do
   it "rejects a file type outside the document list" do
     document = RedactorRails::Document.new(data: upload("evil.exe", "application/octet-stream"))
     expect(document).not_to be_valid
+  end
+
+  it "accepts an image as an article or magazine cover" do
+    expect(FactoryBot.build(:article, image: upload("cover.png", "image/png"))).to be_valid
+    expect(FactoryBot.build(:magazine, image: upload("cover.jpg", "image/jpeg"))).to be_valid
+  end
+
+  it "rejects a non-image file as an article or magazine cover" do
+    expect(FactoryBot.build(:article, image: upload("cover.html", "text/html"))).not_to be_valid
+    expect(FactoryBot.build(:magazine, image: upload("cover.svg", "image/svg+xml"))).not_to be_valid
   end
 end
