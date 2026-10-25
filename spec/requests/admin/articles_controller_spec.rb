@@ -125,6 +125,15 @@ describe "Admin/Article" do
         get "/admin/articles/"
         expect(response).to be_successful
       end
+
+      it "filters by magazine issue" do
+        wanted = FactoryBot.create(:article)
+        other = FactoryBot.create(:article)
+        get "/admin/articles/", params: { m: wanted.magazine.issue }
+        expect(response).to be_successful
+        expect(response.body).to include(wanted.title)
+        expect(response.body).not_to include(other.title)
+      end
     end
 
     describe "#new" do
