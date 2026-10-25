@@ -24,7 +24,6 @@ gem 'sdoc', '~> 1.0', group: :doc
 gem 'meta-tags'
 gem 'simple_form'
 gem 'slim-rails'
-gem 'factory_bot_rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'carrierwave'
@@ -81,6 +80,7 @@ group :development, :test do
   gem 'minitest'
   gem "capybara"
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem "bullet"
   gem 'simplecov'
