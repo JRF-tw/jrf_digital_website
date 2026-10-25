@@ -5,6 +5,8 @@ gem 'rails', '~> 8.1.0'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
+# Rails 7+ no longer depends on sprockets; config/application.rb loads it directly.
+gem 'sprockets-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
