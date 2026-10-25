@@ -8,18 +8,18 @@ class Api::RecordsController < ApplicationController
     ransack_params[:date_gt] = params[:date_start] if params[:date_start]
     ransack_params[:date_lt] = params[:date_end] if params[:date_end]
     if ransack_params.blank?
-      @records = Record.includes(:subjects).offset(params[:offset]).limit(limit)
-      @records_count = Record.count
+      @records = Record.insensitive.includes(:subjects).offset(params[:offset]).limit(limit)
+      @records_count = Record.insensitive.count
     else
-      @records = Record.includes(:subjects).ransack(ransack_params).result(distinct: true)
+      @records = Record.insensitive.includes(:subjects).ransack(ransack_params).result(distinct: true)
         .offset(params[:offset]).limit(limit)
-      @records_count = Record.ransack(ransack_params).result(distinct: true).count
+      @records_count = Record.insensitive.ransack(ransack_params).result(distinct: true).count
     end
     respond_with(@records, @records_count)
   end
 
   def show
-    @record = Record.includes(:subjects, :carrier, :pattern, :issue, :language, :collector).find(params[:id])
+    @record = Record.insensitive.includes(:subjects, :carrier, :pattern, :issue, :language, :collector).find(params[:id])
     respond_with(@record)
   end
 end

@@ -21,6 +21,17 @@ describe "Record" do
       body = JSON.parse(response.body)
       expect(body["records"].map { |r| r["identifier"] }).to eq([wanted.identifier])
     end
+
+    it "leaves sensitive records out" do
+      open_record = FactoryBot.create(:record, sensitive: false, title: "公開紀錄")
+      sensitive = FactoryBot.create(:record, sensitive: true, title: "敏感紀錄")
+      get "/records.json"
+      body = JSON.parse(response.body)
+      expect(body["records"].map { |r| r["identifier"] }).to eq([open_record.identifier])
+      get "/records.json", params: { query: "紀錄" }
+      body = JSON.parse(response.body)
+      expect(body["records"].map { |r| r["identifier"] }).not_to include(sensitive.identifier)
+    end
   end
 
   describe "#show" do
