@@ -1,6 +1,14 @@
 require_relative 'boot'
 
-require 'rails/all'
+require 'rails'
+# Uploads go through carrierwave, so Active Storage / Action Text / Mailbox / Cable stay off.
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -16,6 +24,8 @@ module JrfDigitalWebsite
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     config.time_zone = 'Taipei'
+
+    config.autoloader = :zeitwerk
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]

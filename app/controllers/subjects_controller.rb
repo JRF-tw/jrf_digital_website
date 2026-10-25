@@ -4,7 +4,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects
   def index
-    @q = Subject.search(params[:q])
+    @q = Subject.ransack(params[:q])
     @subjects = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "主題列表",

@@ -13,7 +13,7 @@ class RecordsController < ApplicationController
       keywords: keywords,
       og: {
         type: 'article',
-        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : @record.image,
+        image: helpers.site_url(@record.image.blank? ? assets_path("jrf.jpg") : @record.image),
         title: @record.title,
         description: display_shorter(@record.content, 150)
       },
@@ -23,7 +23,7 @@ class RecordsController < ApplicationController
         modified_time: @record.updated_at.strftime('%FT%T%:z')
       },
       twitter: {
-        image: @record.image.blank? ? "#{Setting.url.protocol}://#{Setting.url.host}#{assets_path('jrf.jpg')}" : @record.image,
+        image: helpers.site_url(@record.image.blank? ? assets_path("jrf.jpg") : @record.image),
       }
     })
   end
@@ -71,7 +71,7 @@ class RecordsController < ApplicationController
   def articles
     @subject = Subject.where(name: "文章").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])
@@ -81,7 +81,7 @@ class RecordsController < ApplicationController
   def propagandas
     @subject = Subject.where(name: "宣傳品").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])
@@ -91,7 +91,7 @@ class RecordsController < ApplicationController
   def documents
     @subject = Subject.where(name: "公文書").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])
@@ -101,7 +101,7 @@ class RecordsController < ApplicationController
   def statements
     @subject = Subject.where(name: "聲明文件").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])
@@ -111,7 +111,7 @@ class RecordsController < ApplicationController
   def petitions
     @subject = Subject.where(name: "陳情相關資料").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])
@@ -121,7 +121,7 @@ class RecordsController < ApplicationController
   def affairs
     @subject = Subject.where(name: "會務").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])
@@ -131,7 +131,7 @@ class RecordsController < ApplicationController
   def letters
     @subject = Subject.where(name: "信函").first
     if @subject
-      @q = @subject.records.includes(:category).search(params[:q])
+      @q = @subject.records.includes(:category).ransack(params[:q])
       @records = @q.result(distinct: true).page params[:page]
     else
       @records = Kaminari.paginate_array([]).page(params[:page])

@@ -1,15 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'bundler', '2.1.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.8'
+gem 'rails', '~> 8.1.0'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 6'
+# Rails 7+ no longer depends on sprockets; config/application.rb loads it directly.
+gem 'sprockets-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -24,7 +23,7 @@ gem 'sdoc', '~> 1.0', group: :doc
 
 gem 'meta-tags'
 gem 'simple_form'
-gem 'slim-rails', '3.1.1'
+gem 'slim-rails'
 gem 'factory_bot_rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
@@ -33,16 +32,15 @@ gem 'mini_magick'
 gem 'settingslogic'
 gem 'pg'
 gem 'ransack'
-gem "twitter-bootstrap-rails"
 gem 'unicode-display_width'
 gem 'jquery-turbolinks'
 gem 'rabl-rails'
-gem 'responders', '~> 2.0'
+gem 'responders'
 gem 'lograge'
 gem 'rollbar'
-gem 'nokogiri', '~> 1.15'
-gem 'oj', '~> 3.13'
-gem 'json', '~> 2.3'
+gem 'nokogiri'
+gem 'oj'
+gem 'json'
 gem "skylight"
 gem 'smarter_csv'
 gem 'omniauth-facebook'
@@ -54,9 +52,10 @@ gem 'omniauth-rails_csrf_protection'
 gem 'devise'
 gem 'jquery-datetimepicker-rails'
 gem 'redactor-rails', git: 'https://github.com/billy3321/redactor-rails.git'
-gem 'chosen-rails'
-gem 'friendly_id', '~> 5.1.0'
-gem "rails-i18n", '~> 5.1.0'
+# chosen-rails 1.10 only loads its engine (asset paths) on Rails 4-7.
+gem 'chosen-rails', require: ['chosen-rails', 'chosen-rails/engine']
+gem 'friendly_id', '~> 5.4'
+gem 'rails-i18n', '~> 8.0'
 gem 'rb-readline'
 gem 'unicorn'
 
@@ -70,7 +69,7 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 # Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', '~> 3.3.0', group: :development
+gem 'web-console', group: :development
 gem 'uuidtools', group: :test
 
 group :development, :test do
