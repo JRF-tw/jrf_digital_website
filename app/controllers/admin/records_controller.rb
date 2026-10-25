@@ -80,6 +80,7 @@ class Admin::RecordsController < Admin::BaseController
     params.require(:record).permit(:identifier, :category_id, :carrier_id, :pattern_id, :issue_id, :language_id, :collector_id,
       :sensitive, :title, :contributor, :publisher, :date, :unit,:size, :page, :quantity, :catalog, :content, :information,
       :comment, :copyright, :right_in_rem, :ownership, :published, :license, :filename, :filetype, :creator, :created_at,
-      :commentor, :commented_at, :updater, :updated_at, :image, :image_cache, :remove_image, :visits, :statistics, :serial_no)
+      :commentor, :commented_at, :updater, :updated_at, :image, :image_cache, :remove_image, :visits, :statistics, :serial_no,
+      keyword_ids: [], subject_ids: [])
   end
 end
