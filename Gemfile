@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.2.3'
+gem 'rails', '~> 8.1.0'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -38,7 +38,7 @@ gem 'lograge'
 gem 'rollbar'
 gem 'nokogiri'
 gem 'oj'
-gem 'json', '~> 2.21' # json 3 drops the quirks_mode option ActiveSupport still passes
+gem 'json'
 gem "skylight"
 gem 'smarter_csv'
 gem 'omniauth-facebook'
@@ -50,9 +50,10 @@ gem 'omniauth-rails_csrf_protection'
 gem 'devise'
 gem 'jquery-datetimepicker-rails'
 gem 'redactor-rails', git: 'https://github.com/billy3321/redactor-rails.git'
-gem 'chosen-rails'
+# chosen-rails 1.10 only loads its engine (asset paths) on Rails 4-7.
+gem 'chosen-rails', require: ['chosen-rails', 'chosen-rails/engine']
 gem 'friendly_id', '~> 5.4'
-gem 'rails-i18n', '~> 7.0'
+gem 'rails-i18n', '~> 8.0'
 gem 'rb-readline'
 gem 'unicorn'
 
