@@ -4,7 +4,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords
   def index
-    @q = Keyword.search(params[:q])
+    @q = Keyword.ransack(params[:q])
     @keywords = @q.result(distinct: true).page(params[:page])
     set_meta_tags({
       title: "關鍵字列表",

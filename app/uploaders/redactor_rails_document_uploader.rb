@@ -9,7 +9,7 @@ class RedactorRailsDocumentUploader < CarrierWave::Uploader::Base
     "system/redactor_assets/documents/#{model.id}"
   end
 
-  def extension_white_list
+  def extension_allowlist
     RedactorRails.document_file_types
   end
 end
