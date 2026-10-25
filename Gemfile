@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 7.0.8'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -52,7 +52,7 @@ gem 'jquery-datetimepicker-rails'
 gem 'redactor-rails', git: 'https://github.com/billy3321/redactor-rails.git'
 gem 'chosen-rails'
 gem 'friendly_id', '~> 5.4'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails-i18n', '~> 7.0'
 gem 'rb-readline'
 gem 'unicorn'
 
